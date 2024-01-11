@@ -12,6 +12,7 @@ public class Checkpoint {
 
     @ManyToOne
     @JoinColumn(name = "route_id")
+    // ignore properties?
     private Route route;
 
     @Column
