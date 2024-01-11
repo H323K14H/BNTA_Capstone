@@ -24,11 +24,11 @@ public class Checkpoint {
     @Column
     private boolean delivered;
 
-    public Checkpoint(Route route, double longitude, double latitude, boolean delivered) {
+    public Checkpoint(Route route, double longitude, double latitude) {
         this.route = route;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.delivered = delivered;
+        this.delivered = false;
     }
 
     public Checkpoint() {
