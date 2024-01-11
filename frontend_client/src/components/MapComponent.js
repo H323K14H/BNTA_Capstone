@@ -6,23 +6,23 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 const MapComponent = () => {
 
     const markers = [
-            {
-                geocode: [48.86, 2.3522],
-                popUp: "Hello, I am a pop up 1"
-            }, 
-            {
-                geocode: [48.85, 2.3522],
-                popUp: "Hello, I am a pop up 2"
-            }, 
-            {
-                geocode: [48.855, 2.34],
-                popUp: "Hello, I am a pop up 3"
-            }
-        ]
+        {
+            geocode: [48.86, 2.3522],
+            popUp: "Hello, I am a pop up 1"
+        },
+        {
+            geocode: [48.85, 2.3522],
+            popUp: "Hello, I am a pop up 2"
+        },
+        {
+            geocode: [48.855, 2.34],
+            popUp: "Hello, I am a pop up 3"
+        }
+    ]
 
     const customIcon = new Icon({
         iconUrl: "https://cdn-icons-png.flaticon.com/512/854/854952.png",
-        iconSize:[38, 38]
+        iconSize: [38, 38]
     })
 
     const createCustomClusterIcon = (cluster) => {
@@ -37,8 +37,16 @@ const MapComponent = () => {
     return (
         <>
             <MapContainer center={[48.8566, 2.3522]} zoom={13}>
-                <TileLayer
+                {/* <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                /> */}
+                <TileLayer
+                    attribution="Google Maps"
+                    url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" // regular
+                    //url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}" // satellite
+                    //url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}" // terrain
+                    maxZoom={20}
+                    subdomains={["mt0", "mt1", "mt2", "mt3"]}
                 />
                 <MarkerClusterGroup chunkedLoading iconCreateFunction={createCustomClusterIcon}>
                     {markers.map((marker) => (
