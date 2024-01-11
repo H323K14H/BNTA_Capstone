@@ -22,10 +22,15 @@ public class Driver {
     //Json ignore?
     private ArrayList<Route> routes;
 
-    public Driver(String initials, int capacity) {
+    @ManyToOne
+    @JoinColumn(name= "warehouse_id")
+    private Warehouse warehouse;
+
+    public Driver(String initials, int capacity, Warehouse warehouse) {
         this.initials = initials;
         this.capacity = capacity;
         this.routes = new ArrayList<>();
+        this.warehouse = warehouse;
     }
 
     public Driver() {
@@ -65,5 +70,13 @@ public class Driver {
 
     public void setRoutes(ArrayList<Route> routes) {
         this.routes = routes;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }
