@@ -1,5 +1,6 @@
 import './App.css';
 import AppContainer from './container/AppContainer';
+import './styles.css';
 
 function App() {
   return (
