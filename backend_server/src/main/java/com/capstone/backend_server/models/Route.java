@@ -37,6 +37,14 @@ public class Route {
     public Route() {
     }
 
+    public void addCheckpoint(Checkpoint checkpoint){
+        this.checkpoints.add(checkpoint);
+    }
+
+    public void removeCheckpoint(Checkpoint checkpoint){
+        this.checkpoints.remove(checkpoint);
+    }
+
     public Long getId() {
         return id;
     }
