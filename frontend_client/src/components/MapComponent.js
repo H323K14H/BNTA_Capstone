@@ -38,8 +38,8 @@ const MapComponent = () => {
     return (
         <>
             <MapContainer
-                center={[37.0902, -95.7129]}
-                zoom={3}
+                center={[51, -0.7]}
+                zoom={5}
                 zoomControl={true}
             >
 
