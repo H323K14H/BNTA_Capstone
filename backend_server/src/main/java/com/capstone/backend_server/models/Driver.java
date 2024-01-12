@@ -1,5 +1,7 @@
 package com.capstone.backend_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,11 +22,12 @@ public class Driver {
     private int capacity;
 
     @OneToMany(mappedBy = "driver")
-    //Json ignore?
+    @JsonIgnore
     private List<Route> routes;
 
     @ManyToOne
     @JoinColumn(name= "warehouse_id")
+    @JsonIgnore
     private Warehouse warehouse;
 
     public Driver(String initials, int capacity, Warehouse warehouse) {

@@ -1,5 +1,7 @@
 package com.capstone.backend_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,15 +22,15 @@ public class Warehouse {
     private String address;
 
     @OneToMany(mappedBy = "warehouse")
-    //Json ignore?
+    @JsonIgnoreProperties({"warehouse"})
     private List<Route> routes;
 
     @OneToMany(mappedBy = "warehouse")
-    //Json ignore?
+    @JsonIgnoreProperties({"warehouse"})
     private List<Driver> drivers;
 
     @OneToMany(mappedBy = "warehouse")
-    //Json ignore?
+    @JsonIgnoreProperties({"warehouse"})
     private List<DeliveryAddress> deliveryAddresses;
 
     public Warehouse(double longitude, double latitude, String address) {
