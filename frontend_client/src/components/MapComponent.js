@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import L from "leaflet";
 import {
     TileLayer,
-    MapContainer,
-    LayersControl
+    MapContainer
 } from "react-leaflet";
 
 import RoutingMachine from "./RoutingMachine";
@@ -29,16 +28,12 @@ const MapComponent = () => {
                     end={end}
                     color={'#757de8'}
                 />
-                <LayersControl position="topright">
-                    <LayersControl.BaseLayer checked name="Map">
-                        <TileLayer
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-                            maxZoom={20}
-                            subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                        />
-                    </LayersControl.BaseLayer>
-                </LayersControl>
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                    maxZoom={20}
+                    subdomains={["mt0", "mt1", "mt2", "mt3"]}
+                />
             </MapContainer>
         </>
     );
