@@ -43,7 +43,7 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
 
       const address = allAddresses[i];
 
-      const walkMarker = generateIcons(i);
+      const marker = generateIcons(i);
 
       return L.marker(waypoints.latLng, {
         draggable: true,
@@ -52,7 +52,7 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
           duration: 1000,
           height: 800,
         },
-        icon: walkMarker,
+        icon: marker,
       })
         .bindPopup(address)
         .openPopup();
