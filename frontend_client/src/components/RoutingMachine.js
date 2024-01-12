@@ -59,8 +59,6 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
     },
 
   });
-
-  // Return the instance correctly outside the function's closing curly brace
   return instance;
 };
 
