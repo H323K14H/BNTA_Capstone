@@ -11,14 +11,21 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
     iconSize: [32, 32],
   });
 
-  
+
   const myPopup = warehouse.address;
 
-  const generateGeoCodes = deliveryAddresses.map((address) => {
-    return address.geocode
+  const getGeoCodes = deliveryAddresses.map((delivery) => {
+    return delivery.geocode
   });
 
-  const allWaypoints = [warehouse.geocode, ...generateGeoCodes];
+  const getAddresses = deliveryAddresses.map((delivery) => {
+    return delivery.address
+  });
+
+  const allWaypoints = [warehouse.geocode, ...getGeoCodes];
+
+  const allAddresses = [warehouse.address, ...getAddresses];
+
 
   const instance = L.Routing.control({
     position,
@@ -26,7 +33,11 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
     lineOptions: {
       styles: [{ color }],
     },
+    
     createMarker: (i, waypoints, n) => {
+
+      const address = allAddresses[i];
+
       return L.marker(waypoints.latLng, {
         draggable: true,
         bounceOnAdd: false,
@@ -36,9 +47,10 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
         },
         icon: walkMarker,
       })
-        .bindPopup(myPopup)
+        .bindPopup(address)
         .openPopup();
     },
+
   });
 
   // Return the instance correctly outside the function's closing curly brace
