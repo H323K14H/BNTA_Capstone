@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/routes")
+@RequestMapping(value = "/routes")
 public class RouteController {
 
     @Autowired
     RouteService routeService;
 
     @PostMapping("/start")
-    public ResponseEntity<> createRoutes(){
+    public ResponseEntity<Route> createRoutes(){
         routeService.optimiseRoutes();
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
