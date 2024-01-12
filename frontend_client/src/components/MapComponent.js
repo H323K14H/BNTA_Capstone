@@ -8,9 +8,33 @@ import {
 import RoutingMachine from "./RoutingMachine";
 
 const MapComponent = () => {
-    const [map, setMap] = useState(null);
-    const [start, setStart] = useState([38.9072, -77.0369]);
-    const [end, setEnd] = useState([37.7749, -122.4194]);
+
+    const [warehouse, setWarehouse] = useState(
+
+        {
+            address: "Warehouse, 4 pivot road",
+            geocode: [38.9072, -77.0369]
+        }
+    );
+
+    const [deliveryAddresses, setDelievryAddresses] = useState(
+
+        [
+            {
+                address: "house 1",
+                geocode: [37.7749, -122.4194]
+            },
+            {
+                address: "house 2",
+                geocode: [37.75, -121.4194]
+            },
+            {
+                address: "house 3",
+                geocode: [36.7749, -120.4194]
+            }
+        ]
+
+    );
 
     return (
         <>
@@ -19,13 +43,11 @@ const MapComponent = () => {
                 zoom={3}
                 zoomControl={false}
             >
-                {/* *************** */}
-                {/* Pass in our custom control layer here, inside of the map container */}
-                {/* *************** */}
+
                 <RoutingMachine
                     position={'topleft'}
-                    start={start}
-                    end={end}
+                    warehouse={warehouse}
+                    deliveryAddresses={deliveryAddresses}
                     color={'#757de8'}
                 />
                 <TileLayer

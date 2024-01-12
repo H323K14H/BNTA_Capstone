@@ -4,23 +4,30 @@ import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 
-const createRoutineMachineLayer = ({ position, start, end, color }) => {
+const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, color }) => {
 
   const walkMarker = new L.Icon({
     iconUrl: "https://icons.iconarchive.com/icons/fa-team/fontawesome/256/FontAwesome-House-Chimney-User-icon.png",
     iconSize: [32, 32],
   });
 
-  const myPopup = "This is a waypoint!";
+  
+  const myPopup = warehouse.address;
+
+  const generateGeoCodes = deliveryAddresses.map((address) => {
+    return address.geocode
+  });
+
+  const allWaypoints = [warehouse.geocode, ...generateGeoCodes];
 
   const instance = L.Routing.control({
     position,
-    waypoints: [start, end],
+    waypoints: allWaypoints.map((geo) => L.latLng(geo[0], geo[1])),
     lineOptions: {
       styles: [{ color }],
     },
-    createMarker: (i, start, n) => {
-      return L.marker(start.latLng, {
+    createMarker: (i, waypoints, n) => {
+      return L.marker(waypoints.latLng, {
         draggable: true,
         bounceOnAdd: false,
         bounceOnAddOptions: {
