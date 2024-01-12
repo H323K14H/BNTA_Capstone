@@ -1,5 +1,7 @@
 package com.capstone.backend_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +14,7 @@ public class Checkpoint {
 
     @ManyToOne
     @JoinColumn(name = "route_id")
-    // ignore properties?
+    @JsonIgnore
     private Route route;
 
     @Column
