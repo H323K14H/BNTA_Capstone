@@ -17,7 +17,7 @@ const MapComponent = () => {
         }
     );
 
-    const [deliveryAddresses, setDelievryAddresses] = useState(
+    const [deliveryAddresses, setDeliveryAddresses] = useState(
 
         [
             {
