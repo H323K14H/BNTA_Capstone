@@ -24,12 +24,16 @@ public class DeliveryAddress {
     private double latitude;
 
     @Column
+    private String address;
+
+    @Column
     private boolean delivered;
 
-    public DeliveryAddress(Warehouse warehouse, double longitude, double latitude) {
+    public DeliveryAddress(Warehouse warehouse, double longitude, double latitude, String address) {
         this.warehouse = warehouse;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.address = address;
         this.delivered = false;
     }
 
@@ -74,5 +78,13 @@ public class DeliveryAddress {
 
     public void setDelivered(boolean delivered) {
         this.delivered = delivered;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

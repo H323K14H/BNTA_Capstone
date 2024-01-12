@@ -24,12 +24,16 @@ public class Checkpoint {
     private double latitude;
 
     @Column
+    private String address;
+
+    @Column
     private boolean delivered;
 
-    public Checkpoint(Route route, double longitude, double latitude) {
+    public Checkpoint(Route route, double longitude, double latitude, String address) {
         this.route = route;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.address = address;
         this.delivered = false;
     }
 
@@ -74,5 +78,13 @@ public class Checkpoint {
 
     public void setDelivered(boolean delivered) {
         this.delivered = delivered;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
