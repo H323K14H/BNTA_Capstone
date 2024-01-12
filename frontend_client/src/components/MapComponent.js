@@ -1,65 +1,51 @@
-import { Icon, divIcon, point } from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-cluster";
+import React, { useEffect, useState, useRef } from "react";
+import L from "leaflet";
+import {
+  TileLayer,
+  MapContainer,
+  LayersControl
+} from "react-leaflet";
 
+import RoutingMachine from "./RoutingMachine";
+
+const maps = {
+  base: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+};
 
 const MapComponent = () => {
+  const [map, setMap] = useState(null);
+  const [start, setStart] = useState([38.9072, -77.0369])
+  const [end, setEnd] = useState([37.7749, -122.4194])
 
-    const markers = [
-        {
-            geocode: [48.86, 2.3522],
-            popUp: "Hello, I am a pop up 1"
-        },
-        {
-            geocode: [48.85, 2.3522],
-            popUp: "Hello, I am a pop up 2"
-        },
-        {
-            geocode: [48.855, 2.34],
-            popUp: "Hello, I am a pop up 3"
-        }
-    ]
-
-    const customIcon = new Icon({
-        iconUrl: "https://cdn-icons-png.flaticon.com/512/854/854952.png",
-        iconSize: [38, 38]
-    })
-
-    const createCustomClusterIcon = (cluster) => {
-        return new divIcon({
-            html: `<div class="cluster-icon"> ${cluster.getChildCount()}</div>`,
-            iconSize: point(33, 33, true),
-            className: "custom-marker-cluster"
-        })
-    }
-
-
-    return (
-        <>
-            <MapContainer center={[48.8566, 2.3522]} zoom={13}>
-                {/* <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                /> */}
-                <TileLayer
-                    attribution="Google Maps"
-                    url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" // regular
-                    //url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}" // satellite
-                    //url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}" // terrain
-                    maxZoom={20}
-                    subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                />
-                <MarkerClusterGroup chunkedLoading iconCreateFunction={createCustomClusterIcon}>
-                    {markers.map((marker) => (
-                        <Marker position={marker.geocode} icon={customIcon}>
-                            <Popup>
-                                {marker.popUp}
-                            </Popup>
-                        </Marker>
-                    ))}
-                </MarkerClusterGroup>
-            </MapContainer>
-        </>
-    );
-}
+  return (
+    <>
+      <MapContainer
+        center={[37.0902, -95.7129]}
+        zoom={3}
+        zoomControl={false}
+        style={{ height: "100vh", width: "100%", padding: 0 }}
+        whenCreated={map => setMap(map)}
+      >
+        {/* *************** */}
+        {/* Pass in our custom control layer here, inside of the map container */}
+        {/* *************** */}
+        <RoutingMachine 
+          position={'topleft'} 
+          start={start} 
+          end={end} 
+          color={'#757de8'} 
+        />
+        <LayersControl position="topright">
+          <LayersControl.BaseLayer checked name="Map">
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url={maps.base}
+            />
+          </LayersControl.BaseLayer>
+        </LayersControl>
+      </MapContainer>
+    </>
+  );
+};
 
 export default MapComponent;
