@@ -3,6 +3,7 @@ package com.capstone.backend_server.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "drivers")
@@ -20,7 +21,7 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     //Json ignore?
-    private ArrayList<Route> routes;
+    private List<Route> routes;
 
     @ManyToOne
     @JoinColumn(name= "warehouse_id")
@@ -36,7 +37,7 @@ public class Driver {
     public Driver() {
     }
 
-    private void addRoute(Route route){
+    public void addRoute(Route route){
         this.routes.add(route);
     }
 
@@ -64,11 +65,11 @@ public class Driver {
         this.capacity = capacity;
     }
 
-    public ArrayList<Route> getRoutes() {
+    public List<Route> getRoutes() {
         return routes;
     }
 
-    public void setRoutes(ArrayList<Route> routes) {
+    public void setRoutes(List<Route> routes) {
         this.routes = routes;
     }
 

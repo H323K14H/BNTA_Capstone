@@ -3,6 +3,7 @@ package com.capstone.backend_server.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "routes")
@@ -25,7 +26,7 @@ public class Route {
 
     @OneToMany(mappedBy = "route")
     //Json ignore?
-    private ArrayList<Checkpoint> checkpoints;
+    private List<Checkpoint> checkpoints;
 
     public Route(Warehouse warehouse) {
         this.warehouse = warehouse;
@@ -77,11 +78,11 @@ public class Route {
         this.upcomingCheckpointIndex = upcomingCheckpointIndex;
     }
 
-    public ArrayList<Checkpoint> getCheckpoints() {
+    public List<Checkpoint> getCheckpoints() {
         return checkpoints;
     }
 
-    public void setCheckpoints(ArrayList<Checkpoint> checkpoints) {
+    public void setCheckpoints(List<Checkpoint> checkpoints) {
         this.checkpoints = checkpoints;
     }
 }

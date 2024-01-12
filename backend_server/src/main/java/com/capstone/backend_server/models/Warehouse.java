@@ -3,6 +3,7 @@ package com.capstone.backend_server.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "warehouses")
@@ -11,56 +12,58 @@ public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column
     private double longitude;
     @Column
     private double latitude;
+    @Column
+    private String address;
 
     @OneToMany(mappedBy = "warehouse")
     //Json ignore?
-    private ArrayList<Route> routes;
+    private List<Route> routes;
 
     @OneToMany(mappedBy = "warehouse")
     //Json ignore?
-    private ArrayList<Driver> drivers;
+    private List<Driver> drivers;
 
     @OneToMany(mappedBy = "warehouse")
     //Json ignore?
-    private ArrayList<DeliveryAddress> deliveryAddresses;
+    private List<DeliveryAddress> deliveryAddresses;
 
-    public Warehouse(double longitude, double latitude) {
+    public Warehouse(double longitude, double latitude, String address) {
         this.longitude = longitude;
         this.latitude = latitude;
-        this.routes = new ArrayList<>();
-        this.drivers = new ArrayList<>();
-        this.deliveryAddresses = new ArrayList<>();
+        this.address = address;
+        this.routes = new ArrayList<Route>();
+        this.drivers = new ArrayList<Driver>();
+        this.deliveryAddresses = new ArrayList<DeliveryAddress>();
     }
 
     public Warehouse() {
     }
 
-    private void addRoute(Route route){
+    public void addRoute(Route route){
         this.routes.add(route);
     }
 
-    private void removeRoute(Route route){
+    public void removeRoute(Route route){
         this.routes.remove(route);
     }
 
-    private void addDriver(Driver driver){
+    public void addDriver(Driver driver){
         this.drivers.add(driver);
     }
 
-    private void removeDriver(Driver driver){
+    public void removeDriver(Driver driver){
         this.drivers.remove(driver);
     }
 
-    private void addDeliveryAddress(DeliveryAddress deliveryAddress){
+    public void addDeliveryAddress(DeliveryAddress deliveryAddress){
         this.deliveryAddresses.add(deliveryAddress);
     }
 
-    private void removeDeliveryAddress(DeliveryAddress deliveryAddress){
+    public void removeDeliveryAddress(DeliveryAddress deliveryAddress){
         this.deliveryAddresses.remove(deliveryAddress);
     }
 
@@ -88,27 +91,35 @@ public class Warehouse {
         this.latitude = latitude;
     }
 
-    public ArrayList<Route> getRoutes() {
+    public List<Route> getRoutes() {
         return routes;
     }
 
-    public void setRoutes(ArrayList<Route> routes) {
+    public void setRoutes(List<Route> routes) {
         this.routes = routes;
     }
 
-    public ArrayList<Driver> getDrivers() {
+    public List<Driver> getDrivers() {
         return drivers;
     }
 
-    public void setDrivers(ArrayList<Driver> drivers) {
+    public void setDrivers(List<Driver> drivers) {
         this.drivers = drivers;
     }
 
-    public ArrayList<DeliveryAddress> getDeliveryAddresses() {
+    public List<DeliveryAddress> getDeliveryAddresses() {
         return deliveryAddresses;
     }
 
-    public void setDeliveryAddresses(ArrayList<DeliveryAddress> deliveryAddresses) {
+    public void setDeliveryAddresses(List<DeliveryAddress> deliveryAddresses) {
         this.deliveryAddresses = deliveryAddresses;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
