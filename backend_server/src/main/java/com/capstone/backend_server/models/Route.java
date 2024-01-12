@@ -1,8 +1,11 @@
 package com.capstone.backend_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "routes")
@@ -14,18 +17,20 @@ public class Route {
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
+    @JsonIgnoreProperties({"deliveryAddresses", "drivers", "longitude", "latitude", "address", "routes"})
     private Warehouse warehouse;
 
     @ManyToOne
     @JoinColumn(name = "driver_id")
+    @JsonIgnoreProperties({"routes", "warehouse"})
     private Driver driver;
 
     @Column
     private Long upcomingCheckpointIndex;
 
     @OneToMany(mappedBy = "route")
-    //Json ignore?
-    private ArrayList<Checkpoint> checkpoints;
+    @JsonIgnoreProperties({"route"})
+    private List<Checkpoint> checkpoints;
 
     public Route(Warehouse warehouse) {
         this.warehouse = warehouse;
@@ -77,11 +82,11 @@ public class Route {
         this.upcomingCheckpointIndex = upcomingCheckpointIndex;
     }
 
-    public ArrayList<Checkpoint> getCheckpoints() {
+    public List<Checkpoint> getCheckpoints() {
         return checkpoints;
     }
 
-    public void setCheckpoints(ArrayList<Checkpoint> checkpoints) {
+    public void setCheckpoints(List<Checkpoint> checkpoints) {
         this.checkpoints = checkpoints;
     }
 }
