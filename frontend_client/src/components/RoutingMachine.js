@@ -36,6 +36,7 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
     position,
     waypoints: allWaypoints.map((geo) => L.latLng(geo[0], geo[1])),
     collapsible: true,
+    addWaypoints: false,
     lineOptions: {
       styles: [{ color }],
       
