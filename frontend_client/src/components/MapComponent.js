@@ -47,7 +47,7 @@ const MapComponent = () => {
                     position={'topright'}
                     warehouse={warehouse}
                     deliveryAddresses={deliveryAddresses}
-                    color={'rgb(0, 174, 255)'}
+                    color={'rgb(255, 0, 0)'}
                 />
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

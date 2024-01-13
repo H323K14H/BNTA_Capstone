@@ -49,7 +49,7 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
       const marker = generateIcons(i);
 
       return L.marker(waypoints.latLng, {
-        draggable: true,
+        draggable: false,
         bounceOnAdd: false,
         bounceOnAddOptions: {
           duration: 1000,
