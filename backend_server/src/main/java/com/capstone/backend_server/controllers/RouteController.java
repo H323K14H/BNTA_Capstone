@@ -3,9 +3,12 @@ package com.capstone.backend_server.controllers;
 import com.capstone.backend_server.models.Route;
 import com.capstone.backend_server.models.Warehouse;
 import com.capstone.backend_server.services.RouteService;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOError;
@@ -22,13 +25,14 @@ public class RouteController {
     RouteService routeService;
 
     @PostMapping("/start")
-    public ResponseEntity<Route> createRoutes(){
+    public ResponseEntity<ResponseBody> createRoutes(){
         try {
-            routeService.optimiseRoutes();
+
+            return new ResponseEntity<>(routeService.optimiseRoutes().body(), HttpStatus.CREATED);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+
     }
 
     @GetMapping
