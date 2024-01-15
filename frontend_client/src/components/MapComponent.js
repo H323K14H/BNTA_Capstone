@@ -13,6 +13,7 @@ const MapComponent = () => {
 
         {
             address: "Warehouse, 4 pivot road",
+
             geocode: [51.5, -0.1]
         }
     );
@@ -33,11 +34,13 @@ const MapComponent = () => {
                 geocode: [51.51, -0.2]
             }
         ]
+
     );
 
     return (
         <>
             <MapContainer
+
                 center={[51, -0.7]}
                 zoom={5}
                 zoomControl={true}
@@ -48,6 +51,7 @@ const MapComponent = () => {
                     warehouse={warehouse}
                     deliveryAddresses={deliveryAddresses}
                     color={'rgb(255, 0, 0)'}
+
                 />
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
