@@ -33,12 +33,11 @@ public class RouteService {
 
         String requestBody = "{\"mode\":\"drive\",\"agents\":[{\"start_location\":[-2.1652807680507853,51.845712750000004],\"time_windows\":[[0,7200]]}],\"shipments\":[{\"id\":\"order_1\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_2\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_3\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_4\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.1565255499999996,51.8484407],\"duration\":120}},{\"id\":\"order_5\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.1565255499999996,51.8484407],\"duration\":120}}],\"locations\":[{\"id\":\"warehouse-0\",\"location\":[-2.1587939,51.8469543]}]}";
 
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=ede22844945a44a28479f25cf8b53c52")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=API_KEY")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -48,6 +47,7 @@ public class RouteService {
 //            ResponseBody responseBody = client.newCall(request).execute().body();
             Root root = objectMapper.readValue(response.body().string(), Root.class);
             System.out.println(root);
+            root.properties.
 //            Assert.assertNotNull(entity);
 //            Assert.assertEquals(sampleResponse.getName(), entity.getName());
             return root;
