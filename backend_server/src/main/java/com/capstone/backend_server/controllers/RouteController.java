@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOError;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +23,11 @@ public class RouteController {
 
     @PostMapping("/start")
     public ResponseEntity<Route> createRoutes(){
-        routeService.optimiseRoutes();
+        try {
+            routeService.optimiseRoutes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
