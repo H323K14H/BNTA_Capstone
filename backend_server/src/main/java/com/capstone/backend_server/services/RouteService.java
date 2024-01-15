@@ -1,8 +1,10 @@
 package com.capstone.backend_server.services;
 
+import com.capstone.backend_server.DTOs.Root;
 import com.capstone.backend_server.models.Route;
 import com.capstone.backend_server.repositories.RouteRepository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //
 import org.springframework.stereotype.Service;
@@ -42,7 +44,15 @@ public class RouteService {
                 .build();
         try (Response response = client.newCall(request).execute()){
             System.out.println(response.body().string());
+            ObjectMapper objectMapper = new ObjectMapper();
+//            ResponseBody responseBody = client.newCall(request).execute().body();
+            Root root = objectMapper.readValue(response.body().string(), Root.class);
+            System.out.println(root);
+//            Assert.assertNotNull(entity);
+//            Assert.assertEquals(sampleResponse.getName(), entity.getName());
+
             return response;
+
         } catch (IOException e){
             throw new IOException(e);
         }
