@@ -57,6 +57,7 @@ public class RouteService {
 //            System.out.println(response.body().string());
             ObjectMapper objectMapper = new ObjectMapper();
 //            ResponseBody responseBody = client.newCall(request).execute().body();
+            assert response.body() != null;
             Root root = objectMapper.readValue(response.body().string(), Root.class);
             System.out.println(root);
             ArrayList<ArrayList<ArrayList<Double>>> coordinates = root.features.get(0).geometry.coordinates;

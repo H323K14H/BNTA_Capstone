@@ -28,8 +28,11 @@ public class RouteController {
     @PostMapping("/start")
     public ResponseEntity<Route> createRoutes() {
         try {
-
-            return new ResponseEntity<>(routeService.optimiseRoutes(), HttpStatus.CREATED);
+            Route route = routeService.optimiseRoutes();
+            return new ResponseEntity<>(
+                    route,
+                    route == null ? HttpStatus.BAD_REQUEST : HttpStatus.CREATED
+            );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
