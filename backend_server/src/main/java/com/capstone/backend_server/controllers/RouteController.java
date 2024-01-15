@@ -26,7 +26,7 @@ public class RouteController {
     RouteService routeService;
 
     @PostMapping("/start")
-    public ResponseEntity<Root> createRoutes(){
+    public ResponseEntity<Route> createRoutes() {
         try {
 
             return new ResponseEntity<>(routeService.optimiseRoutes(), HttpStatus.CREATED);
@@ -37,7 +37,7 @@ public class RouteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Route>> getAllRoutes(){
+    public ResponseEntity<List<Route>> getAllRoutes() {
         return new ResponseEntity<>(routeService.getAllRoutes(), HttpStatus.OK);
     }
 
