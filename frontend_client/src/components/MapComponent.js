@@ -13,7 +13,8 @@ const MapComponent = () => {
 
         {
             address: "Warehouse, 4 pivot road",
-            geocode: [38.9072, -77.0369]
+
+            geocode: [51.5, -0.1]
         }
     );
 
@@ -22,15 +23,15 @@ const MapComponent = () => {
         [
             {
                 address: "house 1",
-                geocode: [37.7749, -122.4194]
+                geocode: [51.5, -0.2]
             },
             {
                 address: "house 2",
-                geocode: [37.75, -121.4194]
+                geocode: [51.477, -0.25]
             },
             {
                 address: "house 3",
-                geocode: [36.7749, -120.4194]
+                geocode: [51.51, -0.2]
             }
         ]
 
@@ -39,16 +40,18 @@ const MapComponent = () => {
     return (
         <>
             <MapContainer
-                center={[37.0902, -95.7129]}
-                zoom={3}
-                zoomControl={false}
+
+                center={[51, -0.7]}
+                zoom={5}
+                zoomControl={true}
             >
 
                 <RoutingMachine
-                    position={'topleft'}
+                    position={'topright'}
                     warehouse={warehouse}
                     deliveryAddresses={deliveryAddresses}
-                    color={'#757de8'}
+                    color={'rgb(255, 0, 0)'}
+
                 />
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
