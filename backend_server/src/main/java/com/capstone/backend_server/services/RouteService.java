@@ -29,29 +29,28 @@ public class RouteService {
     public RouteService() {
     }
 
-    public Response optimiseRoutes() throws IOException {
+    public Root optimiseRoutes() throws IOException {
 
-        String requestBody = "{\"mode\":\"drive\",\"agents\":[{\"start_location\":[10.985736727197894,48.2649593],\"end_location\":[10.896261152517647,48.33227795],\"pickup_capacity\":5}],\"jobs\":[{\"location\":[10.98698105,48.25615875],\"duration\":300,\"pickup_amount\":1},{\"location\":[10.9845547,48.26311145],\"duration\":300,\"pickup_amount\":1},{\"location\":[10.984630924828402,48.263248250000004],\"duration\":300,\"pickup_amount\":2},{\"location\":[10.968364837855287,48.262043399999996],\"duration\":300,\"pickup_amount\":1},{\"location\":[10.984364769628737,48.25542385],\"duration\":300,\"pickup_amount\":1}]}";
+        String requestBody = "{\"mode\":\"drive\",\"agents\":[{\"start_location\":[-2.1652807680507853,51.845712750000004],\"time_windows\":[[0,7200]]}],\"shipments\":[{\"id\":\"order_1\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_2\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_3\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_4\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.1565255499999996,51.8484407],\"duration\":120}},{\"id\":\"order_5\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.1565255499999996,51.8484407],\"duration\":120}}],\"locations\":[{\"id\":\"warehouse-0\",\"location\":[-2.1587939,51.8469543]}]}";
 
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=OUR_KEY")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=ede22844945a44a28479f25cf8b53c52")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
         try (Response response = client.newCall(request).execute()){
-            System.out.println(response.body().string());
+//            System.out.println(response.body().string());
             ObjectMapper objectMapper = new ObjectMapper();
 //            ResponseBody responseBody = client.newCall(request).execute().body();
             Root root = objectMapper.readValue(response.body().string(), Root.class);
             System.out.println(root);
 //            Assert.assertNotNull(entity);
 //            Assert.assertEquals(sampleResponse.getName(), entity.getName());
-
-            return response;
+            return root;
 
         } catch (IOException e){
             throw new IOException(e);

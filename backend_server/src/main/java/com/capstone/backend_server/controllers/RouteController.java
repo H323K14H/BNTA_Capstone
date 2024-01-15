@@ -1,5 +1,6 @@
 package com.capstone.backend_server.controllers;
 
+import com.capstone.backend_server.DTOs.Root;
 import com.capstone.backend_server.models.Route;
 import com.capstone.backend_server.models.Warehouse;
 import com.capstone.backend_server.services.RouteService;
@@ -25,10 +26,10 @@ public class RouteController {
     RouteService routeService;
 
     @PostMapping("/start")
-    public ResponseEntity<ResponseBody> createRoutes(){
+    public ResponseEntity<Root> createRoutes(){
         try {
 
-            return new ResponseEntity<>(routeService.optimiseRoutes().body(), HttpStatus.CREATED);
+            return new ResponseEntity<>(routeService.optimiseRoutes(), HttpStatus.CREATED);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
