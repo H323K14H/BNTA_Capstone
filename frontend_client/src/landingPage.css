@@ -8,7 +8,11 @@
     margin-top: 0;
     
 }
+.title{
+    text-align: center;
+}
 
 .counter-btn{
-    margin-left: auto;
+  float: right;
+  margin-bottom: 25em;
 }

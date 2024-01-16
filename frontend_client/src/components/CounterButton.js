@@ -2,7 +2,7 @@ const CounterButton = () => {
 
 
     return (<>
-            <button>Counter</button>
+            <button className="counter-btn">Counter</button>
     </>
 
 

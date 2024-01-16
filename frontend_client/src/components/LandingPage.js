@@ -6,8 +6,8 @@ const LandingPage = ({ getOptimizedRoute }) => {
     return (
         <>
             <section className="landing-title">
-                <h1>Landing page</h1>
-                <CounterButton className="counter-btn" />
+                <h1 className="title">Landing page</h1>
+                <CounterButton/>
             </section>
             <MapComponent getOptimizedRoute={getOptimizedRoute} />
             <ul>
