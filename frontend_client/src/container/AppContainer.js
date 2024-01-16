@@ -11,7 +11,8 @@ import RouteComponent from "../components/RouteComponent";
 
 const AppContainer = () => {
 
-    const [optimizedRoute, setOptimizedRoute] = useState({})
+    const [optimizedRoute, setOptimizedRoute] = useState({});
+    const [route, setRoute] = useState({})
 
     const getOptimizedRoute = async () => {
         const response = await fetch(`http://localhost:8080/routes/start`, {
@@ -24,8 +25,19 @@ const AppContainer = () => {
         setOptimizedRoute(postedRoute);
     }
 
+    const getRouteById = async (id) => {
+        const response = await fetch(`http://localhost:8080/routes/${id}`);
+        const jsonData = await response.json();
+
+        setRoute(jsonData);
+
+    }
+
+    
+
     useEffect(() => {
         getOptimizedRoute();
+        getRouteById(1); //hardcoded 1 for now
     },[])
 
 
@@ -33,7 +45,7 @@ const AppContainer = () => {
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template />,
+            element: <Template route = {route}/>,
             children: [
 
                 {

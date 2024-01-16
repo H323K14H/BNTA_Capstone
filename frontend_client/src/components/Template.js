@@ -5,12 +5,12 @@ import CounterButton from './CounterButton';
 
 
 
-const Template = () => {
+const Template = ({route}) => {
     return (<>
         <section className="landing-title">
             <h1 className="title">PitStop</h1>
             <CounterButton />
-            <NavBar />
+            <NavBar route = {route}/>
         </section>
 
         <Outlet />
