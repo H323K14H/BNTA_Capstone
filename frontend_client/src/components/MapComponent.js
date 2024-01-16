@@ -1,19 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import L from "leaflet";
-import {
-    TileLayer,
-    MapContainer
-} from "react-leaflet";
-
+import { TileLayer, MapContainer } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 
-const MapComponent = () => {
+
+const MapComponent = ({ getOptimizedRoute }) => {
 
     const [warehouse, setWarehouse] = useState(
 
         {
             address: "Warehouse, 4 pivot road",
-
             geocode: [51.5, -0.1]
         }
     );
@@ -37,6 +32,18 @@ const MapComponent = () => {
 
     );
 
+    // if (!getOptimizedRoute || !getOptimizedRoute.checkpoints) {
+    //     // Handle the case when the data is not available
+    //     return <p>Loading...</p>; // or any other appropriate fallback
+    //   }
+
+
+    // const waypoints = getOptimizedRoute.checkpoints.map((waypoint) => ({
+    //     latitude: waypoint.latitude,
+    //     longitude: waypoint.longitude,
+    //     address: waypoint.address,
+    // }));
+
     return (
         <>
             <MapContainer
@@ -50,6 +57,7 @@ const MapComponent = () => {
                     position={'topright'}
                     warehouse={warehouse}
                     deliveryAddresses={deliveryAddresses}
+                    // waypoints={waypoints}
                     color={'rgb(255, 0, 0)'}
 
                 />
