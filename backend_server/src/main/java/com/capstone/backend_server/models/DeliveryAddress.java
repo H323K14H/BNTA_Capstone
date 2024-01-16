@@ -8,15 +8,12 @@ import jakarta.persistence.*;
 @Table(name = "delivery_addresses")
 public class DeliveryAddress extends Address {
 
-
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
 //    @JsonIgnoreProperties({"deliveryAddresses", "drivers", "longitude", "latitude", "address", "routes"})
     @JsonIgnore
     private Warehouse warehouse;
 
-    @Column
-    private boolean delivered;
 
 //    @OneToMany(mappedBy = "location")
 //    @JsonIgnore
@@ -25,7 +22,6 @@ public class DeliveryAddress extends Address {
     public DeliveryAddress(double longitude, double latitude, String address, Warehouse warehouse) {
         super(longitude, latitude, address);
         this.warehouse = warehouse;
-        this.delivered = false;
 //        this.checkpoints = new ArrayList<>();
     }
 
@@ -49,20 +45,4 @@ public class DeliveryAddress extends Address {
         this.warehouse = warehouse;
     }
 
-
-    public boolean isDelivered() {
-        return delivered;
-    }
-
-    public void setDelivered(boolean delivered) {
-        this.delivered = delivered;
-    }
-
-//    public List<Checkpoint> getCheckpoints() {
-//        return checkpoints;
-//    }
-//
-//    public void setCheckpoints(List<Checkpoint> checkpoints) {
-//        this.checkpoints = checkpoints;
-//    }
 }

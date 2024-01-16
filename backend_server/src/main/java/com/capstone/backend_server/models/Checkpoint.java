@@ -20,12 +20,15 @@ public class Checkpoint {
     @ManyToOne
     @JoinColumn(name = "address_id")
     @JsonIgnoreProperties({"checkpoints", "routes", "drivers", "deliveryAddresses"})
-//    @JsonIgnore
     Address address;
+
+    @Column
+    private boolean completed;
 
     public Checkpoint(Route route, Address address) {
         this.route = route;
         this.address = address;
+        this.completed = false;
     }
 
     public Checkpoint() {
@@ -53,5 +56,13 @@ public class Checkpoint {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
