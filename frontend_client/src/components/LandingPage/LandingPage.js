@@ -1,6 +1,6 @@
-import CounterButton from "./CounterButton";
+import CounterButton from "../CounterButton";
 import MapComponent from "./MapComponent";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 
 const LandingPage = ({ optimizedRoute }) => {
 

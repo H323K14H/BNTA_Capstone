@@ -18,14 +18,12 @@ const NavBar = ({ route }) => {
     return (
         <>
             <Menu>
-
                 <a id="home" className="menu-item" href="/map-page">My Route</a>
                 <ul>
                     <p>List of addresses:</p>
                     {addresses}
-
                 </ul>
-
+                <a href='/'>More info</a>
             </Menu>
         </>
     )

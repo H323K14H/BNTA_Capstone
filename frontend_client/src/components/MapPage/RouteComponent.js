@@ -1,3 +1,4 @@
+import DeliveredButton from "./DeliveredButton";
 import RouteMap from "./RouteMap";
 
 const RouteComponent = ({ optimizedRoute }) => {
@@ -7,6 +8,7 @@ const RouteComponent = ({ optimizedRoute }) => {
         <>
             <h1>Next address:</h1>
             <RouteMap optimizedRoute={optimizedRoute}/>
+            <DeliveredButton />
         </>
     );
 }

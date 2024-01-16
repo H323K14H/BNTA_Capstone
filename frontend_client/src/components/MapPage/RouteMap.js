@@ -1,6 +1,6 @@
 import React from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet';
-import RoutingMachine from './RoutingMachine';
+import RoutingMachine from '../LandingPage/RoutingMachine';
 
 const RouteMap = ({ optimizedRoute }) => {
 
