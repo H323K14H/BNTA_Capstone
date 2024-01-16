@@ -2,7 +2,7 @@ import CounterButton from "./CounterButton";
 import MapComponent from "./MapComponent";
 import NavBar from "./NavBar";
 
-const LandingPage = ({ getOptimizedRoute }) => {
+const LandingPage = ({ optimizedRoute }) => {
 
     return (
         <>
@@ -12,7 +12,7 @@ const LandingPage = ({ getOptimizedRoute }) => {
                 <NavBar />
             </section>
 
-            <MapComponent getOptimizedRoute={getOptimizedRoute} />
+            <MapComponent optimizedRoute={optimizedRoute} />
 
             <ul>
                 <li>

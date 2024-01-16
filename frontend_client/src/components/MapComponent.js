@@ -3,61 +3,34 @@ import { TileLayer, MapContainer } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 
 
-const MapComponent = ({ getOptimizedRoute }) => {
+const MapComponent = ({ optimizedRoute }) => {
 
-    const [warehouse, setWarehouse] = useState(
-
-        {
-            address: "Warehouse, 4 pivot road",
-            geocode: [51.5, -0.1]
-        }
-    );
-
-    const [deliveryAddresses, setDeliveryAddresses] = useState(
-
-        [
-            {
-                address: "house 1",
-                geocode: [51.5, -0.2]
-            },
-            {
-                address: "house 2",
-                geocode: [51.477, -0.25]
-            },
-            {
-                address: "house 3",
-                geocode: [51.51, -0.2]
-            }
-        ]
-
-    );
-
-    // if (!getOptimizedRoute || !getOptimizedRoute.checkpoints) {
-    //     // Handle the case when the data is not available
-    //     return <p>Loading...</p>; // or any other appropriate fallback
-    //   }
+  
+    if (!optimizedRoute || !optimizedRoute.checkpoints) {
+        // Handle the case when the data is not available
+        return <p>Loading...</p>; 
+      }
 
 
-    // const waypoints = getOptimizedRoute.checkpoints.map((waypoint) => ({
-    //     latitude: waypoint.latitude,
-    //     longitude: waypoint.longitude,
-    //     address: waypoint.address,
-    // }));
+    const waypoints = optimizedRoute.checkpoints.map((waypoint) => ({
+        latitude: waypoint.latitude,
+        longitude: waypoint.longitude,
+        address: waypoint.address,
+    }));
 
     return (
         <>
             <MapContainer
 
-                center={[51, -0.7]}
+                center={[51, -0.7]} //make warehouse location
                 zoom={5}
                 zoomControl={true}
             >
 
                 <RoutingMachine
                     position={'topright'}
-                    warehouse={warehouse}
-                    deliveryAddresses={deliveryAddresses}
-                    // waypoints={waypoints}
+                    
+                    waypoints={waypoints}
                     color={'rgb(255, 0, 0)'}
 
                 />
