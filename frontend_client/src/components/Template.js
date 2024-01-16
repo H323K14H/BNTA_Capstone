@@ -1,7 +1,7 @@
 import NavBar from './NavBar'
 import LandingPage from './LandingPage/LandingPage'
 import { Outlet } from 'react-router-dom'
-import CounterButton from './CounterButton';
+import CounterButton from './Counter';
 
 
 
@@ -15,7 +15,7 @@ const Template = ({route}) => {
 
         <Outlet />
 
-        <footer>
+        <footer className='footer'>
             <p>this is the footer</p>
         </footer>
     </>

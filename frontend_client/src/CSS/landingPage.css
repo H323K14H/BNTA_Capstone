@@ -1,18 +1,33 @@
-.landing-title{
-    display: flex;
-    flex-direction: row;
-    display: block;
-    background-color: rgb(106, 138, 255);
-    text-align: center;
-    padding: 1em;
-    margin-top: 0;
-    
-}
-.title{
-    text-align: center;
+.landing-title {
+  display: flex;
+  flex-direction: row;
+  display: block;
+  background-color: rgb(106, 138, 255);
+  text-align: center;
+  padding: 1em;
+  margin-top: 0;
+  box-shadow: 0px 10px 10px rgb(91, 114, 198);
+
 }
 
-.counter-btn{
-  float: right;
-  margin-bottom: 25em;
+.title {
+  text-align: center;
+}
+
+.counter {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  right: 50px;
+  top: 26px;
+  font-size: large;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  display: block;
+  background-color: rgb(106, 138, 255);
+  text-align: center;
+  padding: 1em;
 }

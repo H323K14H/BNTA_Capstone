@@ -2,7 +2,9 @@ import React from 'react'
 
 const DeliveredButton = () => {
   return (
-    <button>Delivered</button>
+    <section className="delivered-btn-container">
+      <button >Delivered</button>
+    </section>
   )
 }
 
