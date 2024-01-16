@@ -17,7 +17,7 @@ public class Route {
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
-    @JsonIgnoreProperties({"deliveryAddresses", "drivers", "longitude", "latitude", "address", "routes"})
+    @JsonIgnoreProperties({"deliveryAddresses", "drivers", "longitude", "latitude", "address", "routes", "checkpoints"})
     private Warehouse warehouse;
 
     @ManyToOne

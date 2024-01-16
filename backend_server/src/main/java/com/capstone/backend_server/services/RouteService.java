@@ -84,7 +84,7 @@ public class RouteService {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=API_KEY")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=44de521bdc594b12a3cba072ccaabace")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -93,6 +93,7 @@ public class RouteService {
             assert response.body() != null;
             Root root = objectMapper.readValue(response.body().string(), Root.class);
             System.out.println(root.toString());
+//            System.out.println(response.body().string());
 //            ArrayList<ArrayList<ArrayList<Double>>> coordinates = root.features.get(0).geometry.coordinates;
 
 //            return coordinates2Route(root.features.get(0).geometry.coordinates);
@@ -106,10 +107,7 @@ public class RouteService {
         Route route = new Route(warehouseRepository.findById(1L).get());
         routeRepository.save(route);
 
-        Checkpoint warehouse = new Checkpoint(route,
-                waypoints.get(0).location.get(0),
-                waypoints.get(0).location.get(1),
-                route.getWarehouse().getAddress());
+        Checkpoint warehouse = new Checkpoint(route, route.getWarehouse());
 
         checkpointRepository.save(warehouse);
         route.addCheckpoint(warehouse);
@@ -117,11 +115,7 @@ public class RouteService {
         for (Waypoint waypoint : waypoints.subList(1, waypoints.size())) {
             Long deliveryAddressId = waypoint.actions.get(0).shipment_id;
 
-            Checkpoint checkpoint = new Checkpoint(route,
-                    waypoint.location.get(0),
-                    waypoint.location.get(1),
-                    deliveryAddressRepository.findById(deliveryAddressId).get().getAddress()
-            );
+            Checkpoint checkpoint = new Checkpoint(route,deliveryAddressRepository.findById(deliveryAddressId).get());
 
             checkpointRepository.save(checkpoint);
             route.addCheckpoint(checkpoint);
@@ -142,32 +136,4 @@ public class RouteService {
         return routeRepository.findById(id);
     }
 
-    public Route coordinates2Route(ArrayList<ArrayList<ArrayList<Double>>> coordinates) {
-        ArrayList<Checkpoint> checkpoints = new ArrayList<>();
-        Route route = new Route(warehouseRepository.findById(1L).get());
-        routeRepository.save(route);
-
-        Checkpoint warehouse = new Checkpoint(route,
-                coordinates.get(0).get(0).get(0),
-                coordinates.get(0).get(0).get(1),
-                route.getWarehouse().getAddress());
-
-        checkpointRepository.save(warehouse);
-        route.addCheckpoint(warehouse);
-
-        for (ArrayList<ArrayList<Double>> coordinate : coordinates) {
-            Checkpoint checkpoint = new Checkpoint(route,
-                    coordinate.get(0).get(0),
-                    coordinate.get(0).get(1),
-                    ""
-                    );
-
-            checkpointRepository.save(checkpoint);
-            route.addCheckpoint(checkpoint);
-        }
-
-        routeRepository.save(route);
-
-        return route;
-    }
 }
