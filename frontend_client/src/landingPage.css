@@ -1,0 +1,14 @@
+.landing-title{
+    display: flex;
+    flex-direction: row;
+    display: block;
+    background-color: rgb(106, 138, 255);
+    text-align: center;
+    padding: 1em;
+    margin-top: 0;
+    
+}
+
+.counter-btn{
+    margin-left: auto;
+}

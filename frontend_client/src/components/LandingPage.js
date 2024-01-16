@@ -1,14 +1,30 @@
 import CounterButton from "./CounterButton";
 import MapComponent from "./MapComponent";
 
-const LandingPage = ({getOptimizedRoute}) => {
+const LandingPage = ({ getOptimizedRoute }) => {
 
     return (
         <>
-        <h1 className="landing-title">landing page</h1>
-        <CounterButton/>
-         <MapComponent getOptimizedRoute = {getOptimizedRoute}/>
+            <section className="landing-title">
+                <h1>Landing page</h1>
+                <CounterButton className="counter-btn" />
+            </section>
+            <MapComponent getOptimizedRoute={getOptimizedRoute} />
+            <ul>
+                <li>
+                    Deliveries to Complete:
+                    
+                </li>
+                <li>
+                    Completed Deliveries:
+                </li>
+            </ul> 
+            <footer>
+                <p>this is the footer</p>
+            </footer>
         </>
+
+
     );
 }
 
