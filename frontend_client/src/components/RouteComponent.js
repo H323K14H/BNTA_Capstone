@@ -1,8 +1,13 @@
-const RouteComponent = () => {
+import RouteMap from "./RouteMap";
 
-    return (<>
-        <h1>Next address:</h1>
-    </>
+const RouteComponent = ({ optimizedRoute }) => {
+
+
+    return (
+        <>
+            <h1>Next address:</h1>
+            <RouteMap optimizedRoute={optimizedRoute}/>
+        </>
     );
 }
 

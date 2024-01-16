@@ -50,12 +50,12 @@ const AppContainer = () => {
 
                 {
                     path:"/",
-                    element: <LandingPage optimizedRoute= {optimizedRoute} />
+                    element: <LandingPage optimizedRoute={optimizedRoute} />
 
                 },
                 {
                     path: "/map-page",
-                    element: <RouteComponent />
+                    element: <RouteComponent optimizedRoute={optimizedRoute}/>
                 }
 
             ]
