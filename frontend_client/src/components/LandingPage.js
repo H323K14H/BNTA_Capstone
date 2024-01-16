@@ -8,7 +8,7 @@ const LandingPage = ({ getOptimizedRoute }) => {
         <>
             <section className="landing-title">
                 <h1 className="title">Landing page</h1>
-                <CounterButton/>
+                <CounterButton />
                 <NavBar />
             </section>
 

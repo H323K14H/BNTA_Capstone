@@ -44,8 +44,6 @@ const MapComponent = ({ getOptimizedRoute }) => {
     //     address: waypoint.address,
     // }));
 
-   
-
     return (
         <>
             <MapContainer

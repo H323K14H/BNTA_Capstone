@@ -1,11 +1,10 @@
 const CounterButton = () => {
 
 
-    return (<>
+    return (
+        <>
             <button className="counter-btn">Counter</button>
-    </>
-
-
+        </>
     );
 }
 

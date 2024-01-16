@@ -4,7 +4,7 @@ import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 
-const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, color, waypoints}) => {
+const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, color, waypoints }) => {
 
 
   const generateIcons = (i) => {
@@ -48,9 +48,8 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
     addWaypoints: false,
     lineOptions: {
       styles: [{ color }],
-      
-    },
 
+    },
 
     createMarker: (i, waypoints, n) => {
 
@@ -69,16 +68,13 @@ const createRoutineMachineLayer = ({ position, warehouse, deliveryAddresses, col
         },
         icon: marker,
 
-        
       })
 
-      .bindPopup(address)
-      .openPopup();
-
+        .bindPopup(address)
+        .openPopup();
     },
 
   });
-
 
   return instance;
 };
