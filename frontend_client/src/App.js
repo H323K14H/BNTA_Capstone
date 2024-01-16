@@ -1,7 +1,8 @@
-import './App.css';
+import './/CSS/App.css';
 import AppContainer from './container/AppContainer';
-import './styles.css';
-import './landingPage.css'
+import './/CSS/styles.css';
+import './/CSS/landingPage.css'
+import './/CSS/NavBar.css'
 
 function App() {
   return (
