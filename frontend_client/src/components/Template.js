@@ -8,7 +8,7 @@ import CounterButton from './CounterButton';
 const Template = () => {
     return (<>
         <section className="landing-title">
-            <h1 className="title">Landing page</h1>
+            <h1 className="title">PitStop</h1>
             <CounterButton />
             <NavBar />
         </section>
