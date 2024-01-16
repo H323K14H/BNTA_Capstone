@@ -7,7 +7,7 @@ public class Action {
     public int duration;
     public int waypoint_index;
     public int shipment_index;
-    public String shipment_id;
+    public Long shipment_id;
     public int location_index;
     public String location_id;
 }

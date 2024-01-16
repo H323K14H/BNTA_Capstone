@@ -33,7 +33,7 @@ public class DataLoader implements ApplicationRunner {
         DeliveryAddress deliveryAddress1 = new DeliveryAddress(warehouse1,-0.12463613175773046,51.50079595927124, "Big Ben, Westminster, London SW1A 2JR" );
         warehouse1.addDeliveryAddress(deliveryAddress1);
 
-        DeliveryAddress deliveryAddress2 = new DeliveryAddress(warehouse1, -0.08384882579080091,-51.516050601098655, "LBG, 33 Old Broad St, London EC2N 3AH" );
+        DeliveryAddress deliveryAddress2 = new DeliveryAddress(warehouse1, -0.08384882579080091,51.516050601098655, "LBG, 33 Old Broad St, London EC2N 3AH" );
         warehouse1.addDeliveryAddress(deliveryAddress2);
 
         Driver postmanPat = new Driver("PP",5, warehouse1);
