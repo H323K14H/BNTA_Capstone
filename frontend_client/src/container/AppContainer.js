@@ -4,6 +4,9 @@ import MapComponent from "../components/MapComponent";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
+import Template from "../components/Template";
+import RouteComponent from "../components/RouteComponent";
+
 
 
 const AppContainer = () => {
@@ -30,17 +33,19 @@ const AppContainer = () => {
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <>
-                <LandingPage optimizedRoute= {optimizedRoute} />
-            </>,
+            element: <Template />,
             children: [
+
                 {
-                    path:"/map-page",
-                    element: <>
+                    path:"/",
+                    element: <LandingPage optimizedRoute= {optimizedRoute} />
 
-
-                    </>
+                },
+                {
+                    path: "/map-page",
+                    element: <RouteComponent />
                 }
+
             ]
         }
     ])

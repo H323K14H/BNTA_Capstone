@@ -6,11 +6,7 @@ const LandingPage = ({ optimizedRoute }) => {
 
     return (
         <>
-            <section className="landing-title">
-                <h1 className="title">Landing page</h1>
-                <CounterButton />
-                <NavBar />
-            </section>
+            
 
             <MapComponent optimizedRoute={optimizedRoute} />
 
@@ -23,9 +19,7 @@ const LandingPage = ({ optimizedRoute }) => {
                 </li>
             </ul>
 
-            <footer>
-                <p>this is the footer</p>
-            </footer>
+          
         </>
     );
 }
