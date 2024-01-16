@@ -1,17 +1,18 @@
 
 import "leaflet/dist/leaflet.css";
-import MapComponent from "../components/MapComponent";
+import MapComponent from "../components/LandingPage/MapComponent";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from "../components/LandingPage";
+import LandingPage from "../components/LandingPage/LandingPage";
 import Template from "../components/Template";
-import RouteComponent from "../components/RouteComponent";
+import RouteComponent from "../components/MapPage/RouteComponent";
 
 
 
 const AppContainer = () => {
 
-    const [optimizedRoute, setOptimizedRoute] = useState({})
+    const [optimizedRoute, setOptimizedRoute] = useState({});
+    const [route, setRoute] = useState({})
 
     const getOptimizedRoute = async () => {
         const response = await fetch(`http://localhost:8080/routes/start`, {
@@ -24,8 +25,19 @@ const AppContainer = () => {
         setOptimizedRoute(postedRoute);
     }
 
+    const getRouteById = async (id) => {
+        const response = await fetch(`http://localhost:8080/routes/${id}`);
+        const jsonData = await response.json();
+
+        setRoute(jsonData);
+
+    }
+
+    
+
     useEffect(() => {
         getOptimizedRoute();
+        getRouteById(1); //hardcoded 1 for now
     },[])
 
 
@@ -33,17 +45,17 @@ const AppContainer = () => {
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template />,
+            element: <Template route = {route}/>,
             children: [
 
                 {
                     path:"/",
-                    element: <LandingPage optimizedRoute= {optimizedRoute} />
+                    element: <LandingPage optimizedRoute={optimizedRoute} />
 
                 },
                 {
                     path: "/map-page",
-                    element: <RouteComponent />
+                    element: <RouteComponent optimizedRoute={optimizedRoute}/>
                 }
 
             ]

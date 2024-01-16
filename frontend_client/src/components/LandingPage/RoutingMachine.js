@@ -6,7 +6,6 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
-
   const generateIcons = (i) => {
     if (i === 0) {
 
