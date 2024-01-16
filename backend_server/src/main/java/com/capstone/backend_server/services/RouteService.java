@@ -6,6 +6,7 @@ import com.capstone.backend_server.models.DeliveryAddress;
 import com.capstone.backend_server.models.Route;
 import com.capstone.backend_server.models.Warehouse;
 import com.capstone.backend_server.repositories.CheckpointRepository;
+import com.capstone.backend_server.repositories.DeliveryAddressRepository;
 import com.capstone.backend_server.repositories.RouteRepository;
 
 import com.capstone.backend_server.repositories.WarehouseRepository;
@@ -40,6 +41,9 @@ public class RouteService {
 
     @Autowired
     WarehouseRepository warehouseRepository;
+
+    @Autowired
+    DeliveryAddressRepository deliveryAddressRepository;
 
     public String createRequestBody(){
 
@@ -80,7 +84,7 @@ public class RouteService {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=API_KEY")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=44de521bdc594b12a3cba072ccaabace")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -88,13 +92,46 @@ public class RouteService {
             ObjectMapper objectMapper = new ObjectMapper();
             assert response.body() != null;
             Root root = objectMapper.readValue(response.body().string(), Root.class);
-            System.out.println(root);
-            ArrayList<ArrayList<ArrayList<Double>>> coordinates = root.features.get(0).geometry.coordinates;
+            System.out.println(root.toString());
+//            ArrayList<ArrayList<ArrayList<Double>>> coordinates = root.features.get(0).geometry.coordinates;
 
-            return coordinates2Route(coordinates);
+//            return coordinates2Route(root.features.get(0).geometry.coordinates);
+            return waypoints2Route(root.features.get(0).properties.waypoints);
         } catch (IOException e) {
             throw new IOException(e);
         }
+    }
+
+    private Route waypoints2Route(ArrayList<Waypoint> waypoints) {
+        Route route = new Route(warehouseRepository.findById(1L).get());
+        routeRepository.save(route);
+
+        Checkpoint warehouse = new Checkpoint(route,
+                waypoints.get(0).location.get(0),
+                waypoints.get(0).location.get(1),
+                route.getWarehouse().getAddress());
+
+        checkpointRepository.save(warehouse);
+        route.addCheckpoint(warehouse);
+
+        for (Waypoint waypoint : waypoints.subList(1, waypoints.size())) {
+            Long deliveryAddressId = waypoint.actions.get(0).shipment_id;
+
+            Checkpoint checkpoint = new Checkpoint(route,
+                    waypoint.location.get(0),
+                    waypoint.location.get(1),
+                    deliveryAddressRepository.findById(deliveryAddressId).get().getAddress()
+            );
+
+            checkpointRepository.save(checkpoint);
+            route.addCheckpoint(checkpoint);
+        }
+
+        routeRepository.save(route);
+
+        return route;
+
+
     }
 
     public List<Route> getAllRoutes() {
