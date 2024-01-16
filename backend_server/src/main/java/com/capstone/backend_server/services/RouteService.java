@@ -1,15 +1,9 @@
 package com.capstone.backend_server.services;
 
 import com.capstone.backend_server.DTOs.*;
-import com.capstone.backend_server.models.Checkpoint;
-import com.capstone.backend_server.models.DeliveryAddress;
-import com.capstone.backend_server.models.Route;
-import com.capstone.backend_server.models.Warehouse;
-import com.capstone.backend_server.repositories.CheckpointRepository;
-import com.capstone.backend_server.repositories.DeliveryAddressRepository;
-import com.capstone.backend_server.repositories.RouteRepository;
+import com.capstone.backend_server.models.*;
+import com.capstone.backend_server.repositories.*;
 
-import com.capstone.backend_server.repositories.WarehouseRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +38,9 @@ public class RouteService {
 
     @Autowired
     DeliveryAddressRepository deliveryAddressRepository;
+
+    @Autowired
+    DriverRepository driverRepository;
 
     public String createRequestBody(){
 
@@ -136,4 +133,17 @@ public class RouteService {
         return routeRepository.findById(id);
     }
 
+    public Route assignDriver(Long routeId, Long driverId) {
+        Route route = routeRepository.findById(routeId).get();
+        Driver driver = driverRepository.findById(driverId).get();
+
+        if (route.getWarehouse().getId().equals(driver.getWarehouse().getId())){
+            route.setDriver(driver);
+            routeRepository.save(route);
+
+            return route;
+        }
+
+        return null;
+    }
 }
