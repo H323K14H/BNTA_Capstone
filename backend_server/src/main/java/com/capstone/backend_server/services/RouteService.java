@@ -1,11 +1,19 @@
 package com.capstone.backend_server.services;
 
+import com.capstone.backend_server.DTOs.Root;
+import com.capstone.backend_server.models.Checkpoint;
 import com.capstone.backend_server.models.Route;
+import com.capstone.backend_server.models.Warehouse;
+import com.capstone.backend_server.repositories.CheckpointRepository;
 import com.capstone.backend_server.repositories.RouteRepository;
 
+import com.capstone.backend_server.repositories.WarehouseRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,30 +30,44 @@ import okhttp3.Response;
 public class RouteService {
 
     @Autowired
+    CheckpointRepository checkpointRepository;
+
+    @Autowired
     RouteRepository routeRepository;
+
+    @Autowired
+    WarehouseRepository warehouseRepository;
 
     public RouteService() {
     }
 
-    public void optimiseRoutes() throws IOException {
+    public Route optimiseRoutes() throws IOException {
 
-        String requestBody = "{\"mode\":\"drive\",\"agents\":[{\"start_location\":[10.985736727197894,48.2649593],\"end_location\":[10.896261152517647,48.33227795],\"pickup_capacity\":5}],\"jobs\":[{\"location\":[10.98698105,48.25615875],\"duration\":300,\"pickup_amount\":1},{\"location\":[10.9845547,48.26311145],\"duration\":300,\"pickup_amount\":1},{\"location\":[10.984630924828402,48.263248250000004],\"duration\":300,\"pickup_amount\":2},{\"location\":[10.968364837855287,48.262043399999996],\"duration\":300,\"pickup_amount\":1},{\"location\":[10.984364769628737,48.25542385],\"duration\":300,\"pickup_amount\":1}]}";
+        String requestBody = "{\"mode\":\"drive\",\"agents\":[{\"start_location\":[-2.1587939,51.8469543],\"time_windows\":[[0,7200]]}],\"shipments\":[{\"id\":\"order_1\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_2\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_3\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.156448191502295,51.84770025],\"duration\":120}},{\"id\":\"order_4\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.1565255499999996,51.8484407],\"duration\":120}},{\"id\":\"order_5\",\"pickup\":{\"location_index\":0,\"duration\":120},\"delivery\":{\"location\":[-2.1565255499999996,51.8484407],\"duration\":120}}],\"locations\":[{\"id\":\"warehouse-0\",\"location\":[-2.1587939,51.8469543]}]}";
 
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=OUR_KEY")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=API_KEY")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
-        try (Response response = client.newCall(request).execute()){
-            System.out.println(response.body());
-        } catch (IOException e){
+        try (Response response = client.newCall(request).execute()) {
+//            System.out.println(response.body().string());
+            ObjectMapper objectMapper = new ObjectMapper();
+//            ResponseBody responseBody = client.newCall(request).execute().body();
+            assert response.body() != null;
+            Root root = objectMapper.readValue(response.body().string(), Root.class);
+            System.out.println(root);
+            ArrayList<ArrayList<ArrayList<Double>>> coordinates = root.features.get(0).geometry.coordinates;
+//            Assert.assertNotNull(entity);
+//            Assert.assertEquals(sampleResponse.getName(), entity.getName());
+
+            return coordinates2Route(coordinates);
+        } catch (IOException e) {
             throw new IOException(e);
         }
-        
     }
 
     public List<Route> getAllRoutes() {
@@ -54,5 +76,33 @@ public class RouteService {
 
     public Optional<Route> getRouteById(Long id) {
         return routeRepository.findById(id);
+    }
+
+    public Route coordinates2Route(ArrayList<ArrayList<ArrayList<Double>>> coordinates) {
+        ArrayList<Checkpoint> checkpoints = new ArrayList<>();
+        Route route = new Route(warehouseRepository.findById(1L).get());
+        routeRepository.save(route);
+
+        Checkpoint warehouse = new Checkpoint(route,
+                coordinates.get(0).get(0).get(0),
+                coordinates.get(0).get(0).get(1),
+                route.getWarehouse().getAddress());
+
+        checkpointRepository.save(warehouse);
+        route.addCheckpoint(warehouse);
+
+        for (ArrayList<ArrayList<Double>> coordinate : coordinates) {
+            Checkpoint checkpoint = new Checkpoint(route,
+                    coordinate.get(0).get(0),
+                    coordinate.get(0).get(1),
+                    "");
+
+            checkpointRepository.save(checkpoint);
+            route.addCheckpoint(checkpoint);
+        }
+
+        routeRepository.save(route);
+
+        return route;
     }
 }
