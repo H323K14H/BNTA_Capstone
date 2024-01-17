@@ -52,4 +52,10 @@ public class RouteController {
                 routeByID.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK
         );
     }
+
+    @PatchMapping("/{routeId}")
+    public ResponseEntity<Route> assignDriver(@PathVariable Long routeId,@RequestParam Long driverId){
+        Route route = routeService.assignDriver(routeId, driverId);
+        return new ResponseEntity<>(route, HttpStatus.OK);
+    }
 }
