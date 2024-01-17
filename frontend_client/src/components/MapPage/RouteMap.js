@@ -1,20 +1,32 @@
 import React from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet';
 import RoutingMachine from '../LandingPage/RoutingMachine';
+import RouteMappingMachine from './RouteMappingMachine';
 
 const RouteMap = ({ optimizedRoute }) => {
 
-    if (!optimizedRoute || !optimizedRoute.checkpoints) {
+    if (optimizedRoute.length === 0 ) {
         // Handle the case when the data is not available
         return <p>Loading...</p>;
     }
 
+   
 
-    const waypoints = optimizedRoute.checkpoints.map((waypoint) => ({
-        latitude: waypoint.latitude,
-        longitude: waypoint.longitude,
-        address: waypoint.address,
-    }));
+
+    // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
+    //     console.log(optimizedRoute);
+        
+    //     return (
+
+    //     {
+    //     latitude: waypoint.address.latitude,
+    //     longitude: waypoint.address.longitude,
+    //     address: waypoint.address.name
+        
+    //     }
+    
+    // )});
+    
 
     return (
         <>
@@ -25,10 +37,10 @@ const RouteMap = ({ optimizedRoute }) => {
                 zoomControl={true}
             >
 
-                <RoutingMachine
+                <RouteMappingMachine
                     position={'topright'}
 
-                    waypoints={waypoints}
+                    waypoints={optimizedRoute}
                     color={'rgb(255, 24, 132)'}
 
                 />

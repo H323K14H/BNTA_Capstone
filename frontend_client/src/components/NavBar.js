@@ -11,8 +11,8 @@ const NavBar = ({ route }) => {
         return null; // Return null or handle the case when route or checkpoints is undefined
     }
 
-    const addresses = route.checkpoints.map((address, index) => {
-        return <li key={index}>{address.address}</li>
+    const addresses = route.checkpoints.map((checkpoint, index) => {
+        return <li key={index}>{checkpoint.address.name}</li>
     })
 
     return (
@@ -23,8 +23,16 @@ const NavBar = ({ route }) => {
                     <p>List of addresses:</p>
                     {addresses}
                 </ul>
-                <Link to="/map-page" id="home" className="menu-item">More info </Link>
+                <Link to="/" id="home" className="menu-item">More info </Link>
             </Menu>
+            {/* <Menu>
+                <a href="/map-page" id="home" className="menu-item">My Route </a>
+                <ul>
+                    <p>List of addresses:</p>
+                    {addresses}
+                </ul>
+                <a href="/" id="home" className="menu-item">More info </a>
+            </Menu> */}
         </>
     )
 }
