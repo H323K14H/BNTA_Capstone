@@ -38,7 +38,7 @@ const AppContainer = () => {
 
     const checkpointData = optimizedRoute.checkpoints || [];
 
-    console.log(checkpointData);
+    
     
 
 
@@ -49,7 +49,10 @@ const AppContainer = () => {
         const jsonData = await response.json();
 
         setRoute(jsonData);
+        console.log(getRouteById);
     }
+
+   
 
     // const updateDriver = async (id, driverId) => {
     //     const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {

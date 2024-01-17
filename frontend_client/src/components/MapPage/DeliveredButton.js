@@ -22,7 +22,7 @@ const DeliveredButton = ({ route, checkpointData }) => {
   }, [completedCheckpoints]);
 
   const handleButtonClick = () => {
-    const currentCheckpointId = checkpointIds[checkpointIndex];
+    const currentCheckpointId = checkpointIds[checkpointIndex + 1];
     markCheckpointAsComplete(currentCheckpointId);
     setCheckpointIndex((prevIndex) => prevIndex + 1);
   };
