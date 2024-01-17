@@ -24,6 +24,7 @@ public class CheckpointService {
         checkpoint.setCompleted(true);
         checkpointRepository.save(checkpoint);
         Route route = checkpoint.getRoute();
+        routeRepository.save(route);
         route.setUpcomingCheckpointIndex(route.getUpcomingCheckpointIndex() + 1 );
         routeRepository.save(route);
 

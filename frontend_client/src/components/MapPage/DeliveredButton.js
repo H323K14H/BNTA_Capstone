@@ -10,7 +10,6 @@ const DeliveredButton = ({ route, checkpointData, markCheckpointAsComplete, getR
     const currentCheckpointId = checkpointIds[checkpointIndex];
     markCheckpointAsComplete(currentCheckpointId);
     setCheckpointIndex((prevIndex) => prevIndex + 1);
-    getRouteById(1);
   };
 
   console.log(checkpointIndex);
