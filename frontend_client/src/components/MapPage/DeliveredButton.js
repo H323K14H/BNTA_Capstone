@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const DeliveredButton = ({ route, checkpointData }) => {
-  const checkpointIds = checkpointData.map((checkpoint) => checkpoint.id);
+const DeliveredButton = ({ route, checkpointData, markCheckpointAsComplete }) => {
 
   const [checkpointIndex, setCheckpointIndex] = useState(0);
-  const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
 
-  const markCheckpointAsComplete = async (id) => {
-    const response = await fetch(`http://localhost:8080/checkpoints/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify("")
-    });
-
-    const getData = await response.json();
-    setCompletedCheckpoints(getData);
-  };
-
-  useEffect(() => {
-    // Add any additional logic you want to run after completing the PATCH request
-  }, [completedCheckpoints]);
+  const checkpointIds = checkpointData.map((checkpoint) => checkpoint.id);
 
   const handleButtonClick = () => {
-    const currentCheckpointId = checkpointIds[checkpointIndex + 1];
+    const currentCheckpointId = checkpointIds[checkpointIndex];
     markCheckpointAsComplete(currentCheckpointId);
     setCheckpointIndex((prevIndex) => prevIndex + 1);
   };
@@ -31,7 +16,7 @@ const DeliveredButton = ({ route, checkpointData }) => {
 
   return (
     <section className="delivered-btn-container">
-      <button onClick={handleButtonClick}>Delivered</button>
+      <button onClick={handleButtonClick}>{checkpointIndex==0?"Collected":"Delivered"}</button>
     </section>
   );
 };

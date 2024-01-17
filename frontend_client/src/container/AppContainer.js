@@ -11,8 +11,10 @@ const AppContainer = () => {
     const [optimizedRoute, setOptimizedRoute] = useState([]);
     
     const [route, setRoute] = useState({});
-
     const [checkpoint, setCheckpoint] = useState([]);
+    const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
+  
+
 
     const getOptimizedRoute = async () => {
         const response = await fetch(`http://localhost:8080/routes/start`, {
@@ -39,10 +41,6 @@ const AppContainer = () => {
     const checkpointData = optimizedRoute.checkpoints || [];
 
     
-    
-
-
-   
 
     const getRouteById = async (id) => {
         const response = await fetch(`http://localhost:8080/routes/${id}`);
@@ -52,7 +50,20 @@ const AppContainer = () => {
         console.log(getRouteById);
     }
 
-   
+    const markCheckpointAsComplete = async (id) => {
+        const response = await fetch(`http://localhost:8080/checkpoints/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify("")
+        });
+    
+        const getData = await response.json();
+        setCompletedCheckpoints(getData);
+      };
+    
+      useEffect(() => {
+        // Add any additional logic you want to run after completing the PATCH request
+      }, [completedCheckpoints]);
 
     // const updateDriver = async (id, driverId) => {
     //     const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {
@@ -65,22 +76,22 @@ const AppContainer = () => {
     //     setRoute(getData)
     // }
 
-    useEffect(() => {
-        getOptimizedRoute();
-        getRouteById(1); //hardcoded 1 for now
-        // updateDriver(1, 1);
+    // useEffect(() => {
+    //     // getOptimizedRoute();
+    //     getRouteById(1); //hardcoded 1 for now
+    //     // updateDriver(1, 1);
 
-    }, [])
+    // }, [optimizedRoute])
 
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template route={route} />,
+            element: <Template completedCheckpoints = {completedCheckpoints} route={optimizedRoute} />,
             children: [
 
                 {
                     path: "/",
-                    element: <LandingPage optimizedRoute={waypoints} />
+                    element: <LandingPage onButtonClick= {getOptimizedRoute} optimizedRoute={waypoints} />
 
                 },
                 {
@@ -88,7 +99,9 @@ const AppContainer = () => {
                     element: <RouteComponent 
                     optimizedRoute={waypoints}
                     route={route}
-                    checkpointData = {checkpointData} />
+                    checkpointData = {checkpointData}
+                    markCheckpointAsComplete={markCheckpointAsComplete}
+                    />
                 }
 
             ]

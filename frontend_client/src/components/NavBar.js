@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ route }) => {
 
 
-    if (!route || !route.checkpoints) {
-        return null; // Return null or handle the case when route or checkpoints is undefined
-    }
+    // if (!route || !route.checkpoints) {
+    //     return null; // Return null or handle the case when route or checkpoints is undefined
+    // }
 
-    const addresses = route.checkpoints.map((checkpoint, index) => {
+    const addresses = (route && route.checkpoints)? route.checkpoints.map((checkpoint, index) => {
         return <li key={index}>{checkpoint.address.name}</li>
-    })
+    }):null
 
     return (
         <>
