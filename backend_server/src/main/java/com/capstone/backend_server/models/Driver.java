@@ -22,12 +22,12 @@ public class Driver {
     private int capacity;
 
     @OneToMany(mappedBy = "driver")
-    @JsonIgnore
+    @JsonIgnoreProperties({"driver","warehouse","upcomingCheckpointIndex", "checkpoints"})
     private List<Route> routes;
 
     @ManyToOne
     @JoinColumn(name= "warehouse_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"deliveryAddresses", "drivers", "routes"})
     private Warehouse warehouse;
 
     public Driver(String initials, int capacity, Warehouse warehouse) {
