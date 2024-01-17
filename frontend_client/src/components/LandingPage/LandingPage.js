@@ -2,7 +2,7 @@ import MapComponent from "./MapComponent";
 
 const LandingPage = ({ optimizedRoute }) => {
 
-    console.log(optimizedRoute);
+
 
     return (
         <>

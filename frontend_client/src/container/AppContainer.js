@@ -12,6 +12,8 @@ const AppContainer = () => {
     
     const [route, setRoute] = useState({});
 
+    const [checkpoint, setCheckpoint] = useState([]);
+
     const getOptimizedRoute = async () => {
         const response = await fetch(`http://localhost:8080/routes/start`, {
             method: "POST",
@@ -21,14 +23,26 @@ const AppContainer = () => {
 
         const postedRoute = await response.json()
 
-        const waypoints = postedRoute.checkpoints.map((waypoint) => {
-            // latitude: waypoint.address.latitude,
-            // longitude: waypoint.address.longitude,
-            return waypoint.address
-        });
-
-        setOptimizedRoute(waypoints);
+        setOptimizedRoute(postedRoute);
     }
+
+    // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
+    //     // latitude: waypoint.address.latitude,
+    //     // longitude: waypoint.address.longitude,
+    //     return waypoint.address
+    // });
+
+    const waypoints = optimizedRoute.checkpoints ? optimizedRoute.checkpoints.map((waypoint) => {
+        return waypoint.address;
+    }) : [];
+
+    const checkpointData = optimizedRoute.checkpoints || [];
+
+    console.log(checkpointData);
+    
+
+
+   
 
     const getRouteById = async (id) => {
         const response = await fetch(`http://localhost:8080/routes/${id}`);
@@ -37,23 +51,23 @@ const AppContainer = () => {
         setRoute(jsonData);
     }
 
-    const updateDriver = async (id, driverId) => {
-        const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify("")
-        })
-        const getData = await response.json()
+    // const updateDriver = async (id, driverId) => {
+    //     const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {
+    //         method: "PATCH",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify("")
+    //     })
+    //     const getData = await response.json()
 
-        setRoute(getData)
-    }
+    //     setRoute(getData)
+    // }
 
     useEffect(() => {
         getOptimizedRoute();
         getRouteById(1); //hardcoded 1 for now
         // updateDriver(1, 1);
 
-    }, [optimizedRoute])
+    }, [])
 
     const appRoutes = createBrowserRouter([
         {
@@ -63,14 +77,15 @@ const AppContainer = () => {
 
                 {
                     path: "/",
-                    element: <LandingPage optimizedRoute={optimizedRoute} />
+                    element: <LandingPage optimizedRoute={waypoints} />
 
                 },
                 {
                     path: "/map-page",
                     element: <RouteComponent 
-                    optimizedRoute={optimizedRoute}
-                    route={route} />
+                    optimizedRoute={waypoints}
+                    route={route}
+                    checkpointData = {checkpointData} />
                 }
 
             ]
