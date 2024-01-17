@@ -99,28 +99,97 @@ public class RouteService {
     }
 
     private Route waypoints2Route(ArrayList<Waypoint> waypoints) {
+
+        List<Checkpoint> checkpoints = new ArrayList<>();
+
         Route route = new Route(warehouseRepository.findById(1L).get());
-        routeRepository.save(route);
+//        routeRepository.save(route);
 
         Checkpoint warehouse = new Checkpoint(route, route.getWarehouse());
 
-        checkpointRepository.save(warehouse);
-        route.addCheckpoint(warehouse);
+        checkpoints.add(warehouse);
+
+//        checkpointRepository.save(warehouse);
+//        route.addCheckpoint(warehouse);
 
         for (Waypoint waypoint : waypoints.subList(1, waypoints.size())) {
             Long deliveryAddressId = waypoint.actions.get(0).shipment_id;
 
             Checkpoint checkpoint = new Checkpoint(route,deliveryAddressRepository.findById(deliveryAddressId).get());
 
-            checkpointRepository.save(checkpoint);
-            route.addCheckpoint(checkpoint);
+//            checkpointRepository.save(checkpoint);
+//            route.addCheckpoint(checkpoint);
+
+            checkpoints.add(checkpoint);
+        }
+//        route.setCheckpoints(checkpoints);
+
+//
+//        for (Waypoint waypoint : waypoints.subList(1, waypoints.size())) {
+//            Long deliveryAddressId = waypoint.actions.get(0).shipment_id;
+//
+//            Checkpoint checkpoint = new Checkpoint(route,deliveryAddressRepository.findById(deliveryAddressId).get());
+//
+//            checkpointRepository.save(checkpoint);
+//            route.addCheckpoint(checkpoint);
+//        }
+//
+        Route checkRoute = checkRoute(checkpoints);
+
+        if (checkRoute != null){
+            return checkRoute;
         }
 
         routeRepository.save(route);
 
+        for (Checkpoint checkpoint : checkpoints){
+            checkpointRepository.save(checkpoint);
+            route.addCheckpoint(checkpoint);
+        }
+
         return route;
 
 
+    }
+
+    public Route checkRoute(List<Checkpoint> checkpoints){
+        List<Route> routes = routeRepository.findAll();
+
+        if (routes.isEmpty()){
+            return null;
+        }
+
+        for (Route route : routes){
+            if (route.getCheckpoints().size() != checkpoints.size()){
+                routes.remove(route);
+            }
+        }
+
+        if (routes.isEmpty()){
+            return null;
+        }
+
+        for (Route route : routes) {
+            boolean isSameRoute = true;
+            for (int i = 0; i < route.getCheckpoints().size(); i++) {
+                System.out.println(i);
+                if (route.getCheckpoints().get(i).getAddress().getLatitude() != checkpoints.get(i).getAddress().getLatitude() ){
+                    isSameRoute = false;
+                    break;
+                }
+                if (route.getCheckpoints().get(i).getAddress().getLongitude() != checkpoints.get(i).getAddress().getLongitude() ){
+                    isSameRoute = false;
+                    break;
+                }
+//                if (i == route.getCheckpoints().size()-1){
+//                    return route;
+//                }
+            }
+            if (isSameRoute){
+                return route;
+            }
+        }
+        return null;
     }
 
     public List<Route> getAllRoutes() {
