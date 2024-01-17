@@ -90,10 +90,8 @@ public class RouteService {
             assert response.body() != null;
             Root root = objectMapper.readValue(response.body().string(), Root.class);
             System.out.println(root.toString());
-//            System.out.println(response.body().string());
-//            ArrayList<ArrayList<ArrayList<Double>>> coordinates = root.features.get(0).geometry.coordinates;
 
-//            return coordinates2Route(root.features.get(0).geometry.coordinates);
+
             return waypoints2Route(root.features.get(0).properties.waypoints);
         } catch (IOException e) {
             throw new IOException(e);
@@ -133,6 +131,7 @@ public class RouteService {
         return routeRepository.findById(id);
     }
 
+
     public Route assignDriver(Long routeId, Long driverId) {
         Route route = routeRepository.findById(routeId).get();
         Driver driver = driverRepository.findById(driverId).get();
@@ -146,4 +145,5 @@ public class RouteService {
 
         return null;
     }
+
 }

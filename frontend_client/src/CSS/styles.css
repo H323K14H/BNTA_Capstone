@@ -1,8 +1,9 @@
 .leaflet-container {
     height: 80vh;
-    margin-left: 5em;
-    margin-right: 5em;
-    margin-top: 5em;
+    margin-left: 20em;
+    margin-right: 10em;
+    margin-top: 6em;
+    margin-bottom: 8em;
 }
 
 
@@ -18,7 +19,7 @@
     font-size: 1.2rem;
     box-shadow: 0 0 0px 5px #fff;
 }
-  
-.something{
+
+.something {
     color: rgb(255, 0, 0);
 }
