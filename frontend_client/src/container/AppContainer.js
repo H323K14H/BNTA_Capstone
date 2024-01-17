@@ -8,6 +8,8 @@ import RouteComponent from "../components/MapPage/RouteComponent";
 
 const AppContainer = () => {
 
+    console.log(localStorage.getItem("optimizedRoute"));
+
     const [optimizedRoute, setOptimizedRoute] = useState([]);
     
     const [route, setRoute] = useState({});
@@ -26,7 +28,12 @@ const AppContainer = () => {
         const postedRoute = await response.json()
 
         setOptimizedRoute(postedRoute);
+        localStorage.setItem("optimizedRoute", postedRoute.id)
+        // console.log(localStorage.getItem("optimizedRoute"));
+        localStorage.setItem("checkpointIndex", "0")
     }
+
+    
 
     // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
     //     // latitude: waypoint.address.latitude,
@@ -46,7 +53,7 @@ const AppContainer = () => {
         const response = await fetch(`http://localhost:8080/routes/${id}`);
         const jsonData = await response.json();
 
-        setRoute(jsonData);
+        setOptimizedRoute(jsonData);
     }
 
     const markCheckpointAsComplete = async (id) => {
@@ -56,9 +63,25 @@ const AppContainer = () => {
           body: JSON.stringify("")
         });
     
-        const getData = await response.json();
-        setCompletedCheckpoints(getData);
+        const routeData = await response.json();
+        localStorage.setItem("checkpointIndex", routeData.upcomingCheckpointIndex)
+        setRoute(routeData)
+        setCompletedCheckpoints(routeData.checkpoints.filter(checkpoint=> checkpoint.completed==true));
       };
+
+      useEffect(()=>{
+        if (localStorage.getItem("optimizedRoute")){ 
+            getRouteById(localStorage.getItem("optimizedRoute"))
+            // localStorage.setItem("checkpointIndex", 0)
+        }
+      },[])
+
+      useEffect(()=>{
+        if(optimizedRoute&&optimizedRoute.checkpoints){
+            setRoute(optimizedRoute)
+            setCompletedCheckpoints(optimizedRoute.checkpoints.filter(checkpoint=> checkpoint.completed==true));
+        }
+      },[optimizedRoute])
     
       useEffect(() => {
         // Add any additional logic you want to run after completing the PATCH request
