@@ -91,7 +91,9 @@ const AppContainer = () => {
 
                 {
                     path: "/",
-                    element: <LandingPage onButtonClick= {getOptimizedRoute} optimizedRoute={waypoints} />
+                    element: <LandingPage onButtonClick= {getOptimizedRoute} 
+                                        optimizedRoute={waypoints}
+                                        completedCheckpoints = {completedCheckpoints} />
 
                 },
                 {
