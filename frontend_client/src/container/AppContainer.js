@@ -1,6 +1,4 @@
-
 import "leaflet/dist/leaflet.css";
-import MapComponent from "../components/LandingPage/MapComponent";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "../components/LandingPage/LandingPage";
@@ -8,11 +6,11 @@ import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
 
 
-
 const AppContainer = () => {
 
     const [optimizedRoute, setOptimizedRoute] = useState([]);
-    const [route, setRoute] = useState({})
+    
+    const [route, setRoute] = useState({});
 
     const getOptimizedRoute = async () => {
         const response = await fetch(`http://localhost:8080/routes/start`, {
@@ -37,33 +35,42 @@ const AppContainer = () => {
         const jsonData = await response.json();
 
         setRoute(jsonData);
-
     }
 
-    
+    const updateDriver = async (id, driverId) => {
+        const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify("")
+        })
+        const getData = await response.json()
+
+        setRoute(getData)
+    }
 
     useEffect(() => {
         getOptimizedRoute();
         getRouteById(1); //hardcoded 1 for now
-        
-    },[optimizedRoute])
+        // updateDriver(1, 1);
 
-    console.log(optimizedRoute);
+    }, [optimizedRoute])
 
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template route = {route}/>,
+            element: <Template route={route} />,
             children: [
 
                 {
-                    path:"/",
+                    path: "/",
                     element: <LandingPage optimizedRoute={optimizedRoute} />
 
                 },
                 {
                     path: "/map-page",
-                    element: <RouteComponent optimizedRoute={optimizedRoute}/>
+                    element: <RouteComponent 
+                    optimizedRoute={optimizedRoute}
+                    route={route} />
                 }
 
             ]
@@ -74,7 +81,7 @@ const AppContainer = () => {
 
     return (
         <>
-            
+
             <RouterProvider router={appRoutes} />
 
         </>

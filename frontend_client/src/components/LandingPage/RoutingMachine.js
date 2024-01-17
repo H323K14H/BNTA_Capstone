@@ -8,18 +8,20 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
   const generateIcons = (i) => {
     if (i === 0) {
-
-      return new L.Icon({
-        iconUrl: "https://icons.veryicon.com/png/o/miscellaneous/indata/warehouse-alt.png",
-        iconSize: [32, 32],
-      });
-
+      return new L.Icon(
+        {
+          iconUrl: "https://icons.veryicon.com/png/o/miscellaneous/indata/warehouse-alt.png",
+          iconSize: [32, 32],
+        }
+      );
     }
 
-    return new L.Icon({
-      iconUrl: "https://icons.iconarchive.com/icons/fa-team/fontawesome/256/FontAwesome-House-Chimney-User-icon.png",
-      iconSize: [32, 32],
-    });
+    return new L.Icon(
+      {
+        iconUrl: "https://icons.iconarchive.com/icons/fa-team/fontawesome/256/FontAwesome-House-Chimney-User-icon.png",
+        iconSize: [32, 32],
+      }
+    );
   };
 
   // const getGeoCodes = deliveryAddresses.map((delivery) => {
@@ -36,9 +38,6 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
   console.log(waypoints);
 
   const allAddresses = waypoints.map(waypoint => waypoint.name);
-
-
-
 
   const instance = L.Routing.control({
     position,
@@ -81,6 +80,4 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
 const RoutingMachine = createControlComponent(createRoutineMachineLayer);
 
-
 export default RoutingMachine;
-

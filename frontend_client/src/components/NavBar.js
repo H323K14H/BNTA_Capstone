@@ -1,7 +1,4 @@
-import React, { useState } from 'react'
 import { slide as Menu } from 'react-burger-menu'
-import { FiHome } from "react-icons/fi";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 
 const NavBar = ({ route }) => {
@@ -25,14 +22,6 @@ const NavBar = ({ route }) => {
                 </ul>
                 <Link to="/" id="home" className="menu-item">More info </Link>
             </Menu>
-            {/* <Menu>
-                <a href="/map-page" id="home" className="menu-item">My Route </a>
-                <ul>
-                    <p>List of addresses:</p>
-                    {addresses}
-                </ul>
-                <a href="/" id="home" className="menu-item">More info </a>
-            </Menu> */}
         </>
     )
 }

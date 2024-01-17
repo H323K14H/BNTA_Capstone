@@ -1,6 +1,4 @@
-import CounterButton from "../Counter";
 import MapComponent from "./MapComponent";
-import NavBar from "../NavBar";
 
 const LandingPage = ({ optimizedRoute }) => {
 
