@@ -47,7 +47,6 @@ const AppContainer = () => {
         const jsonData = await response.json();
 
         setRoute(jsonData);
-        console.log(getRouteById);
     }
 
     const markCheckpointAsComplete = async (id) => {
@@ -93,7 +92,8 @@ const AppContainer = () => {
                     path: "/",
                     element: <LandingPage onButtonClick= {getOptimizedRoute} 
                                         optimizedRoute={waypoints}
-                                        completedCheckpoints = {completedCheckpoints} />
+                                        completedCheckpoints = {completedCheckpoints} 
+                                        route= {route}/>
 
                 },
                 {
@@ -103,6 +103,7 @@ const AppContainer = () => {
                     route={route}
                     checkpointData = {checkpointData}
                     markCheckpointAsComplete={markCheckpointAsComplete}
+                    getRouteById = {getRouteById}
                     />
                 }
 

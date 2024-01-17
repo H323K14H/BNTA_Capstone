@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const DeliveredButton = ({ route, checkpointData, markCheckpointAsComplete }) => {
+const DeliveredButton = ({ route, checkpointData, markCheckpointAsComplete, getRouteById}) => {
 
   const [checkpointIndex, setCheckpointIndex] = useState(0);
 
@@ -10,6 +10,7 @@ const DeliveredButton = ({ route, checkpointData, markCheckpointAsComplete }) =>
     const currentCheckpointId = checkpointIds[checkpointIndex];
     markCheckpointAsComplete(currentCheckpointId);
     setCheckpointIndex((prevIndex) => prevIndex + 1);
+    getRouteById(1);
   };
 
   console.log(checkpointIndex);
