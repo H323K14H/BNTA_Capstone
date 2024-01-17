@@ -21,7 +21,7 @@
 @REM Apache Maven Wrapper startup batch script, version 3.2.0
 @REM
 @REM Required ENV vars:
-@REM JAVA_HOME - location of a JDK home dir
+@REM JAVA_HOME - address of a JDK home dir
 @REM
 @REM Optional ENV vars
 @REM MAVEN_BATCH_ECHO - set to 'on' to enable the echoing of the batch commands
@@ -62,7 +62,7 @@ if not "%JAVA_HOME%" == "" goto OkJHome
 echo.
 echo Error: JAVA_HOME not found in your environment. >&2
 echo Please set the JAVA_HOME variable in your environment to match the >&2
-echo location of your Java installation. >&2
+echo address of your Java installation. >&2
 echo.
 goto error
 
@@ -73,7 +73,7 @@ echo.
 echo Error: JAVA_HOME is set to an invalid directory. >&2
 echo JAVA_HOME = "%JAVA_HOME%" >&2
 echo Please set the JAVA_HOME variable in your environment to match the >&2
-echo location of your Java installation. >&2
+echo address of your Java installation. >&2
 echo.
 goto error
 

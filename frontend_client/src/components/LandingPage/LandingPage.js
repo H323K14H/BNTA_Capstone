@@ -4,6 +4,8 @@ import NavBar from "../NavBar";
 
 const LandingPage = ({ optimizedRoute }) => {
 
+    console.log(optimizedRoute);
+
     return (
         <>
             

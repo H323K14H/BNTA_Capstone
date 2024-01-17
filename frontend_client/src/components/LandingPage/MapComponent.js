@@ -6,17 +6,23 @@ import RoutingMachine from "./RoutingMachine";
 const MapComponent = ({ optimizedRoute }) => {
 
   
-    if (!optimizedRoute || !optimizedRoute.checkpoints) {
+    if (optimizedRoute.length === 0 ) {
         // Handle the case when the data is not available
         return <p>Loading...</p>; 
       }
 
+    //   console.log(optimizedRoute);
 
-    const waypoints = optimizedRoute.checkpoints.map((waypoint) => ({
-        latitude: waypoint.latitude,
-        longitude: waypoint.longitude,
-        address: waypoint.address,
-    }));
+
+    // const waypoints = optimizedRoute.checkpoints.map((waypoint) => ({
+    //     latitude: waypoint.address.latitude,
+    //     longitude: waypoint.address.longitude,
+    //     address: waypoint.address.name
+    // }));
+
+
+
+    
 
     return (
         <>
@@ -29,8 +35,7 @@ const MapComponent = ({ optimizedRoute }) => {
 
                 <RoutingMachine
                     position={'topright'}
-                    
-                    waypoints={waypoints}
+                    waypoints={optimizedRoute}
                     color={'rgb(255, 0, 0)'}
 
                 />

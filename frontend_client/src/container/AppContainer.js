@@ -11,7 +11,7 @@ import RouteComponent from "../components/MapPage/RouteComponent";
 
 const AppContainer = () => {
 
-    const [optimizedRoute, setOptimizedRoute] = useState({});
+    const [optimizedRoute, setOptimizedRoute] = useState([]);
     const [route, setRoute] = useState({})
 
     const getOptimizedRoute = async () => {
@@ -22,7 +22,14 @@ const AppContainer = () => {
         })
 
         const postedRoute = await response.json()
-        setOptimizedRoute(postedRoute);
+
+        const waypoints = postedRoute.checkpoints.map((waypoint) => {
+            // latitude: waypoint.address.latitude,
+            // longitude: waypoint.address.longitude,
+            return waypoint.address
+        });
+
+        setOptimizedRoute(waypoints);
     }
 
     const getRouteById = async (id) => {
@@ -38,9 +45,10 @@ const AppContainer = () => {
     useEffect(() => {
         getOptimizedRoute();
         getRouteById(1); //hardcoded 1 for now
-    },[])
+        
+    },[optimizedRoute])
 
-
+    console.log(optimizedRoute);
 
     const appRoutes = createBrowserRouter([
         {

@@ -17,24 +17,18 @@ public class Checkpoint {
     @JsonIgnore
     private Route route;
 
-    @Column
-    private double longitude;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    @JsonIgnoreProperties({"checkpoints", "routes", "drivers", "deliveryAddresses"})
+    Address address;
 
     @Column
-    private double latitude;
+    private boolean completed;
 
-    @Column
-    private String address;
-
-    @Column
-    private boolean delivered;
-
-    public Checkpoint(Route route, double longitude, double latitude, String address) {
+    public Checkpoint(Route route, Address address) {
         this.route = route;
-        this.longitude = longitude;
-        this.latitude = latitude;
         this.address = address;
-        this.delivered = false;
+        this.completed = false;
     }
 
     public Checkpoint() {
@@ -56,35 +50,19 @@ public class Checkpoint {
         this.route = route;
     }
 
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public boolean isDelivered() {
-        return delivered;
-    }
-
-    public void setDelivered(boolean delivered) {
-        this.delivered = delivered;
-    }
-
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

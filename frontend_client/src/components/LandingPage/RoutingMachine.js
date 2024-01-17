@@ -33,8 +33,9 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
   // const allWaypoints = [warehouse.geocode, ...getGeoCodes];
 
   // const allAddresses = [warehouse.address, ...getAddresses];
+  console.log(waypoints);
 
-  const allAddresses = waypoints.map(waypoint => waypoint.address);
+  const allAddresses = waypoints.map(waypoint => waypoint.name);
 
 
 

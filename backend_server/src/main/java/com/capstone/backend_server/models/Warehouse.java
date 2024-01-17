@@ -1,6 +1,5 @@
 package com.capstone.backend_server.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -9,17 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "warehouses")
-public class Warehouse {
+public class Warehouse extends Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column
-    private double longitude;
-    @Column
-    private double latitude;
-    @Column
-    private String address;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     @OneToMany(mappedBy = "warehouse")
     @JsonIgnoreProperties({"warehouse"})
@@ -33,13 +26,16 @@ public class Warehouse {
     @JsonIgnoreProperties({"warehouse"})
     private List<DeliveryAddress> deliveryAddresses;
 
+//    @OneToMany(mappedBy = "location")
+//    @JsonIgnore
+//    private List<Checkpoint> checkpoints;
+
     public Warehouse(double longitude, double latitude, String address) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.address = address;
+        super(longitude, latitude, address);
         this.routes = new ArrayList<Route>();
         this.drivers = new ArrayList<Driver>();
         this.deliveryAddresses = new ArrayList<DeliveryAddress>();
+//        this.checkpoints = new ArrayList<>();
     }
 
     public Warehouse() {
@@ -69,29 +65,14 @@ public class Warehouse {
         this.deliveryAddresses.remove(deliveryAddress);
     }
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
 
     public List<Route> getRoutes() {
         return routes;
@@ -117,11 +98,11 @@ public class Warehouse {
         this.deliveryAddresses = deliveryAddresses;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//    public List<Checkpoint> getCheckpoints() {
+//        return checkpoints;
+//    }
+//
+//    public void setCheckpoints(List<Checkpoint> checkpoints) {
+//        this.checkpoints = checkpoints;
+//    }
 }

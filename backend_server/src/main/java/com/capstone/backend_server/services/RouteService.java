@@ -1,15 +1,9 @@
 package com.capstone.backend_server.services;
 
 import com.capstone.backend_server.DTOs.*;
-import com.capstone.backend_server.models.Checkpoint;
-import com.capstone.backend_server.models.DeliveryAddress;
-import com.capstone.backend_server.models.Route;
-import com.capstone.backend_server.models.Warehouse;
-import com.capstone.backend_server.repositories.CheckpointRepository;
-import com.capstone.backend_server.repositories.DeliveryAddressRepository;
-import com.capstone.backend_server.repositories.RouteRepository;
+import com.capstone.backend_server.models.*;
+import com.capstone.backend_server.repositories.*;
 
-import com.capstone.backend_server.repositories.WarehouseRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +38,9 @@ public class RouteService {
 
     @Autowired
     DeliveryAddressRepository deliveryAddressRepository;
+
+    @Autowired
+    DriverRepository driverRepository;
 
     public String createRequestBody(){
 
@@ -84,7 +81,7 @@ public class RouteService {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=OUR_KEY")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=7a358ff69f73407ca1c7404e6e7b0261")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -93,6 +90,7 @@ public class RouteService {
             assert response.body() != null;
             Root root = objectMapper.readValue(response.body().string(), Root.class);
             System.out.println(root.toString());
+
 
             return waypoints2Route(root.features.get(0).properties.waypoints);
         } catch (IOException e) {
@@ -104,10 +102,7 @@ public class RouteService {
         Route route = new Route(warehouseRepository.findById(1L).get());
         routeRepository.save(route);
 
-        Checkpoint warehouse = new Checkpoint(route,
-                waypoints.get(0).location.get(0),
-                waypoints.get(0).location.get(1),
-                route.getWarehouse().getAddress());
+        Checkpoint warehouse = new Checkpoint(route, route.getWarehouse());
 
         checkpointRepository.save(warehouse);
         route.addCheckpoint(warehouse);
@@ -115,11 +110,7 @@ public class RouteService {
         for (Waypoint waypoint : waypoints.subList(1, waypoints.size())) {
             Long deliveryAddressId = waypoint.actions.get(0).shipment_id;
 
-            Checkpoint checkpoint = new Checkpoint(route,
-                    waypoint.location.get(0),
-                    waypoint.location.get(1),
-                    deliveryAddressRepository.findById(deliveryAddressId).get().getAddress()
-            );
+            Checkpoint checkpoint = new Checkpoint(route,deliveryAddressRepository.findById(deliveryAddressId).get());
 
             checkpointRepository.save(checkpoint);
             route.addCheckpoint(checkpoint);
@@ -140,5 +131,19 @@ public class RouteService {
         return routeRepository.findById(id);
     }
 
+
+    public Route assignDriver(Long routeId, Long driverId) {
+        Route route = routeRepository.findById(routeId).get();
+        Driver driver = driverRepository.findById(driverId).get();
+
+        if (route.getWarehouse().getId().equals(driver.getWarehouse().getId())){
+            route.setDriver(driver);
+            routeRepository.save(route);
+
+            return route;
+        }
+
+        return null;
+    }
 
 }
