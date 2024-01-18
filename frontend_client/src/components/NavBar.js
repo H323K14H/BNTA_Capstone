@@ -15,12 +15,12 @@ const NavBar = ({ route }) => {
     return (
         <>
             <Menu>
-                <Link to="/map-page" id="home" className="menu-item">My Route </Link>
+                <Link to="/map-page" id="home" className="menu-item">Progress Tracker </Link>
                 <ul>
                     <p>List of addresses:</p>
                     {addresses}
                 </ul>
-                <Link to="/" id="home" className="menu-item">More info </Link>
+                <Link to="/" id="home" className="menu-item">Overall Route </Link>
             </Menu>
         </>
     )

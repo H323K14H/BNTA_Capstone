@@ -3,7 +3,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import RoutingMachine from '../LandingPage/RoutingMachine';
 import RouteMappingMachine from './RouteMappingMachine';
 
-const RouteMap = ({ optimizedRoute }) => {
+const RouteMap = ({ optimizedRoute}) => {
 
     if (optimizedRoute.length === 0 ) {
         // Handle the case when the data is not available
@@ -39,7 +39,6 @@ const RouteMap = ({ optimizedRoute }) => {
 
                 <RouteMappingMachine
                     position={'topright'}
-
                     waypoints={optimizedRoute}
                     color={'rgb(255, 24, 132)'}
 

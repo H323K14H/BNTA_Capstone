@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
-import { createBrowserRouter, json, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "../components/LandingPage/LandingPage";
 import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
