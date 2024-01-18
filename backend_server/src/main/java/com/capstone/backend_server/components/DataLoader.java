@@ -36,7 +36,7 @@ public class DataLoader implements ApplicationRunner {
         DeliveryAddress deliveryAddress2 = new DeliveryAddress( -0.08384882579080091,51.516050601098655, "LBG, 33 Old Broad St, London EC2N 3AH",warehouse1 );
         warehouse1.addDeliveryAddress(deliveryAddress2);
 
-        Driver postmanPat = new Driver("PP",5, warehouse1);
+        Driver postmanPat = new Driver("PP",5, warehouse1, false);
 
         deliveryAddressRepository.save(deliveryAddress1);
         deliveryAddressRepository.save(deliveryAddress2);
