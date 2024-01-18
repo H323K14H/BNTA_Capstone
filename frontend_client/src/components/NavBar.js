@@ -18,12 +18,12 @@ const NavBar = ({ route, driverUser}) => {
         <>
             <Menu>
                 <p>{driverUser.initials}</p>
-                <Link to="/map-page" id="home" className="menu-item">My Route </Link>
+                <Link to="/map-page" id="home" className="menu-item">Progress Tracker </Link>
                 <ul>
                     <p>List of addresses:</p>
                     {addresses}
                 </ul>
-                <Link to="/home" id="home" className="menu-item">More info </Link>
+                <Link to="/home" id="home" className="menu-item">Overall Route  </Link>
             </Menu>
         </>
     )
