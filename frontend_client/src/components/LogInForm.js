@@ -52,12 +52,7 @@ const LoginForm = ({ setLoginInUser, driverUser }) => {
     return (
 
         <section className="login-form">
-            <Outlet />
-            <div className="login-title">
-                <h2>Log in </h2>
-            </div>
-
-            <div className="form-container">
+          
                 <form className="login" onSubmit={(event) => handleFormSubmit(event)}>
                     <div className="username-login">
                         <label htmlFor="name-input"></label>
@@ -84,7 +79,7 @@ const LoginForm = ({ setLoginInUser, driverUser }) => {
                     </div>
                     <input className="login-button" type="submit" value={"Log in"} />
                 </form>
-            </div>
+           
         </section>
     );
 

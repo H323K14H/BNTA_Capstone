@@ -20,7 +20,7 @@ const Template = ({ completedCheckpoints, route, onButtonClick }) => {
         </section>
         {/* {driverUser.isManager ? <button onClick={() => onButtonClick()}>Generate route</button> : null} */}
 
-        <Outlet />
+        <Outlet/>
 
         <footer className='footer'>
             <p>this is the footer</p>

@@ -6,7 +6,7 @@ import {
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 
-const Manager = ({ onButtonClick, listOfAddresses, getAllAddresses, postAddress }) => {
+const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers }) => {
 
     const [addressToAdd, setAddressToAdd] = useState({})
 
@@ -14,6 +14,11 @@ const Manager = ({ onButtonClick, listOfAddresses, getAllAddresses, postAddress 
     return <li>{address.name}</li>;
   });
 
+  const generateListOfDrivers = listOfDrivers.map((driver) => {
+    return (driver.isManager? null : <li>{driver.initials}</li>)
+  });
+
+  
   const navigate = useNavigate();
 
   const onPlaceSelect = (value) => {
@@ -63,8 +68,11 @@ const Manager = ({ onButtonClick, listOfAddresses, getAllAddresses, postAddress 
         </GeoapifyContext>
         <input  type="submit" value={"Add Adress"}/>
         </form>
-
+      <h3>All Addresses:</h3>
       <ul>{generateListOfAddresses}</ul>
+      <h3>All drivers:</h3>
+      <ul>{generateListOfDrivers}</ul>
+
       <button onClick={() => onButtonClick(navigate("/home"))}>
         Generate route
       </button>

@@ -17,6 +17,7 @@ const AppContainer = () => {
     const [listOfAddresses, setListOfAddresses] = useState([]);
     const [checkpoint, setCheckpoint] = useState([]);
     const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
+    const [listOfDrivers, setListOfDrivers] = useState([])
 
     const [driverUser, setDriverUser] = useState(
         {
@@ -52,6 +53,13 @@ const AppContainer = () => {
         const jsonData = await response.json();
 
         setListOfAddresses(jsonData);
+    }
+
+    const getAllDrivers = async () => {
+        const response = await fetch(`http://localhost:8080/drivers`);
+        const jsonData = await response.json();
+
+        setListOfDrivers(jsonData);
     }
 
 
@@ -131,6 +139,7 @@ const AppContainer = () => {
             );
         }
         getAllAddresses();
+        getAllDrivers();
     }, [optimizedRoute])
 
 
@@ -213,9 +222,9 @@ const AppContainer = () => {
                     <DriverContext.Provider value={driverUser}>
                     <Manager
                         listOfAddresses={listOfAddresses}
-                        getAllAddresses={getAllAddresses}
                         onButtonClick={getOptimizedRoute}
-                        postAddress={postAddress} />
+                        postAddress={postAddress} 
+                        listOfDrivers={listOfDrivers}/>
                     </DriverContext.Provider>
                 }
             ]

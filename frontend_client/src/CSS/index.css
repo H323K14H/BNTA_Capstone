@@ -12,3 +12,12 @@ code {
     monospace;
 }
 
+/* p,h1, h2, h3{
+  text-align: center;
+} */
+
+button{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
