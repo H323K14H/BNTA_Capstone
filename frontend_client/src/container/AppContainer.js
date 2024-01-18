@@ -18,13 +18,14 @@ const AppContainer = () => {
     const [checkpoint, setCheckpoint] = useState([]);
     const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
 
-    const [driverUser, setDriverUser] = useState([
+    const [driverUser, setDriverUser] = useState(
         {
             name: null,
             id: null,
-            isManager: false
+            isManager: true
         }
-    ]);
+    );
+    
 
     const driverUserId = () => {
         return (
@@ -67,6 +68,15 @@ const AppContainer = () => {
         localStorage.setItem("optimizedRoute", postedRoute.id);
         // console.log(localStorage.getItem("optimizedRoute"));
         // localStorage.setItem("checkpointIndex", "0")
+    }
+
+    const postAddress = async (addressToAdd)=>{
+        const response = await fetch(`http://localhost:8080/delivery-addresses`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(addressToAdd)
+        })
+        getAllAddresses()
     }
 
     const checkpointData = optimizedRoute.checkpoints || [];
@@ -165,36 +175,48 @@ const AppContainer = () => {
             children: [
                 {
                     path: "/home",
-                    element: <LandingPage
+                    element:
+                    <DriverContext.Provider value={driverUser}>
+                    <LandingPage
                         onButtonClick={getOptimizedRoute}
                         optimizedRoute={realTimeWaypoint}
                         completedCheckpoints={completedCheckpoints}
                         route={route} />
+                    </DriverContext.Provider>
                 },
                 {
                     path: "/map-page",
-                    element: <RouteComponent
+                    element:
+                    <DriverContext.Provider value={driverUser}>
+                    <RouteComponent
                         optimizedRoute={realTimeWaypoint}
                         route={route}
                         checkpointData={checkpointData}
                         markCheckpointAsComplete={markCheckpointAsComplete}
                         getRouteById={getRouteById}
                     />
+                    </DriverContext.Provider>
                 },
                 {
                     path: "/",
-                    element: <LoginForm
+                    element: 
+                    <DriverContext.Provider value={driverUser}>
+                    <LoginForm
                         setLoginInUser={setLoginInUser}
                         driverUser={driverUser} />
+                    </DriverContext.Provider>
 
                 },
                 {
                     path: "/manager",
-                    element: <Manager
+                    element: 
+                    <DriverContext.Provider value={driverUser}>
+                    <Manager
                         listOfAddresses={listOfAddresses}
                         getAllAddresses={getAllAddresses}
-                        onButtonClick={getOptimizedRoute} />
-
+                        onButtonClick={getOptimizedRoute}
+                        postAddress={postAddress} />
+                    </DriverContext.Provider>
                 }
             ]
         }

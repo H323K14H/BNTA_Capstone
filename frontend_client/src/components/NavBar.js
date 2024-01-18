@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 const NavBar = ({ route, driverUser }) => {
 
+    
+
     const addresses = (route && route.checkpoints) ? route.checkpoints.map((checkpoint, index) => {
         return <li key={index}>{checkpoint.address.name}</li>
-    }) : null
+    }) : []
 
     console.log(driverUser);
 
