@@ -1,6 +1,7 @@
 package com.capstone.backend_server.controllers;
 
 import com.capstone.backend_server.models.Checkpoint;
+import com.capstone.backend_server.models.Route;
 import com.capstone.backend_server.services.CheckpointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,9 @@ public class CheckpointController {
     CheckpointService checkpointService;
 
     @PatchMapping("/{id}")
-    public ResponseEntity<List<Checkpoint>> markAsCompleted(@PathVariable Long id){
-       List<Checkpoint> listOfMarkedCheckpoints = checkpointService.markAsCompleted(id);
-       return new ResponseEntity<>(listOfMarkedCheckpoints, HttpStatus.OK);
+    public ResponseEntity<Route> markAsCompleted(@PathVariable Long id){
+       Route route = checkpointService.markAsCompleted(id);
+       return new ResponseEntity<>(route, HttpStatus.OK);
     }
 
 }

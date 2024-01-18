@@ -1,0 +1,31 @@
+// resolve: {
+//     fallback: {
+//       "path": require.resolve("path-browserify")
+//     }
+//   }
+
+const path = require('path');
+
+module.exports = {
+  // other webpack configuration...
+  resolve: {
+    fallback: {
+      "path": require.resolve("path-browserify")
+    }
+  }
+};
+ 
+// const webpack = require('webpack'); 
+// module.exports = function override(config) { 
+// 		const fallback = config.resolve.fallback || {}; 
+// 		Object.assign(fallback, {
+//        "path": require.resolve("path-browserify")
+//      } ) 
+//    config.resolve.fallback = fallback; 
+//    config.plugins = (config.plugins || []).concat([ 
+//    	new webpack.ProvidePlugin({ 
+//     	process: 'process/browser', 
+//       Buffer: ['buffer', 'Buffer'] 
+//     }) 
+//    ]) 
+//    return config; }

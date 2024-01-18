@@ -81,7 +81,7 @@ public class RouteService {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=79ebcdca6b524d37952376c0ebe3f73a")
+                .url("https://api.geoapify.com/v1/routeplanner?apiKey=KEY")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
