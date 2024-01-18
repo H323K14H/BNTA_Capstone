@@ -104,10 +104,10 @@ Follow the steps provided to run the application on your device...
 ![class_diagrams](documentation/Diagrams/capstone_class_diagram.drawio.png)
 
 **[Wireframe](documentation/Diagrams/Wireframes.png)** 
-![wireframe](Diagrams/Wireframes.png)
+![wireframe](documentation/Diagrams/Wireframes.png)
 
 **[Component Diagram](documentation/Diagrams/Components.png)**
-![component](Diagrams/Components.png)
+![component](documentation/Diagrams/Components.png)
 
 
 ## 6. Features
