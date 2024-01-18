@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ route, driverUser}) => {
 
 
-    // if (!route || !route.checkpoints) {
-    //     return null; // Return null or handle the case when route or checkpoints is undefined
-    // }
+    
 
     const addresses = (route && route.checkpoints)? route.checkpoints.map((checkpoint, index) => {
         return <li key={index}>{checkpoint.address.name}</li>
@@ -25,7 +23,7 @@ const NavBar = ({ route, driverUser}) => {
                 </ul>
                 <Link to="/home" id="home" className="menu-item">Overall Route  </Link>
 
-                { driverUser.id ? <Link to="/login" id="home" className="menu-item"> Log Out</Link> : null}
+                { driverUser.id ? <Link to="/" id="home" className="menu-item"> Log Out</Link> : null}
             </Menu>
         </>
     )

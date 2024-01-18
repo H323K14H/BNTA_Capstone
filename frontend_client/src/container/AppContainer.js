@@ -5,17 +5,16 @@ import LandingPage from "../components/LandingPage/LandingPage";
 import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
 import LoginForm from "../components/LogInForm";
+import Manager from "../components/Manager";
 
 export const DriverContext = createContext()
 
 const AppContainer = () => {
 
-    // console.log(localStorage.getItem("optimizedRoute"));
-
-
     const [optimizedRoute, setOptimizedRoute] = useState([]);
 
     const [route, setRoute] = useState({});
+    const [listOfAddresses, setListOfAddresses] = useState([]);
     const [checkpoint, setCheckpoint] = useState([]);
     const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
 
@@ -28,21 +27,30 @@ const AppContainer = () => {
     ]);
 
     const driverUserId = () => {
-        return (<DriverContext.Provider value={driverUser}>
-        </DriverContext.Provider>)
+        return (
+            <DriverContext.Provider value={driverUser}>
+            </DriverContext.Provider>
+        )
     }
-
 
 
     const setLoginInUser = async (userId) => {
         const response = await fetch(`http://localhost:8080/drivers/${userId}`);
         const jsonData = await response.json();
+
         setDriverUser({
             initials: jsonData.initials,
             id: jsonData.id,
             isManager: jsonData.isManager
-            
         });
+
+    }
+
+    const getAllAddresses = async () => {
+        const response = await fetch(`http://localhost:8080/delivery-addresses`);
+        const jsonData = await response.json();
+
+        setListOfAddresses(jsonData);
     }
 
 
@@ -96,7 +104,6 @@ const AppContainer = () => {
         ));
     };
 
-    // May need this in the future...
     useEffect(() => {
         if (localStorage.getItem("optimizedRoute")) {
             getRouteById(localStorage.getItem("optimizedRoute"))
@@ -113,7 +120,14 @@ const AppContainer = () => {
                 )
             );
         }
+        getAllAddresses();
     }, [optimizedRoute])
+
+
+    useEffect(() => {
+        driverUserId();
+    }, [driverUser])
+
 
 
     //   useEffect(() => {
@@ -143,14 +157,16 @@ const AppContainer = () => {
             path: "/",
             element:
                 <DriverContext.Provider value={driverUser}>
-                    <Template completedCheckpoints={completedCheckpoints}
+                    <Template
+                        completedCheckpoints={completedCheckpoints}
                         route={optimizedRoute}
-                        onButtonClick={getOptimizedRoute} />,
+                        onButtonClick={getOptimizedRoute} />
                 </DriverContext.Provider>,
             children: [
                 {
                     path: "/home",
-                    element: <LandingPage onButtonClick={getOptimizedRoute}
+                    element: <LandingPage
+                        onButtonClick={getOptimizedRoute}
                         optimizedRoute={realTimeWaypoint}
                         completedCheckpoints={completedCheckpoints}
                         route={route} />
@@ -166,13 +182,23 @@ const AppContainer = () => {
                     />
                 },
                 {
-                    path: "/login",
-                    element: <LoginForm setLoginInUser={setLoginInUser} />
-        
+                    path: "/",
+                    element: <LoginForm
+                        setLoginInUser={setLoginInUser}
+                        driverUser={driverUser} />
+
+                },
+                {
+                    path: "/manager",
+                    element: <Manager
+                        listOfAddresses={listOfAddresses}
+                        getAllAddresses={getAllAddresses}
+                        onButtonClick={getOptimizedRoute} />
+
                 }
             ]
         }
-        
+
     ])
 
 

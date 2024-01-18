@@ -5,22 +5,20 @@ import { useContext } from 'react';
 import { DriverContext } from '../container/AppContainer';
 
 
-
-
 const Template = ({ completedCheckpoints, route, onButtonClick }) => {
 
     const driverUser = useContext(DriverContext)
-
-
+    console.log(driverUser);
 
     return (<>
         <section className="landing-title">
             <h1 className="title">PitStop</h1>
-            { driverUser.isManager ? null : <Counter completedCheckpoints={completedCheckpoints} route={route} />}
-            <NavBar route={route} driverUser={driverUser}/>
+            {
+                driverUser.isManager ? null : <Counter completedCheckpoints={completedCheckpoints} route={route} />
+            }
+            <NavBar route={route} driverUser={driverUser} />
         </section>
-        
-        { driverUser.isManager ? <button onClick={() => onButtonClick()}>Generate route</button> : null}
+        {/* {driverUser.isManager ? <button onClick={() => onButtonClick()}>Generate route</button> : null} */}
 
         <Outlet />
 
