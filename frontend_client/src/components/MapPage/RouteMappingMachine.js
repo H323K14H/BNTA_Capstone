@@ -7,15 +7,17 @@ import { useEffect } from "react";
 
 const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
-  const generateIcons = (waypoint) => {
-    if (waypoint.isWarehouse) {
-
+  const generateIcons = (i) => {
+    if (i ===0 ) {
+        
       return new L.Icon({
-        iconUrl: "https://icons.veryicon.com/png/o/miscellaneous/indata/warehouse-alt.png",
+        // iconUrl: "https://icons.veryicon.com/png/o/miscellaneous/indata/warehouse-alt.png",
+        iconUrl: "https://www.shutterstock.com/image-vector/cargo-truck-facing-left-vector-260nw-1198116868.jpg",
         iconSize: [32, 32],
       });
-
+      
     }
+    
 
     return new L.Icon({
       iconUrl: "https://icons.iconarchive.com/icons/fa-team/fontawesome/256/FontAwesome-House-Chimney-User-icon.png",
@@ -51,7 +53,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
       const address = allAddresses[i];
 
-      const marker = generateIcons(waypoints[i]);
+      const marker = generateIcons(i);
 
       return L.marker(coordinates.latLng, {
 
