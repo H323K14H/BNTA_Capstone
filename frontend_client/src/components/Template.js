@@ -17,7 +17,7 @@ const Template = ({ completedCheckpoints, route, onButtonClick }) => {
         <section className="landing-title">
             <h1 className="title">PitStop</h1>
             { driverUser.isManager ? null : <Counter completedCheckpoints={completedCheckpoints} route={route} />}
-            <NavBar route={route} />
+            <NavBar route={route} driverUser={driverUser}/>
         </section>
         
         { driverUser.isManager ? <button onClick={() => onButtonClick()}>Generate route</button> : null}

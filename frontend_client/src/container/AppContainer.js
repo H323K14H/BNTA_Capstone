@@ -38,7 +38,7 @@ const AppContainer = () => {
         const response = await fetch(`http://localhost:8080/drivers/${userId}`);
         const jsonData = await response.json();
         setDriverUser({
-            initials: jsonData.name,
+            initials: jsonData.initials,
             id: jsonData.id,
             isManager: jsonData.isManager
             
@@ -164,14 +164,15 @@ const AppContainer = () => {
                         markCheckpointAsComplete={markCheckpointAsComplete}
                         getRouteById={getRouteById}
                     />
+                },
+                {
+                    path: "/log-in",
+                    element: <LoginForm setLoginInUser={setLoginInUser} />
+        
                 }
             ]
-        },
-        {
-            path: "/log-in",
-            element: <LoginForm setLoginInUser={setLoginInUser} />
-
         }
+        
     ])
 
 
