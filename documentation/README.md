@@ -1,6 +1,6 @@
 # 🚚 PITSTOP DELIVERY OPTIMIZATION 🚚 
 
-## Project aims
+## Project Overvview
 #### Brief: RainforestRetail handles deliveries with a manual system, delivery routes are planned by hand, and there is a long wait for parcel deliveries.
 ---
 
