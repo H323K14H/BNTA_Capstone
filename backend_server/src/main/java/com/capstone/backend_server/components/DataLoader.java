@@ -37,10 +37,19 @@ public class DataLoader implements ApplicationRunner {
         warehouse1.addDeliveryAddress(deliveryAddress2);
 
         Driver postmanPat = new Driver("PP",5, warehouse1, false);
+        Driver driver2 = new Driver("NP",5, warehouse1, false);
+        Driver driver3 = new Driver("FF",5, warehouse1, false);
+        Driver driver4 = new Driver("RM",5, warehouse1, false);
+
+        Driver phatController = new Driver("H323", 0, warehouse1, true);
 
         deliveryAddressRepository.save(deliveryAddress1);
         deliveryAddressRepository.save(deliveryAddress2);
         driverRepository.save(postmanPat);
+        driverRepository.save(phatController);
+        driverRepository.save(driver2);
+        driverRepository.save(driver3);
+        driverRepository.save(driver4);
         warehouseRepository.save(warehouse1);
     }
 }
