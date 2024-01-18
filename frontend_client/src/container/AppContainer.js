@@ -166,7 +166,7 @@ const AppContainer = () => {
                     />
                 },
                 {
-                    path: "/log-in",
+                    path: "/login",
                     element: <LoginForm setLoginInUser={setLoginInUser} />
         
                 }
