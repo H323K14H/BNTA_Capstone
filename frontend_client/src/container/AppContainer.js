@@ -4,6 +4,7 @@ import { createBrowserRouter, json, RouterProvider } from "react-router-dom";
 import LandingPage from "../components/LandingPage/LandingPage";
 import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
+import LoginForm from "../components/LogInForm";
 
 
 const AppContainer = () => {
@@ -15,6 +16,25 @@ const AppContainer = () => {
     const [route, setRoute] = useState({});
     const [checkpoint, setCheckpoint] = useState([]);
     const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
+
+    const [clientUser,setClientUser] = useState([
+        {   
+            name: null,
+            id: null,
+            isManager: false
+        }
+    ]);
+    
+
+    const setLoginInUser = async (userId) => {
+        const response = await fetch(`http://localhost:8080/drivers/${userId}`);
+        const jsonData = await response.json();
+        setClientUser({
+            initials: jsonData.name,
+            id: jsonData.id,
+            // role: jsonData.role,
+        });          
+    }
 
 
     const getOptimizedRoute = async () => {
@@ -117,7 +137,7 @@ const AppContainer = () => {
                 onButtonClick={getOptimizedRoute} />,
             children: [
                 {
-                    path: "/",
+                    path: "/home",
                     element: <LandingPage onButtonClick={getOptimizedRoute}
                         optimizedRoute={realTimeWaypoint}
                         completedCheckpoints={completedCheckpoints}
@@ -134,6 +154,11 @@ const AppContainer = () => {
                     />
                 }
             ]
+        },
+        {
+            path:"/log-in",
+            element: <LoginForm setLoginInUser={setLoginInUser}/>
+
         }
     ])
 
