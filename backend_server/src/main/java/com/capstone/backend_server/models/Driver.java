@@ -30,11 +30,15 @@ public class Driver {
     @JsonIgnoreProperties({"deliveryAddresses", "drivers", "routes"})
     private Warehouse warehouse;
 
-    public Driver(String initials, int capacity, Warehouse warehouse) {
+    @Column
+    private boolean isManager;
+
+    public Driver(String initials, int capacity, Warehouse warehouse, boolean isManager) {
         this.initials = initials;
         this.capacity = capacity;
         this.routes = new ArrayList<>();
         this.warehouse = warehouse;
+        this.isManager = isManager;
     }
 
     public Driver() {
@@ -82,5 +86,13 @@ public class Driver {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    public boolean getIsManager() {
+        return isManager;
+    }
+
+    public void setIsManager(boolean manager) {
+        this.isManager = manager;
     }
 }
