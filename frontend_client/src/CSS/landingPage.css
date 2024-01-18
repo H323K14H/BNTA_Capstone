@@ -10,8 +10,10 @@
 
 }
 
-.title {
-  text-align: center;
+.logo {
+  width: 11em;
+  height: 8em;
+  border-radius: 10px;
 }
 
 .counter {
