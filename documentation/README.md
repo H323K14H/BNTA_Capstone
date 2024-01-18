@@ -10,15 +10,15 @@ This project utilizes the Spring Boot framework for the backend and React for th
 
 
 ## Contents 
-1. [Documentation](#documentation)
-2. [Installation and Set Up](#installation-and-set-up)
-3. [Technologies Implemented](#technologies-implemented)
-4. [MVP and Extensions](#project-MVP-and-extensions)
-5. [Structure and Diagrams](#structure-and-diagrams)
-6. [Features](#features)
-7. [Routes and Endpoints](#routes-and-endpoints)
-8. [Use Of External API](#use-of-external-api)
-9. [Contributors](#contributors)
+1. [Documentation](#1-documentation)
+2. [Installation and Set Up](#2-installation-and-set-up)
+3. [Technologies Implemented](#3-technologies-implemented)
+4. [MVP and Extensions](#4-project-MVP-and-extensions)
+5. [Structure and Diagrams](#5-structure-and-diagrams)
+6. [Features](#6-features)
+7. [Routes and Endpoints](#7-routes-and-endpoints)
+8. [Use Of External API](#8-use-of-external-api)
+9. [Contributors](#9-contributors)
 
 
 ##
@@ -96,9 +96,11 @@ Follow the steps provided to run the application on your device...
 
 ## 5. Structure and Diagrams
 **[Entity Relationship Diagram](Diagrams/Capstone_ERD_Diagram_v3.png)** NEEDS UPDATING?
+
 ![ERD](Diagrams/Capstone_ERD_Diagram_v3.png)
 
 **[Class Diagram](Diagrams/capstone_class_diagram.drawio.png)** NEEDS UPDATING 
+
 ![class_diagrams](Diagrams/capstone_class_diagram.drawio.png)
 
 **[Wireframe](Diagrams/Wireframes.png)** 
