@@ -1,7 +1,7 @@
 import { slide as Menu } from 'react-burger-menu'
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ route }) => {
+const NavBar = ({ route, driverUser}) => {
 
 
     // if (!route || !route.checkpoints) {
@@ -12,15 +12,18 @@ const NavBar = ({ route }) => {
         return <li key={index}>{checkpoint.address.name}</li>
     }):null
 
+    console.log(driverUser);
+
     return (
         <>
             <Menu>
+                <p>{driverUser.initials}</p>
                 <Link to="/map-page" id="home" className="menu-item">Progress Tracker </Link>
                 <ul>
                     <p>List of addresses:</p>
                     {addresses}
                 </ul>
-                <Link to="/" id="home" className="menu-item">Overall Route </Link>
+                <Link to="/home" id="home" className="menu-item">Overall Route  </Link>
             </Menu>
         </>
     )

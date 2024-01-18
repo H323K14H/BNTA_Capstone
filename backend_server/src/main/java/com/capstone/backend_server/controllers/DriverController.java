@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("drivers")
+@RequestMapping("/drivers")
 public class DriverController {
 
     @Autowired
@@ -26,5 +27,10 @@ public class DriverController {
                 driverByID.orElse(null),
                 driverByID.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK
         );
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Driver>> getAllDrivers(){
+        return new ResponseEntity<>(driverService.getAllDrivers(), HttpStatus.OK);
     }
 }

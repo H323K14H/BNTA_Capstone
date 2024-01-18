@@ -1,20 +1,49 @@
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "../components/LandingPage/LandingPage";
 import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
+import LoginForm from "../components/LogInForm";
 
+export const DriverContext = createContext()
 
 const AppContainer = () => {
 
-    console.log(localStorage.getItem("optimizedRoute"));
+    // console.log(localStorage.getItem("optimizedRoute"));
+
 
     const [optimizedRoute, setOptimizedRoute] = useState([]);
 
     const [route, setRoute] = useState({});
     const [checkpoint, setCheckpoint] = useState([]);
     const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
+
+    const [driverUser, setDriverUser] = useState([
+        {
+            name: null,
+            id: null,
+            isManager: false
+        }
+    ]);
+
+    const driverUserId = () => {
+        return (<DriverContext.Provider value={driverUser}>
+        </DriverContext.Provider>)
+    }
+
+
+
+    const setLoginInUser = async (userId) => {
+        const response = await fetch(`http://localhost:8080/drivers/${userId}`);
+        const jsonData = await response.json();
+        setDriverUser({
+            initials: jsonData.initials,
+            id: jsonData.id,
+            isManager: jsonData.isManager
+            
+        });
+    }
 
 
     const getOptimizedRoute = async () => {
@@ -112,12 +141,15 @@ const AppContainer = () => {
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template completedCheckpoints={completedCheckpoints}
-                route={optimizedRoute}
-                onButtonClick={getOptimizedRoute} />,
+            element:
+                <DriverContext.Provider value={driverUser}>
+                    <Template completedCheckpoints={completedCheckpoints}
+                        route={optimizedRoute}
+                        onButtonClick={getOptimizedRoute} />,
+                </DriverContext.Provider>,
             children: [
                 {
-                    path: "/",
+                    path: "/home",
                     element: <LandingPage onButtonClick={getOptimizedRoute}
                         optimizedRoute={realTimeWaypoint}
                         completedCheckpoints={completedCheckpoints}
@@ -132,9 +164,15 @@ const AppContainer = () => {
                         markCheckpointAsComplete={markCheckpointAsComplete}
                         getRouteById={getRouteById}
                     />
+                },
+                {
+                    path: "/log-in",
+                    element: <LoginForm setLoginInUser={setLoginInUser} />
+        
                 }
             ]
         }
+        
     ])
 
 
