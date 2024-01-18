@@ -1,14 +1,11 @@
 import { slide as Menu } from 'react-burger-menu'
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ route, driverUser}) => {
+const NavBar = ({ route, driverUser }) => {
 
-
-    
-
-    const addresses = (route && route.checkpoints)? route.checkpoints.map((checkpoint, index) => {
+    const addresses = (route && route.checkpoints) ? route.checkpoints.map((checkpoint, index) => {
         return <li key={index}>{checkpoint.address.name}</li>
-    }):null
+    }) : null
 
     console.log(driverUser);
 
@@ -16,14 +13,18 @@ const NavBar = ({ route, driverUser}) => {
         <>
             <Menu>
                 <h3>{driverUser.initials}</h3>
-                <Link to="/map-page" id="home" className="menu-item">Progress Tracker </Link>
+                {
+                    driverUser.isManager ?
+                        <Link to="/manager" id="home" className="menu-item">All addresses</Link> :
+                        <Link to="/map-page" id="home" className="menu-item">Progress Tracker </Link>
+                }
                 <ul>
-                    <p>List of addresses:</p>
+                    {addresses.length === 0 ? null : <p>List of addresses:</p>}
                     {addresses}
                 </ul>
                 <Link to="/home" id="home" className="menu-item">Overall Route  </Link>
 
-                { driverUser.id ? <Link to="/" id="home" className="menu-item"> Log Out</Link> : null}
+                {driverUser.id ? <Link to="/" id="home" className="menu-item"> Log Out</Link> : null}
             </Menu>
         </>
     )

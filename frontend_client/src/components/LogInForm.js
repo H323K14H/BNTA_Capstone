@@ -3,13 +3,10 @@ import { Outlet, json, useNavigate } from "react-router-dom";
 
 const LoginForm = ({ setLoginInUser, driverUser }) => {
 
-
-
     const navigate = useNavigate();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState();
-
 
 
     const validateDriver = async (password) => {
@@ -48,10 +45,6 @@ const LoginForm = ({ setLoginInUser, driverUser }) => {
                 alert("Invalid details");
             });
         }
-
-
-
-
         setUsername("");
         setPassword("");
     }
