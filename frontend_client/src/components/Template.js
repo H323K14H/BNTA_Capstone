@@ -12,7 +12,7 @@ const Template = ({ completedCheckpoints, route, onButtonClick }) => {
 
     return (<>
         <section className="landing-title">
-            <h1 className="title">PitStop</h1>
+            <div className="logo"></div>
             {
                 driverUser.isManager ? null: <Counter completedCheckpoints={completedCheckpoints} route={route} />
             }
