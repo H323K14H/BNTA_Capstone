@@ -1,10 +1,11 @@
 package com.capstone.backend_server.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -42,11 +43,11 @@ public class Route {
     public Route() {
     }
 
-    public void addCheckpoint(Checkpoint checkpoint){
+    public void addCheckpoint(Checkpoint checkpoint) {
         this.checkpoints.add(checkpoint);
     }
 
-    public void removeCheckpoint(Checkpoint checkpoint){
+    public void removeCheckpoint(Checkpoint checkpoint) {
         this.checkpoints.remove(checkpoint);
     }
 
@@ -83,8 +84,12 @@ public class Route {
     }
 
     public List<Checkpoint> getCheckpoints() {
-        return checkpoints;
+        this.checkpoints.sort((a, b) -> Math.toIntExact(
+                (a.getId() - b.getId())
+        ));
+        return this.checkpoints;
     }
+
 
     public void setCheckpoints(List<Checkpoint> checkpoints) {
         this.checkpoints = checkpoints;

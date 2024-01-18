@@ -38,7 +38,7 @@ const LandingPage = ({
   }
   return (
     <>
-    <GeoapifyContext apiKey="API_KEY">
+    <GeoapifyContext apiKey="79ebcdca6b524d37952376c0ebe3f73a">
       <GeoapifyGeocoderAutocomplete placeholder="Enter address here"
         // type={"street"}
         lang={"en"}
@@ -53,7 +53,7 @@ const LandingPage = ({
         />
     </GeoapifyContext>
 
-      {optimizedRoute.length == 0 ? (
+      {optimizedRoute.length === 0 ? (
         <button onClick={() => onButtonClick()}>Generate route</button>
       ) : (
         <>

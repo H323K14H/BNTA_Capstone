@@ -4,13 +4,14 @@ import Counter from './Counter';
 
 
 
-const Template = ({completedCheckpoints, route }) => {
+const Template = ({ completedCheckpoints, route, onButtonClick }) => {
     return (<>
         <section className="landing-title">
             <h1 className="title">PitStop</h1>
-            <Counter completedCheckpoints={completedCheckpoints} route = {route}  />
+            <Counter completedCheckpoints={completedCheckpoints} route={route} />
             <NavBar route={route} />
         </section>
+        <button onClick={() => onButtonClick()}>Generate route</button>
 
         <Outlet />
 

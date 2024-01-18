@@ -9,9 +9,6 @@ const RouteMap = ({ optimizedRoute }) => {
         return <p>Loading...</p>;
     }
 
-   
-
-
     // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
     //     console.log(optimizedRoute);
         
