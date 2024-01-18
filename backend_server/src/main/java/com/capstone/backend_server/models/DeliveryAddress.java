@@ -14,6 +14,9 @@ public class DeliveryAddress extends Address {
     @JsonIgnore
     private Warehouse warehouse;
 
+    @Column
+    private boolean isWarehouse;
+
 
 //    @OneToMany(mappedBy = "location")
 //    @JsonIgnore
@@ -23,6 +26,7 @@ public class DeliveryAddress extends Address {
         super(longitude, latitude, address);
         this.warehouse = warehouse;
 //        this.checkpoints = new ArrayList<>();
+        this.isWarehouse = false;
     }
 
 
@@ -45,4 +49,11 @@ public class DeliveryAddress extends Address {
         this.warehouse = warehouse;
     }
 
+    public boolean getIsWarehouse() {
+        return isWarehouse;
+    }
+
+    public void setIsWarehouse(boolean warehouse) {
+        isWarehouse = warehouse;
+    }
 }

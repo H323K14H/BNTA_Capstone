@@ -2,12 +2,13 @@ import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import { useEffect } from "react";
 
 
 const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
-  const generateIcons = (i) => {
-    if (i === 0) {
+  const generateIcons = (waypoint) => {
+    if (waypoint.isWarehouse) {
 
       return new L.Icon({
         iconUrl: "https://icons.veryicon.com/png/o/miscellaneous/indata/warehouse-alt.png",
@@ -30,8 +31,10 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
   const allAddresses = incompleteWaypoints.map(waypoint => waypoint.address.name);
 
-
-
+  // useEffect(() => {
+  //   // Update the waypoints when the incompleteWaypoints change
+  //   instance.setWaypoints(incompleteWaypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)));
+  // }, [incompleteWaypoints]);
 
   const instance = L.Routing.control({
     position,
@@ -48,7 +51,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
       const address = allAddresses[i];
 
-      const marker = generateIcons(i);
+      const marker = generateIcons(waypoints[i]);
 
       return L.marker(coordinates.latLng, {
 

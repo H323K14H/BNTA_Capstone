@@ -30,12 +30,16 @@ public class Warehouse extends Address {
 //    @JsonIgnore
 //    private List<Checkpoint> checkpoints;
 
+    @Column
+    private boolean isWarehouse;
+
     public Warehouse(double longitude, double latitude, String address) {
         super(longitude, latitude, address);
         this.routes = new ArrayList<Route>();
         this.drivers = new ArrayList<Driver>();
         this.deliveryAddresses = new ArrayList<DeliveryAddress>();
 //        this.checkpoints = new ArrayList<>();
+        this.isWarehouse = true;
     }
 
     public Warehouse() {
@@ -105,4 +109,13 @@ public class Warehouse extends Address {
 //    public void setCheckpoints(List<Checkpoint> checkpoints) {
 //        this.checkpoints = checkpoints;
 //    }
+
+
+    public boolean getIsWarehouse() {
+        return isWarehouse;
+    }
+
+    public void setIsWarehouse(boolean warehouse) {
+        isWarehouse = warehouse;
+    }
 }
