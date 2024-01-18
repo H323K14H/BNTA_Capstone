@@ -82,15 +82,17 @@ Follow the steps provided to run the application on your device...
 - **MVP**
     - Make a call to an external API (geoapify) to retrieve an optimized route
     - Display a map with the route drawn, warehouse and locations marked
-    - Hamburger menu which acts as a Navigation bar to display 'My Route', a list of all addresses, 'more info' using router links
-    - 'Generate Route' button to sned POST request to optimize the route and display the map
+    - Implement a hamburger menu which acts as a Navigation bar to display 'Overall Route', a list of all addresses, and 'Progress Tracker' using router links
+    - 'Generate Route' button to send POST request to optimize the route and display the map
     
 
 - **Extensions**
     - Collected/Delivered button to mark a checkpoint as completed
-    - Counter to keep track of the number of deliveries made
+    - Implement a counter to keep track of the number of deliveries made
     - Display the next address and change icons based on if they have been completed
-    - Assign a driver to a route
+    - Create a login page for drivers and managers
+    - Develop a manager profile to generate routes and assign a driver to a route
+    - Add delivery addresses from the frontend 
     - Optimize multiple routes using a dynamic amount of delivery addresses
 
 
@@ -150,6 +152,7 @@ The following end points can be requested from our backend server...
 | Endpoint                        | Method | Description                             |
 | ------------------------------- | ------ | ---------------------------------------|
 | `/delivery-addresses`           | GET    | Get a list of all delivery addresses   |
+| `/delivery-addresses`   | POST   | Add a delivery address using a DTO in request body    |
 ---
 ### Checkpoint Controller
 
@@ -157,7 +160,13 @@ The following end points can be requested from our backend server...
 | ------------------------- | ------ | ------------------------------------------------ |
 | `/checkpoints/{id}`       | PATCH  | Mark a checkpoint as completed for a specific route |
 ---
+### Driver Controller
+| Endpoint                  | Method | Description                                                     |
+|---------------------------|--------|-----------------------------------------------------------------|
+| `/drivers`                | GET    | Get all drivers                                                |
+| `/drivers/{id}`           | GET    | Get a driver by ID    |
 
+---
 
 ### Example of Response
 - **Endpoint:** `POST /routes/start`
