@@ -25,10 +25,10 @@ This project utilizes the Spring Boot framework for the backend and React for th
 
 ## 1. Documentation
 The following links provide supporting documentation for our project aims, challenges, risks and target customers.
-- [Business Case](Capstone_Project_Business_Case.docx) NEEDS FILE CHANGE
+- [Business Case](documentation/Capstone_Project_Business_Case.docx) NEEDS FILE CHANGE
 - Risk Register NEEEDS ADDING
-- [Personas](Diagrams/personas.png)
-- [Mid-Project Retrospective](Diagrams/Retrospective.pdf)
+- [Personas](documentation/Diagrams/personas.png)
+- [Mid-Project Retrospective](documentation/Diagrams/Retrospective.pdf)
 
 
 ## 2. Technologies Implemented
@@ -95,18 +95,18 @@ Follow the steps provided to run the application on your device...
 
 
 ## 5. Structure and Diagrams
-**[Entity Relationship Diagram](Diagrams/Capstone_ERD_Diagram_v3.png)** NEEDS UPDATING?
+**[Entity Relationship Diagram](documentation/Diagrams/Capstone_ERD_Diagram_v3.png)** NEEDS UPDATING?
 
-![ERD](Diagrams/Capstone_ERD_Diagram_v3.png)
+![ERD](documentation/Diagrams/Capstone_ERD_Diagram_v3.png)
 
-**[Class Diagram](Diagrams/capstone_class_diagram.drawio.png)** NEEDS UPDATING 
+**[Class Diagram](documentation/Diagrams/capstone_class_diagram.drawio.png)** NEEDS UPDATING 
 
-![class_diagrams](Diagrams/capstone_class_diagram.drawio.png)
+![class_diagrams](documentation/Diagrams/capstone_class_diagram.drawio.png)
 
-**[Wireframe](Diagrams/Wireframes.png)** 
+**[Wireframe](documentation/Diagrams/Wireframes.png)** 
 ![wireframe](Diagrams/Wireframes.png)
 
-**[Component Diagram](Diagrams/Components.png)**
+**[Component Diagram](documentation/Diagrams/Components.png)**
 ![component](Diagrams/Components.png)
 
 
