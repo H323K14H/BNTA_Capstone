@@ -3,10 +3,10 @@ import { TileLayer, MapContainer } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 
 
-const MapComponent = ({ optimizedRoute }) => {
+const MapComponent = ({ waypoints }) => {
 
   
-    if (optimizedRoute.length === 0 ) {
+    if (waypoints.length === 0 ) {
         // Handle the case when the data is not available
         return <p>Loading...</p>; 
       }
@@ -30,7 +30,7 @@ const MapComponent = ({ optimizedRoute }) => {
 
                 <RoutingMachine
                     position={'topright'}
-                    waypoints={optimizedRoute}
+                    waypoints={waypoints}
                     color={'rgb(255, 0, 0)'}
 
                 />

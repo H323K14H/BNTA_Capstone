@@ -6,11 +6,29 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
-  const generateIcons = (i) => {
+  const generateIcons = (i, isCompleted) => {
+
     if (i === 0) {
+      if(isCompleted){
+        return new L.Icon(
+          {
+            iconUrl: "https://banner2.cleanpng.com/20180327/gwe/kisspng-button-computer-icons-check-mark-clip-art-yes-5ab9e52c4b4101.8840375215221322683083.jpg",
+            iconSize: [32, 32],
+          }
+        );
+      }
       return new L.Icon(
         {
           iconUrl: "https://icons.veryicon.com/png/o/miscellaneous/indata/warehouse-alt.png",
+          iconSize: [32, 32],
+        }
+      );
+    }
+
+    if(isCompleted){
+      return new L.Icon(
+        {
+          iconUrl: "https://cdn4.iconfinder.com/data/icons/real-estate-glyphs-set-5/52/home__tick__real__house-512.png",
           iconSize: [32, 32],
         }
       );
@@ -37,12 +55,12 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
   // const allAddresses = [warehouse.address, ...getAddresses];
   console.log(waypoints);
 
-  const allAddresses = waypoints.map(waypoint => waypoint.name);
+  const allAddresses = waypoints.map(waypoint => waypoint.address.name);
 
   const instance = L.Routing.control({
     position,
     // waypoints: allWaypoints.map((geo) => L.latLng(geo[0], geo[1])),
-    waypoints: waypoints.map((waypoint) => L.latLng(waypoint.latitude, waypoint.longitude)),
+    waypoints: waypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)),
     collapsible: true,
     addWaypoints: false,
     lineOptions: {
@@ -50,13 +68,15 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
     },
 
-    createMarker: (i, waypoints, n) => {
+    createMarker: (i, coordinates, n) => {
+
+      console.log(waypoints);
 
       const address = allAddresses[i];
 
-      const marker = generateIcons(i);
+      const marker = generateIcons(i, waypoints[i].completed);
 
-      return L.marker(waypoints.latLng, {
+      return L.marker(coordinates.latLng, {
 
         draggable: false,
 

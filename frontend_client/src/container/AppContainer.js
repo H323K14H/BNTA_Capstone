@@ -27,7 +27,7 @@ const AppContainer = () => {
         const postedRoute = await response.json()
 
         setOptimizedRoute(postedRoute);
-        localStorage.setItem("optimizedRoute", postedRoute.id)
+        localStorage.setItem("optimizedRoute", postedRoute.id);
         // console.log(localStorage.getItem("optimizedRoute"));
         // localStorage.setItem("checkpointIndex", "0")
     }
@@ -46,6 +46,9 @@ const AppContainer = () => {
 
     const checkpointData = optimizedRoute.checkpoints || [];
 
+    const realTimeWaypoint = route.checkpoints ? route.checkpoints.map((waypoint) => {
+        return waypoint;
+    }) : [];
 
     const getRouteById = async (id) => {
         const response = await fetch(`http://localhost:8080/routes/${id}`);
@@ -128,7 +131,7 @@ const AppContainer = () => {
                 {
                     path: "/",
                     element: <LandingPage onButtonClick={getOptimizedRoute}
-                        optimizedRoute={waypoints}
+                        optimizedRoute={realTimeWaypoint}
                         completedCheckpoints={completedCheckpoints}
                         route={route} />
                 },
