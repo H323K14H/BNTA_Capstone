@@ -22,20 +22,13 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
     });
   };
 
-  // const getGeoCodes = deliveryAddresses.map((delivery) => {
-  //   return delivery.geocode
-  // });
+  const incompleteWaypoints = waypoints.filter((waypoint)=>{
+    return !waypoint.completed;
+  });
 
-  // const getAddresses = deliveryAddresses.map((delivery) => {
-  //   return delivery.address
-  // });
+  console.log(incompleteWaypoints);
 
-  // const allWaypoints = [warehouse.geocode, ...getGeoCodes];
-
-  // const allAddresses = [warehouse.address, ...getAddresses];
-  console.log(waypoints);
-
-  const allAddresses = waypoints.map(waypoint => waypoint.name);
+  const allAddresses = incompleteWaypoints.map(waypoint => waypoint.address.name);
 
 
 
@@ -43,7 +36,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
   const instance = L.Routing.control({
     position,
     // waypoints: allWaypoints.map((geo) => L.latLng(geo[0], geo[1])),
-    waypoints: waypoints.map((waypoint) => L.latLng(waypoint.latitude, waypoint.longitude)),
+    waypoints: incompleteWaypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)),
     collapsible: true,
     addWaypoints: false,
     lineOptions: {
@@ -51,13 +44,13 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
     },
 
-    createMarker: (i, waypoints, n) => {
+    createMarker: (i, coordinates, n) => {
 
       const address = allAddresses[i];
 
       const marker = generateIcons(i);
 
-      return L.marker(waypoints.latLng, {
+      return L.marker(coordinates.latLng, {
 
         draggable: false,
 

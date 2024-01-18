@@ -1,5 +1,6 @@
 import React from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet';
+import RoutingMachine from '../LandingPage/RoutingMachine';
 import RouteMappingMachine from './RouteMappingMachine';
 
 const RouteMap = ({ optimizedRoute }) => {
@@ -8,6 +9,9 @@ const RouteMap = ({ optimizedRoute }) => {
         // Handle the case when the data is not available
         return <p>Loading...</p>;
     }
+
+   
+
 
     // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
     //     console.log(optimizedRoute);

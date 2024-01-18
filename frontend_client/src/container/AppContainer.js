@@ -32,18 +32,6 @@ const AppContainer = () => {
         // localStorage.setItem("checkpointIndex", "0")
     }
 
-
-    // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
-    //     // latitude: waypoint.address.latitude,
-    //     // longitude: waypoint.address.longitude,
-    //     return waypoint.address
-    // });
-
-    const waypoints = optimizedRoute.checkpoints ? optimizedRoute.checkpoints.map((waypoint) => {
-        return waypoint.address;
-    }) : [];
-
-
     const checkpointData = optimizedRoute.checkpoints || [];
 
     const realTimeWaypoint = route.checkpoints ? route.checkpoints.map((waypoint) => {
@@ -138,7 +126,7 @@ const AppContainer = () => {
                 {
                     path: "/map-page",
                     element: <RouteComponent
-                        optimizedRoute={waypoints}
+                        optimizedRoute={realTimeWaypoint}
                         route={route}
                         checkpointData={checkpointData}
                         markCheckpointAsComplete={markCheckpointAsComplete}
