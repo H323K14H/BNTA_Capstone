@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
     align-items: center;
     width: 100vw;
     height: 77.5vh;
+    
 }
 
 .login{
@@ -14,11 +14,18 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    background-color: rgb(240, 243, 251);
+    padding: 8em;
+    border-radius: 25px;
 }
 
 .username-login{
     margin-bottom: 1em;
    
+}
+
+.name-input{
+    text-align: center;
 }
 
 .name-input{

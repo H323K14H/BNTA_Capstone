@@ -39,9 +39,10 @@
 
 /* General sidebar styles */
 .bm-menu {
-    background: #373a47;
-    padding: 1em 1em 0;
+    background: #616b96;
+    text-align: center;
     font-size: large;
+   
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -51,13 +52,15 @@
 
 /* Wrapper for item list */
 .bm-item-list {
-    color: #b8b7ad;
+    color: white;
     padding: 1.5em;
+    font-size: large;
 }
 
 /* Individual item */
 .bm-item {
     display: inline-block;
+    margin-bottom: 1em;
 }
 
 /* Styling of overlay */
@@ -70,7 +73,17 @@
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    margin-bottom: 10px;
-    color: #d1d1d1;
+    margin-bottom: 2em;
+    color: white;
     transition: color 0.2s;
+    list-style: none;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.btn:hover {
+    background-color: #373a47;
+    
 }

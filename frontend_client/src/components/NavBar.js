@@ -15,18 +15,20 @@ const NavBar = ({ route, driverUser }) => {
         <>
             <Menu>
                 <h3>{driverUser.initials}</h3>
+                <Link to="/home" id="home" className="menu-item btn"><h3>Overall Route </h3> </Link>
                 {
                     driverUser.isManager ?
-                        <Link to="/manager" id="home" className="menu-item">All addresses</Link> :
-                        <Link to="/map-page" id="home" className="menu-item">Progress Tracker </Link>
+                        <Link to="/manager" id="home" className="menu-item btn"><h3>All addresses</h3></Link> :
+                        <Link to="/map-page" id="home" className="menu-item btn"><h3>Progress Tracker</h3> </Link>
                 }
-                <ul>
-                    {addresses.length === 0 ? null : <p>List of addresses:</p>}
+                
+                    {addresses.length === 0 ? null : <h3 className="menu-item">List of addresses:</h3>}
+                
                     {addresses}
-                </ul>
-                <Link to="/home" id="home" className="menu-item">Overall Route  </Link>
+                
+                
 
-                {driverUser.id ? <Link to="/" id="home" className="menu-item"> Log Out</Link> : null}
+                {driverUser.id ? <Link to="/" id="home" className="menu-item btn"> <h3>Log Out</h3></Link> : null}
             </Menu>
         </>
     )
