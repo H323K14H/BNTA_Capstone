@@ -83,9 +83,9 @@ const AppContainer = () => {
         }
       },[optimizedRoute])
     
-      useEffect(() => {
-        // Add any additional logic you want to run after completing the PATCH request
-      }, [completedCheckpoints]);
+    //   useEffect(() => {
+    //     // Add any additional logic you want to run after completing the PATCH request
+    //   }, [completedCheckpoints]);
 
     // const updateDriver = async (id, driverId) => {
     //     const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {
@@ -98,12 +98,12 @@ const AppContainer = () => {
     //     setRoute(getData)
     // }
 
-    // useEffect(() => {
-    //     // getOptimizedRoute();
-    //     getRouteById(1); //hardcoded 1 for now
-    //     // updateDriver(1, 1);
+    useEffect(() => {
+        // getOptimizedRoute();
+        getRouteById(1); //hardcoded 1 for now
+        // updateDriver(1, 1);
 
-    // }, [optimizedRoute])
+    }, [optimizedRoute, completedCheckpoints])
 
     const appRoutes = createBrowserRouter([
         {

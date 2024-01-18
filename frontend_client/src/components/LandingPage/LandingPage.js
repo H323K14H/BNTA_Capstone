@@ -14,15 +14,13 @@ const LandingPage = ({
 
   const checkpoints = route.checkpoints || [];
 
-const addressesToVisit = checkpoints
-  .filter((checkpoint) => !completedAddresses.includes(checkpoint))
-  .map((checkpoint) => (
-    <li key={checkpoint.id}>{checkpoint.address.name}</li>
-  ));
+  const listOfAddressesToVisit = checkpoints.filter((checkpoint) => {
+    return !checkpoint.completed;
+  });
 
-  // const addressesToVisit = listOfAddressesToVisit.map((checkpoint) => {
-  //   return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
-  // })
+  const addressesToVisit = listOfAddressesToVisit.map((checkpoint) => {
+    return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
+  })
 
    
   const onPlaceSelect=(event) => {
@@ -61,14 +59,14 @@ const addressesToVisit = checkpoints
         <>
           <MapComponent optimizedRoute={optimizedRoute} />
 
-          {optimizedRoute.length > 0 ? (
-            <>
+          {optimizedRoute.length > 0 ? (listOfAddressesToVisit.length > 0 ?
+            (<>
               <h3>To Visit:</h3>
               <ul>{addressesToVisit}</ul>
             </>
-          ) : (
-            <h3>No More To Visit</h3>
-          )}
+            ): <h3>You have no more deliveries to do today</h3>) : (
+              <h3>Route has not been generated yet</h3>
+            )}
 
           {completedAddresses.length > 0 ? (
             <>
@@ -76,7 +74,7 @@ const addressesToVisit = checkpoints
               <ul>{completedAddresses}</ul>
             </>
           ) : (
-            <h3>No Deliveries Made</h3>
+            <h3>No Deliveries Made Yet Today</h3>
           )}
         </>
 
