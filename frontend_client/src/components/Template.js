@@ -1,15 +1,14 @@
 import NavBar from './NavBar'
-import LandingPage from './LandingPage/LandingPage'
 import { Outlet } from 'react-router-dom'
-import CounterButton from './Counter';
+import Counter from './Counter';
 
 
 
-const Template = ({ route }) => {
+const Template = ({completedCheckpoints, route }) => {
     return (<>
         <section className="landing-title">
             <h1 className="title">PitStop</h1>
-            <CounterButton />
+            <Counter completedCheckpoints={completedCheckpoints} route = {route}  />
             <NavBar route={route} />
         </section>
 

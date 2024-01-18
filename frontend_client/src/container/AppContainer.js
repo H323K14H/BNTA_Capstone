@@ -1,6 +1,4 @@
-
 import "leaflet/dist/leaflet.css";
-import MapComponent from "../components/LandingPage/MapComponent";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "../components/LandingPage/LandingPage";
@@ -8,11 +6,17 @@ import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
 
 
-
 const AppContainer = () => {
 
+    console.log(localStorage.getItem("optimizedRoute"));
+
     const [optimizedRoute, setOptimizedRoute] = useState([]);
-    const [route, setRoute] = useState({})
+    
+    const [route, setRoute] = useState({});
+    const [checkpoint, setCheckpoint] = useState([]);
+    const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
+  
+
 
     const getOptimizedRoute = async () => {
         const response = await fetch(`http://localhost:8080/routes/start`, {
@@ -23,47 +27,107 @@ const AppContainer = () => {
 
         const postedRoute = await response.json()
 
-        const waypoints = postedRoute.checkpoints.map((waypoint) => {
-            // latitude: waypoint.address.latitude,
-            // longitude: waypoint.address.longitude,
-            return waypoint.address
-        });
-
-        setOptimizedRoute(waypoints);
+        setOptimizedRoute(postedRoute);
+        localStorage.setItem("optimizedRoute", postedRoute.id)
+        // console.log(localStorage.getItem("optimizedRoute"));
+        localStorage.setItem("checkpointIndex", "0")
     }
+
+    
+
+    // const waypoints = optimizedRoute.checkpoints.map((waypoint) => {
+    //     // latitude: waypoint.address.latitude,
+    //     // longitude: waypoint.address.longitude,
+    //     return waypoint.address
+    // });
+
+    const waypoints = optimizedRoute.checkpoints ? optimizedRoute.checkpoints.map((waypoint) => {
+        return waypoint.address;
+    }) : [];
+
+    const checkpointData = optimizedRoute.checkpoints || [];
+
+    
 
     const getRouteById = async (id) => {
         const response = await fetch(`http://localhost:8080/routes/${id}`);
         const jsonData = await response.json();
 
-        setRoute(jsonData);
-
+        setOptimizedRoute(jsonData);
     }
 
+    const markCheckpointAsComplete = async (id) => {
+        const response = await fetch(`http://localhost:8080/checkpoints/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify("")
+        });
     
+        const routeData = await response.json();
+        localStorage.setItem("checkpointIndex", routeData.upcomingCheckpointIndex)
+        setRoute(routeData)
+        setCompletedCheckpoints(routeData.checkpoints.filter(checkpoint=> checkpoint.completed==true));
+      };
+
+      useEffect(()=>{
+        if (localStorage.getItem("optimizedRoute")){ 
+            getRouteById(localStorage.getItem("optimizedRoute"))
+            // localStorage.setItem("checkpointIndex", 0)
+        }
+      },[])
+
+      useEffect(()=>{
+        if(optimizedRoute&&optimizedRoute.checkpoints){
+            setRoute(optimizedRoute)
+            setCompletedCheckpoints(optimizedRoute.checkpoints.filter(checkpoint=> checkpoint.completed==true));
+        }
+      },[optimizedRoute])
+    
+    //   useEffect(() => {
+    //     // Add any additional logic you want to run after completing the PATCH request
+    //   }, [completedCheckpoints]);
+
+    // const updateDriver = async (id, driverId) => {
+    //     const response = await fetch(`http://localhost:8080/routes/${id}?driverId=${driverId}`, {
+    //         method: "PATCH",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify("")
+    //     })
+    //     const getData = await response.json()
+
+    //     setRoute(getData)
+    // }
 
     useEffect(() => {
-        getOptimizedRoute();
+        // getOptimizedRoute();
         getRouteById(1); //hardcoded 1 for now
-        
-    },[optimizedRoute])
+        // updateDriver(1, 1);
 
-    console.log(optimizedRoute);
+    }, [optimizedRoute, completedCheckpoints])
 
     const appRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template route = {route}/>,
+            element: <Template completedCheckpoints = {completedCheckpoints} route={optimizedRoute} />,
             children: [
 
                 {
-                    path:"/",
-                    element: <LandingPage optimizedRoute={optimizedRoute} />
+                    path: "/",
+                    element: <LandingPage onButtonClick= {getOptimizedRoute} 
+                                        optimizedRoute={waypoints}
+                                        completedCheckpoints = {completedCheckpoints} 
+                                        route= {route}/>
 
                 },
                 {
                     path: "/map-page",
-                    element: <RouteComponent optimizedRoute={optimizedRoute}/>
+                    element: <RouteComponent 
+                    optimizedRoute={waypoints}
+                    route={route}
+                    checkpointData = {checkpointData}
+                    markCheckpointAsComplete={markCheckpointAsComplete}
+                    getRouteById = {getRouteById}
+                    />
                 }
 
             ]
@@ -74,7 +138,7 @@ const AppContainer = () => {
 
     return (
         <>
-            
+
             <RouterProvider router={appRoutes} />
 
         </>

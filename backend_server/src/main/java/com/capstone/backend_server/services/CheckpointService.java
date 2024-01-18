@@ -19,14 +19,15 @@ public class CheckpointService {
     @Autowired
     RouteRepository routeRepository;
 
-    public List<Checkpoint> markAsCompleted(Long id) {
+    public Route markAsCompleted(Long id) {
         Checkpoint checkpoint = checkpointRepository.findById(id).get();
         checkpoint.setCompleted(true);
         checkpointRepository.save(checkpoint);
         Route route = checkpoint.getRoute();
+        routeRepository.save(route);
         route.setUpcomingCheckpointIndex(route.getUpcomingCheckpointIndex() + 1 );
         routeRepository.save(route);
 
-        return checkpointRepository.findAllByRouteIdAndCompleted(route.getId(), true);
+        return route; //checkpointRepository.findAllByRouteIdAndCompleted(route.getId(), true);
     }
 }

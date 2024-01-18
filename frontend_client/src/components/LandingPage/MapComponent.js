@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { TileLayer, MapContainer } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 
@@ -13,16 +13,11 @@ const MapComponent = ({ optimizedRoute }) => {
 
     //   console.log(optimizedRoute);
 
-
     // const waypoints = optimizedRoute.checkpoints.map((waypoint) => ({
     //     latitude: waypoint.address.latitude,
     //     longitude: waypoint.address.longitude,
     //     address: waypoint.address.name
     // }));
-
-
-
-    
 
     return (
         <>
