@@ -36,7 +36,7 @@ The following links provide supporting documentation for our project aims, chall
   - Spring Boot
   - Java
   - Database (SQL)
-  - Geoapify Route Planner API, [see section 9 for more info](#use-of-external-api)
+  - Geoapify Route Planner API, [see section 9 for more info](#9-use-of-external-api)
 
 - **Frontend:**
   - React
