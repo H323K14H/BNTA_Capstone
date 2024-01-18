@@ -1,4 +1,6 @@
 import MapComponent from "./MapComponent";
+import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
+import '@geoapify/geocoder-autocomplete/styles/minimal.css'
 
 const LandingPage = ({
   onButtonClick,
@@ -22,8 +24,37 @@ const addressesToVisit = checkpoints
   //   return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
   // })
 
+   
+  const onPlaceSelect=(event) => {
+    console.log(event);
+    console.log("hey");
+  }
+ 
+  const onSuggestionChange=(value) => {
+    console.log(value);
+    console.log("hi");
+  }
+  const postprocessHook= (event)=>{
+    console.log(event);
+    return event.properties.address_line1+ ", " +event.properties.address_line2
+  }
   return (
     <>
+    <GeoapifyContext apiKey="API_KEY">
+      <GeoapifyGeocoderAutocomplete placeholder="Enter address here"
+        // type={"street"}
+        lang={"en"}
+        position={"relative"}
+        filterByCountryCode={["gb"]}
+        limit={"5"}
+        // value={""}
+        placeSelect={()=>onPlaceSelect()}
+        suggestionsChange={onSuggestionChange}
+        postprocessHook={postprocessHook}
+        allowNonVerifiedHouseNumber={true}
+        />
+    </GeoapifyContext>
+
       {optimizedRoute.length == 0 ? (
         <button onClick={() => onButtonClick()}>Generate route</button>
       ) : (
