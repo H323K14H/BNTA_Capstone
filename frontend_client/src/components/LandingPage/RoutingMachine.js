@@ -12,7 +12,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
       if(isCompleted){
         return new L.Icon(
           {
-            iconUrl: "https://banner2.cleanpng.com/20180327/gwe/kisspng-button-computer-icons-check-mark-clip-art-yes-5ab9e52c4b4101.8840375215221322683083.jpg",
+            iconUrl: "https://cdn-icons-png.flaticon.com/512/6276/6276686.png",
             iconSize: [32, 32],
           }
         );

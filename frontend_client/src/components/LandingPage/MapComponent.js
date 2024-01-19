@@ -21,11 +21,12 @@ const MapComponent = ({ waypoints }) => {
 
     return (
         <>
-            <MapContainer
-
+            <MapContainer 
                 center={[51, -0.7]} //make warehouse location
                 zoom={5}
                 zoomControl={true}
+                className="map"
+
             >
 
                 <RoutingMachine
