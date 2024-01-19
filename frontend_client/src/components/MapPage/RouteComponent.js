@@ -13,11 +13,9 @@ const RouteComponent = ({ optimizedRoute, route , checkpointData, markCheckpoint
 
     return (
         <>
-            <div className="address-title">
-            {nextCheckpoint? <h1>{nextCheckpoint.address.isWarehouse? "Collecting from" : "Next address"}: {nextCheckpoint.address.name}</h1>
+            {nextCheckpoint? <h1>{nextCheckpoint.address.isWarehouse? "Collecting from" : "Next address"}: {nextCheckpoint.address.name}</h1> 
             : 
-            <h1><strong>Deliveries complete!</strong></h1>}
-            </div>
+            <h1>Deliveries done!</h1>}
             <DeliveredButton 
             route={route} 
             checkpointData= {checkpointData} 

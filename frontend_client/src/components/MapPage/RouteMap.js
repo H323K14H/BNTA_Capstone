@@ -41,7 +41,7 @@ const RouteMap = ({ optimizedRoute}) => {
                 <RouteMappingMachine
                     position={'topright'}
                     waypoints={optimizedRoute}
-                    color={'rgb(255, 24, 132)'}
+                    color={'rgb(255, 0, 0)'}
                     key={optimizedRoute.findIndex((checkpoint)=> !checkpoint.completed)}
                 />
 
