@@ -1,4 +1,15 @@
 # 🚚 PITSTOP DELIVERY OPTIMIZATION 🚚 
+## Contributors 
+
+**🎸[Emmanuel](https://github.com/emman038)**
+
+**🎸[Faiz](https://github.com/FaizF7)**
+
+**🎸[Hezekiah](https://github.com/H323K14H)**
+
+**🎸[Nathan](https://github.com/Nathparmar)**
+
+**🎸[Rosie](https://github.com/rosiemiall)**
 
 ## Project Overview
 #### Brief: RainforestRetail handles deliveries with a manual system, delivery routes are planned by hand, and there is a long wait for parcel deliveries.
@@ -18,7 +29,6 @@ This project utilizes the Spring Boot framework for the backend and React for th
 6. [Features](#6-features)
 7. [Routes and Endpoints](#7-routes-and-endpoints)
 8. [Use Of External API](#8-use-of-external-api)
-9. [Contributors](#9-contributors)
 
 
 ##
@@ -223,14 +233,4 @@ Implemented an external API in our backend to optimize the route using Route Pla
 
 Use of an API key: To access an API key, sign up for a free account, which has a limit of 3,000 credits a day.
 
-## 9. Contributors 
 
-**🎸Emmanuel**
-
-**🎸Faiz**
-
-**🎸Hezekiah**
-
-**🎸Nathan**
-
-**🎸Rosie**
