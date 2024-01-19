@@ -66,14 +66,14 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
             />
         
         </GeoapifyContext>
-        <input  type="submit" value={"Add Adress"}/>
+        <input  type="submit" value={"Add Address"}/>
         </form>
       <h3>All Addresses:</h3>
       <ul>{generateListOfAddresses}</ul>
       <h3>All drivers:</h3>
       <ul>{generateListOfDrivers}</ul>
 
-      <button onClick={() => onButtonClick(navigate("/home"))}>
+      <button onClick={() => onButtonClick(navigate("/routes"))}>
         Generate route
       </button>
     </>

@@ -19,7 +19,11 @@ const NavBar = ({ route, driverUser }) => {
                 {
                     driverUser.isManager ?
                         <Link to="/manager" id="home" className="menu-item btn"><h3>All addresses</h3></Link> :
+                        (<>
                         <Link to="/map-page" id="home" className="menu-item btn"><h3>Progress Tracker</h3> </Link>
+                        <Link to="/routes" id="home" className="menu-item btn"><h3>All Routes</h3> </Link>
+                        </>)
+                        
                 }
                 
                     {addresses.length === 0 ? null : <h3 className="menu-item">List of addresses:</h3>}

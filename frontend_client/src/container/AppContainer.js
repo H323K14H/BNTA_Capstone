@@ -6,6 +6,7 @@ import Template from "../components/Template";
 import RouteComponent from "../components/MapPage/RouteComponent";
 import LoginForm from "../components/LogInForm";
 import Manager from "../components/Manager";
+import Route from "../components/Route";
 
 export const DriverContext = createContext()
 
@@ -18,6 +19,7 @@ const AppContainer = () => {
     const [checkpoint, setCheckpoint] = useState([]);
     const [completedCheckpoints, setCompletedCheckpoints] = useState([]);
     const [listOfDrivers, setListOfDrivers] = useState([])
+    const [listOfRoutes, setListOfRoutes] = useState([])
 
     const [driverUser, setDriverUser] = useState(
         {
@@ -60,6 +62,14 @@ const AppContainer = () => {
         const jsonData = await response.json();
 
         setListOfDrivers(jsonData);
+    }
+
+    const getAllRoutes = async () => {
+        const response = await fetch(`http://localhost:8080/routes`);
+        const jsonData = await response.json();
+
+        setListOfRoutes(jsonData);
+        console.log(jsonData);
     }
 
 
@@ -137,9 +147,11 @@ const AppContainer = () => {
                     checkpoint => checkpoint.completed === true
                 )
             );
+
         }
         getAllAddresses();
         getAllDrivers();
+        getAllRoutes()
     }, [optimizedRoute])
 
 
@@ -225,6 +237,15 @@ const AppContainer = () => {
                         onButtonClick={getOptimizedRoute}
                         postAddress={postAddress} 
                         listOfDrivers={listOfDrivers}/>
+                    </DriverContext.Provider>
+                },
+                {
+                    path: "/routes",
+                    element: 
+                    <DriverContext.Provider value={driverUser}>
+                    <Route
+                        listOfRoutes={listOfRoutes}
+                        listOfDrivers={listOfDrivers} />
                     </DriverContext.Provider>
                 }
             ]

@@ -1,6 +1,6 @@
 import MapComponent from "./MapComponent";
 
-const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, route }) => {
+const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, route, listOfDrivers, driverUser }) => {
 
   const completedAddresses = completedCheckpoints.map((checkpoint) => {
     return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
@@ -11,6 +11,10 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
   const listOfAddressesToVisit = checkpoints.filter((checkpoint) => {
     return !checkpoint.completed;
   });
+
+  const driverOptions = listOfDrivers.map((driver)=>{
+    return driver.isManager? null: <option>{driver.initials}</option>
+})
 
   const addressesToVisit = listOfAddressesToVisit.map((checkpoint) => {
     return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
@@ -25,6 +29,17 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
         <button onClick={() => onButtonClick()}>Generate route</button>
       ) : (
         <>
+        {driverUser&&driverUser.isManager?
+        (
+        <form>
+          <select>
+            {driverOptions}
+          </select>
+          <input type="submit" value="Assign Driver" ></input>
+
+        </form>): null}
+
+
           <MapComponent waypoints={optimizedRoute} />
 
           {optimizedRoute.length > 0 ? (listOfAddressesToVisit.length > 0 ?
