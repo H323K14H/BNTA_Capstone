@@ -33,7 +33,7 @@
 }
 /* General sidebar styles */
 .bm-menu {
-    background: #616B96;
+    background: rgb(165 184 251);
     text-align: center;
     font-size: large;
 }
@@ -72,3 +72,9 @@
 .btn:hover {
     background-color: #373A47;
 }
+
+.logo {
+    width: 13em;
+    height: 7em;
+    border-radius: 10px;
+  }

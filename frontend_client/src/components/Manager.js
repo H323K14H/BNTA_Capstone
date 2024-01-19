@@ -8,17 +8,17 @@ import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 
 const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers }) => {
 
-    const [addressToAdd, setAddressToAdd] = useState({})
+  const [addressToAdd, setAddressToAdd] = useState({})
 
   const generateListOfAddresses = listOfAddresses.map((address) => {
     return <li>{address.name}</li>;
   });
 
   const generateListOfDrivers = listOfDrivers.map((driver) => {
-    return (driver.isManager? null : <li>{driver.initials}</li>)
+    return (driver.isManager ? null : <li>{driver.initials}</li>)
   });
 
-  
+
   const navigate = useNavigate();
 
   const onPlaceSelect = (value) => {
@@ -31,10 +31,10 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
   const postprocessHook = (event) => {
     console.log(event);
     setAddressToAdd({
-        longitude: event.properties.lon,
-        latitude: event.properties.lat,
-        name: event.properties.address_line1 + ", " + event.properties.address_line2,
-        warehouseId: 1
+      longitude: event.properties.lon,
+      latitude: event.properties.lat,
+      name: event.properties.address_line1 + ", " + event.properties.address_line2,
+      warehouseId: 1
     })
     console.log(addressToAdd);
     return (
@@ -42,16 +42,16 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
     );
   };
 
-  const handleSubmit=(event)=>{
+  const handleSubmit = (event) => {
     event.preventDefault()
     postAddress(addressToAdd)
   }
 
   return (
-    <>
-        <form onSubmit={(event)=>handleSubmit(event)} >
+    <section className="managerPage">
+      <form className="addressSearch" onSubmit={(event) => handleSubmit(event)} >
         <GeoapifyContext apiKey="79ebcdca6b524d37952376c0ebe3f73a">
-            <GeoapifyGeocoderAutocomplete
+          <GeoapifyGeocoderAutocomplete
             placeholder="Enter address here"
             // type={"street"}
             lang={"en"}
@@ -63,20 +63,26 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
             suggestionsChange={onSuggestionChange}
             postprocessHook={postprocessHook}
             allowNonVerifiedHouseNumber={true}
-            />
-        
-        </GeoapifyContext>
-        <input  type="submit" value={"Add Adress"}/>
-        </form>
-      <h3>All Addresses:</h3>
-      <ul>{generateListOfAddresses}</ul>
-      <h3>All drivers:</h3>
-      <ul>{generateListOfDrivers}</ul>
+          />
 
-      <button onClick={() => onButtonClick(navigate("/home"))}>
+        </GeoapifyContext>
+        <input className="addressSearchSubmit" type="submit" value={"Add Adress"} />
+      </form>
+      <div className="listOnManager">
+        <div className="listOfAddresses">
+          <h3>All Addresses:</h3>
+          <ul>{generateListOfAddresses}</ul>
+        </div>
+        <div className="listOfDrivers">
+          <h3>All drivers:</h3>
+          <ul>{generateListOfDrivers}</ul>
+        </div>
+      </div>
+
+      <button className="btn-default manager-btn" onClick={() => onButtonClick(navigate("/home"))}>
         Generate route
       </button>
-    </>
+    </section>
   );
 };
 
