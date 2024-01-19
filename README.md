@@ -78,7 +78,7 @@ Follow the steps provided to run the application on your device...
 **Frontend Setup:**
    - Navigate to frontend_client
    - Run npm i to install libraries
-   - Insert external API key into LandingPage.js
+   - Insert external API key into Manager.js
    - Run npm start to Access the application at `http://localhost:3000`
 
 ```
