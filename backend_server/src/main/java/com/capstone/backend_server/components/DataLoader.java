@@ -51,6 +51,8 @@ public class DataLoader implements ApplicationRunner {
 
         deliveryAddressRepository.save(deliveryAddress1);
         deliveryAddressRepository.save(deliveryAddress2);
+        deliveryAddressRepository.save(deliveryAddress3);
+        deliveryAddressRepository.save(deliveryAddress4);
         driverRepository.save(postmanPat);
         driverRepository.save(phatController);
         driverRepository.save(driver2);
