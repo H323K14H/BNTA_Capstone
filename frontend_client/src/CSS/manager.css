@@ -8,7 +8,7 @@
     align-items: center; /* Center horizontally */
     justify-content: center; /* Center vertically */
     text-align: center; /* Center text within the container */
-    height: 76vh;
+    height: 100%;
 }
 
 form {
@@ -71,4 +71,5 @@ form {
 
 .manager-btn{
     margin-top: 1.5em;
+    margin-bottom: 1em;
 }

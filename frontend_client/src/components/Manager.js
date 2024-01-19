@@ -68,7 +68,11 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
 
 
         </GeoapifyContext>
+<<<<<<< HEAD
+        <input className="addressSearchSubmit btn-default" type="submit" value={"Add Adress"} />
+=======
         <input className="addressSearchSubmit" type="submit" value={"Add Address"} />
+>>>>>>> 1f3de1a60d5d31402d4193b3381733fd00a47880
       </form>
       <div className="listOnManager">
         <div className="listOfAddresses">

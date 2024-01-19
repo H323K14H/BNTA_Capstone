@@ -25,3 +25,31 @@
   text-align: center;
   padding: 1em;
 }
+
+.assign-driver-form-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-top: 2em;
+  
+}
+
+.assign-driver-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: rgb(254 248 229);
+  padding: 2em;
+  border-radius: 25px;
+}
+
+.select-driver{
+  margin-right: 3em;
+  width: 8em;
+  height: 3em;
+}
