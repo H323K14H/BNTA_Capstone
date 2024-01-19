@@ -29,11 +29,11 @@ const DeliveredButton = ({ route, checkpointData, markCheckpointAsComplete, getR
   return (
     <section className="delivered-btn-container">
       {checkpointIndex < checkpointIds.length ?
-        <button onClick={handleButtonClick}>
+        <button className="btn-default" onClick={handleButtonClick}>
           {checkpointIndex === 0 ? "Collected" : "Delivered"}
         </button>
         :
-        <strong>Deliveries complete!</strong>
+        null
       }
     </section>
   );

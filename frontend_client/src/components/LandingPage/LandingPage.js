@@ -46,23 +46,29 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
             : null}
           <MapComponent waypoints={optimizedRoute} />
 
-          {optimizedRoute.length > 0 ? (listOfAddressesToVisit.length > 0 ?
-            (<>
-              <h3>To Visit:</h3>
-              <ul>{addressesToVisit}</ul>
-            </>
-            ) : <h3>You have no more deliveries to do today</h3>) : (
-            <h3>Route has not been generated yet</h3>
-          )}
+          <div className="listOnLandingPage">
+            <div className="listOfPlacesToVisit">
+              {optimizedRoute.length > 0 ? (listOfAddressesToVisit.length > 0 ?
+                (<>
+                  <h3>Places To Visit:</h3>
+                  <ul>{addressesToVisit}</ul>
+                </>
+                ) : <h3>You have no more deliveries to do today</h3>) : (
+                <h3>Route has not been generated yet</h3>
+              )}
+            </div>
 
-          {completedAddresses.length > 0 ? (
-            <>
-              <h3>Visited:</h3>
-              <ul>{completedAddresses}</ul>
-            </>
-          ) : (
-            <h3>No Deliveries Made Yet Today</h3>
-          )}
+            <div className="listOfVisitedPlaces">
+              {completedAddresses.length > 0 ? (
+                <>
+                  <h3>Visited:</h3>
+                  <ul>{completedAddresses}</ul>
+                </>
+              ) : (
+                <h3>No Deliveries Made Yet Today</h3>
+              )}
+            </div>
+          </div>
         </>
 
       )}

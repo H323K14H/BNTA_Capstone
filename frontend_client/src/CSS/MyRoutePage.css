@@ -1,5 +1,9 @@
 .delivered-btn-container{
     display: flex;
     justify-content: center;
-    margin-bottom: 5em;
+}
+
+.address-title{
+    display: flex;
+    justify-content: center;
 }

@@ -33,7 +33,7 @@
 }
 /* General sidebar styles */
 .bm-menu {
-    background: rgb(165 184 251);
+    background: rgb(132 132 132);
     text-align: center;
     font-size: large;
 }
@@ -60,7 +60,7 @@
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     color: white;
     transition: color 0.2s;
     list-style: none;
@@ -78,3 +78,11 @@
     height: 7em;
     border-radius: 10px;
   }
+
+.driver-initials{
+    background-color: #373A47;
+    border-radius: 30px;
+    padding: 0.1em;
+    width: 7em;
+    transform: translateX(54px);
+}
