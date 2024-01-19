@@ -77,7 +77,7 @@ const LoginForm = ({ setLoginInUser, driverUser }) => {
                             className="name-input"
                         />
                     </div>
-                    <input className="login-button" type="submit" value={"Log in"} />
+                    <input className="btn-default" type="submit" value={"Log in"} />
                 </form>
            
         </section>

@@ -1,0 +1,74 @@
+.geoapify-autocomplete-input{
+    font-size: medium;
+}
+
+.managerPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Center text within the container */
+    height: 76vh;
+}
+
+form {
+    max-width: 300px; /* Set a maximum width for the form if needed */
+    width: 100%; /* Ensure the form takes the full width of the container */
+}
+
+.addressSearch{
+    background-color: rgb(254 248 229);
+    padding: 3em;
+    border-radius: 25px;
+    margin-top: 1.5em;
+}
+
+.addressSearchSubmit{
+    margin-top: 2em
+}
+
+.listOnManager{
+    display: flex;
+    width: 50em;
+    margin-top: 1.5em;
+}
+
+.listOfAddresses{
+    margin-right: 1em;
+    width: 50%;
+    background-color: rgb(254 248 229);
+    padding: 1em;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.listOfAddresses ul{
+    transform: translate(-18px, 0px);
+}
+.listOfAddresses ul li{
+    margin-bottom: 1em;
+}
+
+
+.listOfDrivers{
+    margin-left: 1em;
+    width: 50%;
+    background-color: rgb(254 248 229);
+    padding: 1em;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.listOfDrivers ul{
+    margin-right: 17em;
+    transform: translate(117px, 0px);
+}
+.listOfDrivers ul li{
+    margin-bottom: 1em;
+}
+
+.manager-btn{
+    margin-top: 1.5em;
+}

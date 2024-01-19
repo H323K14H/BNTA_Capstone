@@ -24,7 +24,7 @@ const Template = ({ completedCheckpoints, route, onButtonClick, setDriverUser })
         <Outlet/>
 
         <footer className='footer'>
-            <p>this is the footer</p>
+            <p>Under Construction ©</p>
         </footer>
     </>
     );
