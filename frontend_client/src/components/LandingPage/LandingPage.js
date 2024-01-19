@@ -2,6 +2,10 @@ import MapComponent from "./MapComponent";
 
 const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, route, listOfDrivers, driverUser }) => {
 
+  if (!route){
+    return <p>Loading...</p>
+  }
+
   const completedAddresses = completedCheckpoints.map((checkpoint) => {
     return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
   });

@@ -49,6 +49,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
   //   // Update the waypoints when the incompleteWaypoints change
   //   instance.setWaypoints(incompleteWaypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)));
   // }, [incompleteWaypoints]);
+  // var map = L.map('map');
 
   const instance = L.Routing.control({
     position,
@@ -84,7 +85,22 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
         .openPopup();
     },
 
-  });
+  })//.addTo(map);
+
+  L.Routing.errorControl(instance)//.addTo(map);
+
+  // setInterval(function () {
+  //   // instance.setWaypoints(
+  //   //   incompleteWaypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude))
+  //   // )
+  //   var newWaypoint = instance.getWaypoints()[0].latLng;
+	// var newLat = newWaypoint.lat + 0.01;
+	// var newLng = newWaypoint.lng + 0.01;
+  // instance.setWaypoints([
+  //      L.latLng(newLat, newLng),
+  //      instance.options.waypoints[1]
+  //    ]);
+  // }, 10000);
 
   return instance;
 };

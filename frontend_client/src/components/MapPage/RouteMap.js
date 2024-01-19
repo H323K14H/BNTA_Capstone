@@ -41,8 +41,9 @@ const RouteMap = ({ optimizedRoute}) => {
                     position={'topright'}
                     waypoints={optimizedRoute}
                     color={'rgb(255, 24, 132)'}
-
+                    key={optimizedRoute.findIndex((checkpoint)=> !checkpoint.completed)}
                 />
+
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
