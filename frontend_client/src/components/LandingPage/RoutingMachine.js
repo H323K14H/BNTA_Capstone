@@ -42,24 +42,12 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
     );
   };
 
-  // const getGeoCodes = deliveryAddresses.map((delivery) => {
-  //   return delivery.geocode
-  // });
-
-  // const getAddresses = deliveryAddresses.map((delivery) => {
-  //   return delivery.address
-  // });
-
-  // const allWaypoints = [warehouse.geocode, ...getGeoCodes];
-
-  // const allAddresses = [warehouse.address, ...getAddresses];
-  console.log(waypoints);
 
   const allAddresses = waypoints.map(waypoint => waypoint.address.name);
 
   const instance = L.Routing.control({
     position,
-    // waypoints: allWaypoints.map((geo) => L.latLng(geo[0], geo[1])),
+    
     waypoints: waypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)),
     collapsible: true,
     addWaypoints: false,
@@ -69,8 +57,6 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
     },
 
     createMarker: (i, coordinates, n) => {
-
-      console.log(waypoints);
 
       const address = allAddresses[i];
 
