@@ -190,7 +190,9 @@ const AppContainer = () => {
                         onButtonClick={getOptimizedRoute}
                         optimizedRoute={realTimeWaypoint}
                         completedCheckpoints={completedCheckpoints}
-                        route={route} />
+                        route={route} 
+                        listOfDrivers={listOfDrivers}
+                        driverUser={driverUser}/>
                     </DriverContext.Provider>
                 },
                 {
