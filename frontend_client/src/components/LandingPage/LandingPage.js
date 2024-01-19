@@ -20,7 +20,10 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
     return driver.isManager ? null : <option>{driver.initials}</option>
   })
 
-  console.log(driverUser);
+  const getAlert = (event)=>{
+    event.preventDefault();
+    alert("Driver Successfully added");
+  };
 
 
   return (
@@ -32,7 +35,7 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
         <>
           {driverUser && driverUser.isManager ?
             (
-              <form>
+              <form onSubmit={(event)=>{getAlert(event)}}>
                 <select>
                   {driverOptions}
                 </select>
