@@ -6,7 +6,7 @@ import { DriverContext } from '../container/AppContainer';
 import logo from '../logo.png'
 
 
-const Template = ({ completedCheckpoints, route, onButtonClick }) => {
+const Template = ({ completedCheckpoints, route, onButtonClick, setDriverUser }) => {
 
     const driverUser = useContext(DriverContext)
     console.log(driverUser);
@@ -17,7 +17,7 @@ const Template = ({ completedCheckpoints, route, onButtonClick }) => {
             {
                 driverUser.isManager ? null: <Counter completedCheckpoints={completedCheckpoints} route={route} />
             }
-            <NavBar route={route} driverUser={driverUser} />
+            <NavBar route={route} driverUser={driverUser} setDriverUser={setDriverUser} />
         </section>
         {/* {driverUser.isManager ? <button onClick={() => onButtonClick()}>Generate route</button> : null} */}
 

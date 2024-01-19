@@ -1,7 +1,7 @@
 import { slide as Menu } from 'react-burger-menu'
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ route, driverUser }) => {
+const NavBar = ({ route, driverUser,setDriverUser }) => {
 
     
 
@@ -9,12 +9,21 @@ const NavBar = ({ route, driverUser }) => {
         return <li key={index}>{checkpoint.address.name}</li>
     }) : []
 
+    const onLogOut = ()=>{
+        setDriverUser({
+            name: null,
+            id: null,
+            isManager: true
+        })
+    }
     console.log(driverUser);
 
     return (
         <>
             <Menu>
                 <h3>{driverUser.initials}</h3>
+                {driverUser.id ? <Link to="/" id="home" onClick={onLogOut} className="menu-item btn"> <h3>Log Out</h3></Link> : null}
+
                 <Link to="/home" id="home" className="menu-item btn"><h3>Overall Route </h3> </Link>
                 {
                     driverUser.isManager ?
@@ -28,7 +37,6 @@ const NavBar = ({ route, driverUser }) => {
                 
                 
 
-                {driverUser.id ? <Link to="/" id="home" className="menu-item btn"> <h3>Log Out</h3></Link> : null}
             </Menu>
         </>
     )

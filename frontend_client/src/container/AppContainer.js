@@ -46,6 +46,8 @@ const AppContainer = () => {
             isManager: jsonData.isManager
         });
 
+        localStorage.setItem("userId",userId)
+
     }
 
     const getAllAddresses = async () => {
@@ -125,7 +127,9 @@ const AppContainer = () => {
     useEffect(() => {
         if (localStorage.getItem("optimizedRoute")) {
             getRouteById(localStorage.getItem("optimizedRoute"))
-            localStorage.setItem("checkpointIndex", 0)
+        }
+        if(localStorage.getItem("userId")){
+            setLoginInUser(localStorage.getItem("userId"))
         }
     }, [])
 
@@ -179,7 +183,8 @@ const AppContainer = () => {
                     <Template
                         completedCheckpoints={completedCheckpoints}
                         route={optimizedRoute}
-                        onButtonClick={getOptimizedRoute} />
+                        onButtonClick={getOptimizedRoute}
+                        setDriverUser={setDriverUser} />
                 </DriverContext.Provider>,
             children: [
                 {
