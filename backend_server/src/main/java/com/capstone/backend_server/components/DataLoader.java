@@ -33,13 +33,19 @@ public class DataLoader implements ApplicationRunner {
         DeliveryAddress deliveryAddress1 = new DeliveryAddress(-0.12463613175773046,51.50079595927124, "Big Ben, Westminster, London SW1A 2JR",warehouse1 );
         warehouse1.addDeliveryAddress(deliveryAddress1);
 
-        DeliveryAddress deliveryAddress2 = new DeliveryAddress( -0.08384882579080091,51.516050601098655, "LBG, 33 Old Broad St, London EC2N 3AH",warehouse1 );
+        DeliveryAddress deliveryAddress2 = new DeliveryAddress( -0.08384882579080091,51.516050601098655, "Lloyds Bank, 33 Old Broad St, London EC2N 3AH",warehouse1 );
         warehouse1.addDeliveryAddress(deliveryAddress2);
 
-        Driver postmanPat = new Driver("PP",5, warehouse1, false);
-        Driver driver2 = new Driver("NP",5, warehouse1, false);
-        Driver driver3 = new Driver("FF",5, warehouse1, false);
-        Driver driver4 = new Driver("RM",5, warehouse1, false);
+        DeliveryAddress deliveryAddress3 = new DeliveryAddress( -0.1233395278971216,51.513224223459744, "Lloyds Bank, Villiers House, 48-49 Strand, London WC2N 5LL",warehouse1 );
+        warehouse1.addDeliveryAddress(deliveryAddress3);
+
+        DeliveryAddress deliveryAddress4 = new DeliveryAddress( -0.14945860485133247,51.517373907119996, "Lloyds Bank, 399 Oxford St, London W1C 2BU",warehouse1 );
+        warehouse1.addDeliveryAddress(deliveryAddress4);
+
+        Driver postmanPat = new Driver("PP",10, warehouse1, false);
+        Driver driver2 = new Driver("NP",10, warehouse1, false);
+        Driver driver3 = new Driver("FF",10, warehouse1, false);
+        Driver driver4 = new Driver("RM",10, warehouse1, false);
 
         Driver phatController = new Driver("H323", 0, warehouse1, true);
 
