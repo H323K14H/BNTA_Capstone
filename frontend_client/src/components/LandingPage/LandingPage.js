@@ -20,14 +20,14 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
     return driver.isManager ? null : <option>{driver.initials}</option>
   })
 
-  const getAlert = (event)=>{
+  const getAlert = (event) => {
     event.preventDefault();
     alert("Driver Successfully added");
   };
 
 
   return (
-    <>
+    <section className="landing-page-section">
 
       {optimizedRoute.length === 0 ? (
         <button onClick={() => onButtonClick()}>Generate route</button>
@@ -35,12 +35,15 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
         <>
           {driverUser && driverUser.isManager ?
             (
-              <form onSubmit={(event)=>{getAlert(event)}}>
-                <select>
-                  {driverOptions}
-                </select>
-                <input type="submit" value="Assign Driver" ></input>
-              </form>) : null}
+              <section className="assign-driver-form-container">
+                <form className="assign-driver-form" onSubmit={(event) => { getAlert(event) }}>
+                  <select className="select-driver">
+                    {driverOptions}
+                  </select>
+                  <input className="submit-assign-driver btn-default" type="submit" value="Assign Driver" ></input>
+                </form>
+              </section>)
+            : null}
           <MapComponent waypoints={optimizedRoute} />
 
           {optimizedRoute.length > 0 ? (listOfAddressesToVisit.length > 0 ?
@@ -63,7 +66,7 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
         </>
 
       )}
-    </>
+    </section>
   );
 };
 
