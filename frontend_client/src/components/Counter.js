@@ -6,7 +6,7 @@ const Counter = ({ completedCheckpoints, route }) => {
             {
                 (route && route.checkpoints && completedCheckpoints) ?
                     <section className="counter">
-                        <b>Delivery: {completedCheckpoints.length}/{route.checkpoints.length}</b>
+                        <b>Delivery {completedCheckpoints.length}/{route.checkpoints.length}</b>
                     </section>
                     : null
 
