@@ -1,15 +1,17 @@
-const Counter = ({completedCheckpoints, route}) => {
+const Counter = ({ completedCheckpoints, route }) => {
 
     return (
-        <section className="counter">
+        <>
 
             {
-                (route&&route.checkpoints&&completedCheckpoints)?
-                <b>Delivery: {completedCheckpoints.length}/{route.checkpoints.length}</b>
-                : null
+                (route && route.checkpoints && completedCheckpoints) ?
+                    <section className="counter">
+                        <b>Delivery: {completedCheckpoints.length}/{route.checkpoints.length}</b>
+                    </section>
+                    : null
 
             }
-        </section>
+        </>
     );
 }
 

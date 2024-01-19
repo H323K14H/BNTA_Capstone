@@ -11,10 +11,19 @@
 .counter {
   position: absolute;
   width: 100px;
-  height: 30px;
+  height: 50px;
   right: 50px;
-  top: 26px;
-  font-size: large;
+  top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: x-large;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-color: rgb(254 248 229);
+  box-shadow: 0px 10px 10px rgb(102, 95, 73) ;
 }
 
 .footer {
@@ -65,7 +74,8 @@
 .listOfPlacesToVisit{
   margin-right: 1em;
   width: 50%;
-  background-color: rgb(255 44 44);
+  background-color: rgb(255, 80, 80);
+  box-shadow: 0px 10px 10px rgb(122, 20, 20);
   padding: 1em;
   border-radius: 25px;
   display: flex;
@@ -79,13 +89,25 @@
 .listOfVisitedPlaces{
   margin-left: 1em;
   width: 50%;
-  background-color: rgb(0 198 52);
+  background-color: rgb(103, 251, 143);
+  box-shadow: 0px 10px 10px rgb(3, 144, 41);
   padding: 1em;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
+  
 }
+
 
 .listOfVisitedPlaces ul li{
   margin-bottom: 1em;
+}
+
+.generate-btn-container{
+    width: 100vw;
+    height: 77.5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
