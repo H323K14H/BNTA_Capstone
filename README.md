@@ -122,7 +122,11 @@ Follow the steps provided to run the application on your device...
 ![component](documentation/Diagrams/Components.png)
 
 
-## 6. Features
+## 6. Demo of the application
+
+
+
+## 7. Features
 
 - **Route Optimization 🚚 :** The system calculates and suggests the most optimized routes for delivery drivers based on distance efficiency.
 
@@ -137,7 +141,7 @@ Follow the steps provided to run the application on your device...
 - **User-friendly Interface 💻 :** The React frontend ensures a modern and intuitive user interface, enhancing the overall user experience for drivers on the go.
 
 
-## 7. Routes and Endpoints
+## 8. Routes and Endpoints
 The following end points can be requested from our backend server...
 
 
@@ -225,7 +229,7 @@ The following end points can be requested from our backend server...
 }
 ```
 
-## 8. Use of External API 
+## 9. Use of External API 
 
 [Route Planner API from Geoapify](https://apidocs.geoapify.com/docs/route-planner/#api)
 
