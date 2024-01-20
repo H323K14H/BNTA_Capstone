@@ -124,7 +124,7 @@ Follow the steps provided to run the application on your device...
 
 ## 6. Demo of the application
 
-[![Watch the video](https://github.com/H323K14H/BNTA_Capstone/assets/129006280/726db208-e73c-46a8-b044-8ce192d43abe)](https://www.youtube.com/watch?v=bIeqJI0zucc)
+[![Watch the video](https://github.com/H323K14H/BNTA_Capstone/assets/129006280/f1f7cfe3-1512-4436-ada7-eee8e5325cb5)](https://www.youtube.com/watch?v=bIeqJI0zucc)
 
 ## 7. Features
 
