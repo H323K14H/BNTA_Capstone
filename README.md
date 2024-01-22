@@ -26,8 +26,8 @@ This project utilizes the Spring Boot framework for the backend and React for th
 3. [Technologies Implemented](#3-technologies-implemented)
 4. [MVP and Extensions](#4-project-MVP-and-extensions)
 5. [Structure and Diagrams](#5-structure-and-diagrams)
-6. [Features](#6-features)
-7. [Demo of the Application](#7-demo-of-the-application)
+6. [Demo of the Application](#6-demo-of-the-application)
+7. [Features](#7-features)
 8. [Routes and Endpoints](#8-routes-and-endpoints)
 9. [Use Of External API](#9-use-of-external-api)
 
