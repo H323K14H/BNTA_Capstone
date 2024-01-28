@@ -26,9 +26,10 @@ This project utilizes the Spring Boot framework for the backend and React for th
 3. [Technologies Implemented](#3-technologies-implemented)
 4. [MVP and Extensions](#4-project-MVP-and-extensions)
 5. [Structure and Diagrams](#5-structure-and-diagrams)
-6. [Features](#6-features)
-7. [Routes and Endpoints](#7-routes-and-endpoints)
-8. [Use Of External API](#8-use-of-external-api)
+6. [Demo of the Application](#6-demo-of-the-application)
+7. [Features](#7-features)
+8. [Routes and Endpoints](#8-routes-and-endpoints)
+9. [Use Of External API](#9-use-of-external-api)
 
 
 ##
@@ -46,7 +47,7 @@ The following links provide supporting documentation for our project aims, chall
   - Spring Boot
   - Java
   - Database (SQL)
-  - Geoapify Route Planner API, [see section 8 for more info](#8-use-of-external-api)
+  - Geoapify Route Planner API, [see section 9 for more info](#9-use-of-external-api)
 
 - **Frontend:**
   - React
@@ -122,7 +123,11 @@ Follow the steps provided to run the application on your device...
 ![component](documentation/Diagrams/Components.png)
 
 
-## 6. Features
+## 6. Demo of the application
+
+[![Watch the video](https://github.com/H323K14H/BNTA_Capstone/assets/129006280/d0bf4582-e0e0-434a-bac2-60321308838c)](https://www.youtube.com/watch?v=bIeqJI0zucc)
+
+## 7. Features
 
 - **Route Optimization 🚚 :** The system calculates and suggests the most optimized routes for delivery drivers based on distance efficiency.
 
@@ -137,7 +142,7 @@ Follow the steps provided to run the application on your device...
 - **User-friendly Interface 💻 :** The React frontend ensures a modern and intuitive user interface, enhancing the overall user experience for drivers on the go.
 
 
-## 7. Routes and Endpoints
+## 8. Routes and Endpoints
 The following end points can be requested from our backend server...
 
 
@@ -225,7 +230,7 @@ The following end points can be requested from our backend server...
 }
 ```
 
-## 8. Use of External API 
+## 9. Use of External API 
 
 [Route Planner API from Geoapify](https://apidocs.geoapify.com/docs/route-planner/#api)
 

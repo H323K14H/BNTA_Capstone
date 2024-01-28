@@ -50,7 +50,7 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
   return (
     <section className="managerPage">
       <form className="addressSearch" onSubmit={(event) => handleSubmit(event)} >
-        <GeoapifyContext apiKey="10063a680ab44fbc9c459ea693034b0c">
+        <GeoapifyContext apiKey=API_KEY>
           <GeoapifyGeocoderAutocomplete
             placeholder="Enter address here"
             // type={"street"}
