@@ -1,28 +1,43 @@
 import MapComponent from "./MapComponent";
 
-const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, route, listOfDrivers, driverUser }) => {
+const LandingPage = (
+    {
+        onButtonClick,
+        optimizedRoute,
+        completedCheckpoints,
+        route,
+        listOfDrivers,
+        driverUser
+    }) => {
+
 
     if (!route) {
         return <p>Loading...</p>
     }
 
+
     const completedAddresses = completedCheckpoints.map((checkpoint) => {
         return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
     });
 
+
     const checkpoints = route.checkpoints || [];
+
 
     const listOfAddressesToVisit = checkpoints.filter((checkpoint) => {
         return !checkpoint.completed;
     });
 
+
     const addressesToVisit = listOfAddressesToVisit.map((checkpoint) => {
         return <li key={checkpoint.id}>{checkpoint.address.name}</li>;
     })
 
+
     const driverOptions = listOfDrivers.map((driver) => {
         return driver.isManager ? null : <option>{driver.initials}</option>
     })
+
 
     const getAlert = (event) => {
         event.preventDefault();
@@ -32,21 +47,26 @@ const LandingPage = ({ onButtonClick, optimizedRoute, completedCheckpoints, rout
 
     return (
         <section className="landing-page-section">
-
             {optimizedRoute.length === 0 ? (
-                <section className="generate-btn-container"><button className="btn-default" onClick={() => onButtonClick()}>Generate my route</button></section>
+                <section className="generate-btn-container">
+                    <button className="btn-default" onClick={() => onButtonClick()}>
+                        Generate my route
+                    </button>
+                </section>
             ) : (
                 <>
-                    {driverUser && driverUser.isManager ?
-                        (
-                            <section className="assign-driver-form-container">
-                                <form className="assign-driver-form" onSubmit={(event) => { getAlert(event) }}>
-                                    <select className="select-driver">
-                                        {driverOptions}
-                                    </select>
-                                    <input className="submit-assign-driver btn-default" type="submit" value="Assign Driver" ></input>
-                                </form>
-                            </section>)
+                    {driverUser && driverUser.isManager ? (
+                        <section className="assign-driver-form-container">
+                            <form
+                                className="assign-driver-form"
+                                onSubmit={(event) => { getAlert(event) }}>
+                                <select className="select-driver">
+                                    {driverOptions}
+                                </select>
+                                <input className="submit-assign-driver btn-default" type="submit" value="Assign Driver" ></input>
+                            </form>
+                        </section>
+                    )
                         : null}
                     <MapComponent waypoints={optimizedRoute} />
 

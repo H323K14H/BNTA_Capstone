@@ -1,15 +1,18 @@
-import { useState } from "react";
 import DeliveredButton from "./DeliveredButton";
 import RouteMap from "./RouteMap";
 
-const RouteComponent = ({ optimizedRoute, route, checkpointData, markCheckpointAsComplete, getRouteById }) => {
 
-    // const[nextAddress, setNextAddress] = useState("")
-
+const RouteComponent = (
+    {
+        optimizedRoute,
+        route,
+        checkpointData,
+        markCheckpointAsComplete,
+        getRouteById
+    }) => {
 
 
     const nextCheckpoint = optimizedRoute.find(waypoint => !waypoint.completed)
-    // const isWarehouse = nextCheckpoint.address.isWarehouse
 
     return (
         <>
@@ -17,8 +20,13 @@ const RouteComponent = ({ optimizedRoute, route, checkpointData, markCheckpointA
                 <section className="next-address">
                     {nextCheckpoint ? (
                         <>
-                            <h1 className="delivery-status">{nextCheckpoint.address.isWarehouse ? "Collecting from" : "Next address"}:</h1>
-                            <p className="upcoming-address">{nextCheckpoint.address.name}</p>
+                            <h1 className="delivery-status">
+                                {nextCheckpoint.address.isWarehouse ? "Collecting from" : "Next address"}:
+                            </h1>
+
+                            <p className="upcoming-address">
+                                {nextCheckpoint.address.name}
+                            </p>
                         </>
                     ) : (
                         <h1 className="delivery-status">Deliveries done!</h1>

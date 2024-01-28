@@ -2,7 +2,6 @@ const Counter = ({ completedCheckpoints, route }) => {
 
     return (
         <>
-
             {
                 (route && route.checkpoints && completedCheckpoints) ?
                     <section className="counter">

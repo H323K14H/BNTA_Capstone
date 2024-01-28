@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Outlet, json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({ setLoginInUser, driverUser }) => {
+const LoginForm = ({ setLoginInUser }) => {
 
     const navigate = useNavigate();
 
@@ -13,10 +13,10 @@ const LoginForm = ({ setLoginInUser, driverUser }) => {
         try {
             const response = await fetch(`http://localhost:8080/drivers/${password}`);
             const jsonData = await response.json();
+
             if (jsonData.initials === username) {
                 setLoginInUser(password);
-                console.log(jsonData);
-                jsonData.isManager ? navigate("/manager") : navigate("/home");                
+                jsonData.isManager ? navigate("/manager") : navigate("/home");
             } else {
                 throw new Error("Invalid");
             }
@@ -52,34 +52,34 @@ const LoginForm = ({ setLoginInUser, driverUser }) => {
     return (
 
         <section className="login-form">
-          
-                <form className="login" onSubmit={(event) => handleFormSubmit(event)}>
-                    <div className="username-login">
-                        <label htmlFor="name-input"></label>
-                        <input
-                            type="text"
-                            id="name-input"
-                            onInput={(event) => updateUserName(event)}
-                            value={username}
-                            placeholder="Username"
-                            className="name-input"
 
-                        />
-                    </div>
-                    <div className="username-login">
-                        <label htmlFor="password-input"></label>
-                        <input
-                            type="password"
-                            id="password-input"
-                            onInput={(event) => updateUserPassword(event)}
-                            value={password}
-                            placeholder="Password"
-                            className="name-input"
-                        />
-                    </div>
-                    <input className="btn-default" type="submit" value={"Log in"} />
-                </form>
-           
+            <form className="login" onSubmit={(event) => handleFormSubmit(event)}>
+                <div className="username-login">
+                    <label htmlFor="name-input"></label>
+                    <input
+                        type="text"
+                        id="name-input"
+                        onInput={(event) => updateUserName(event)}
+                        value={username}
+                        placeholder="Username"
+                        className="name-input"
+
+                    />
+                </div>
+                <div className="username-login">
+                    <label htmlFor="password-input"></label>
+                    <input
+                        type="password"
+                        id="password-input"
+                        onInput={(event) => updateUserPassword(event)}
+                        value={password}
+                        placeholder="Password"
+                        className="name-input"
+                    />
+                </div>
+                <input className="btn-default" type="submit" value={"Log in"} />
+            </form>
+
         </section>
     );
 

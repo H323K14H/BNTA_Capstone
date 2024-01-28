@@ -16,7 +16,6 @@ const NavBar = ({ route, driverUser, setDriverUser }) => {
             isManager: true
         })
     }
-    console.log(driverUser);
 
     return (
         <>
@@ -38,7 +37,6 @@ const NavBar = ({ route, driverUser, setDriverUser }) => {
 
                     <p className='addresses'>{addresses}</p>
                 </div>}
-
 
             </Menu>
         </>
