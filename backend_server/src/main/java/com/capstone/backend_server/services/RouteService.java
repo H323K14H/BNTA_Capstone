@@ -75,8 +75,6 @@ public class RouteService {
 
         String requestBody = createRequestBody();
 
-        System.out.println(requestBody);
-
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
@@ -88,11 +86,10 @@ public class RouteService {
         try (Response response = client.newCall(request).execute()) {
             ObjectMapper objectMapper = new ObjectMapper();
             assert response.body() != null;
-            Root root = objectMapper.readValue(response.body().string(), Root.class);
-            System.out.println(root.toString());
+            ApiResponse apiResponse = objectMapper.readValue(response.body().string(), ApiResponse.class);
 
 
-            return waypoints2Route(root.features.get(0).properties.waypoints);
+            return waypoints2Route(apiResponse.features.get(0).properties.waypoints);
         } catch (IOException e) {
             throw new IOException(e);
         }
