@@ -9,7 +9,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
   const generateIcons = (i, isCompleted) => {
 
     if (i === 0) {
-      if(isCompleted){
+      if (isCompleted) {
         return new L.Icon(
           {
             iconUrl: "https://cdn-icons-png.flaticon.com/512/6276/6276686.png",
@@ -25,7 +25,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
       );
     }
 
-    if(isCompleted){
+    if (isCompleted) {
       return new L.Icon(
         {
           iconUrl: "https://cdn4.iconfinder.com/data/icons/real-estate-glyphs-set-5/52/home__tick__real__house-512.png",
@@ -47,7 +47,7 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
   const instance = L.Routing.control({
     position,
-    
+
     waypoints: waypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)),
     collapsible: true,
     addWaypoints: false,
