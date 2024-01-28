@@ -10,10 +10,6 @@ import java.util.List;
 @Table(name = "warehouses")
 public class Warehouse extends Address {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-
     @OneToMany(mappedBy = "warehouse")
     @JsonIgnoreProperties({"warehouse"})
     private List<Route> routes;
@@ -26,10 +22,6 @@ public class Warehouse extends Address {
     @JsonIgnoreProperties({"warehouse"})
     private List<DeliveryAddress> deliveryAddresses;
 
-//    @OneToMany(mappedBy = "location")
-//    @JsonIgnore
-//    private List<Checkpoint> checkpoints;
-
     @Column
     private boolean isWarehouse;
 
@@ -38,7 +30,6 @@ public class Warehouse extends Address {
         this.routes = new ArrayList<Route>();
         this.drivers = new ArrayList<Driver>();
         this.deliveryAddresses = new ArrayList<DeliveryAddress>();
-//        this.checkpoints = new ArrayList<>();
         this.isWarehouse = true;
     }
 
@@ -69,15 +60,6 @@ public class Warehouse extends Address {
         this.deliveryAddresses.remove(deliveryAddress);
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-
     public List<Route> getRoutes() {
         return routes;
     }
@@ -101,15 +83,6 @@ public class Warehouse extends Address {
     public void setDeliveryAddresses(List<DeliveryAddress> deliveryAddresses) {
         this.deliveryAddresses = deliveryAddresses;
     }
-
-//    public List<Checkpoint> getCheckpoints() {
-//        return checkpoints;
-//    }
-//
-//    public void setCheckpoints(List<Checkpoint> checkpoints) {
-//        this.checkpoints = checkpoints;
-//    }
-
 
     public boolean getIsWarehouse() {
         return isWarehouse;

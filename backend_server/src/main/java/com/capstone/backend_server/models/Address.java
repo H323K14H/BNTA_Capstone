@@ -25,7 +25,6 @@ public class Address {
     private String name;
 
     @OneToMany(mappedBy = "address")
-//    @JsonIgnoreProperties({"address", "route", "checkpoints"})
     @JsonIgnore
     private List<Checkpoint> checkpoints;
 

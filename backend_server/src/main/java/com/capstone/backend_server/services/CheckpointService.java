@@ -29,6 +29,6 @@ public class CheckpointService {
         routeRepository.save(route);
         route.setUpcomingCheckpointIndex(route.getUpcomingCheckpointIndex() + 1 );
         routeRepository.save(route);
-        return route; //checkpointRepository.findAllByRouteIdAndCompleted(route.getId(), true);
+        return route;
     }
 }
