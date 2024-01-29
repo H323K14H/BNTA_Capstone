@@ -6,7 +6,6 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 const createRoutineMachineLayer = ({ position, color, waypoints }) => {
 
-
   const generateIcons = (i) => {
     if (incompleteWaypoints[i].address.isWarehouse) {
 
@@ -22,27 +21,24 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
     });
   };
 
-
   const incompleteWaypoints = waypoints.filter((waypoint) => {
     return !waypoint.completed;
   });
 
-
-  const lastCompleteWaypoint = waypoints.findLast((waypoint) => waypoint.completed)
+  const lastCompleteWaypoint = waypoints.findLast((waypoint) => waypoint.completed);
 
   if (lastCompleteWaypoint) {
     incompleteWaypoints.unshift(lastCompleteWaypoint)
   }
 
-  console.log(incompleteWaypoints);
-
-
   const allAddresses = incompleteWaypoints.map(waypoint => waypoint.address.name);
-
 
   const instance = L.Routing.control({
     position,
-    waypoints: incompleteWaypoints.map((waypoint) => L.latLng(waypoint.address.latitude, waypoint.address.longitude)),
+    waypoints: incompleteWaypoints.map((waypoint) => L.latLng(
+      waypoint.address.latitude,
+      waypoint.address.longitude
+    )),
     collapsible: true,
     addWaypoints: false,
     lineOptions: {
@@ -56,26 +52,20 @@ const createRoutineMachineLayer = ({ position, color, waypoints }) => {
       const marker = generateIcons(i);
 
       return L.marker(coordinates.latLng, {
-
         draggable: false,
-
         bounceOnAdd: false,
         bounceOnAddOptions: {
           duration: 1000,
           height: 800,
         },
         icon: marker,
-
       })
-
         .bindPopup(address)
         .openPopup();
     },
-
   });
 
   L.Routing.errorControl(instance);
-
 
   return instance;
 };
