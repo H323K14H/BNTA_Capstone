@@ -1,11 +1,11 @@
-import './/CSS/App.css';
 import AppContainer from './container/AppContainer';
+import './/CSS/App.css';
 import './/CSS/styles.css';
-import './/CSS/landingPage.css';
+import './/CSS/LandingPage.css';
 import './/CSS/NavBar.css';
-import './/CSS/MyRoutePage.css';
+import './/CSS/RouteComponent.css';
 import './/CSS/Login.css';
-import './/CSS/manager.css';
+import './/CSS/Manager.css';
 
 
 

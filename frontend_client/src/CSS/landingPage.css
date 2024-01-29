@@ -8,7 +8,6 @@
   box-shadow: 0px 10px 10px rgb(255 182 52);
 }
 
-
 .counter {
   position: absolute;
   width: 100px;
@@ -24,7 +23,7 @@
   border: none;
   border-radius: 30px;
   background-color: rgb(254 248 229);
-  box-shadow: 0px 10px 10px rgb(102, 95, 73) ;
+  box-shadow: 0px 10px 10px rgb(102, 95, 73);
 }
 
 .footer {
@@ -36,7 +35,7 @@
   padding: 1em;
 }
 
-.assign-driver-form-container{
+.assign-driver-form-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,10 +43,9 @@
   width: auto;
   height: auto;
   margin-top: 2em;
-  
 }
 
-.assign-driver-form{
+.assign-driver-form {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -58,13 +56,13 @@
   border-radius: 25px;
 }
 
-.select-driver{
+.select-driver {
   margin-right: 3em;
   width: 8em;
   height: 3em;
 }
 
-.listOnLandingPage{
+.listOnLandingPage {
   display: flex;
   width: 70em;
   margin-top: 1.5em;
@@ -72,7 +70,7 @@
   transform: translate(9.5em, 0em);
 }
 
-.listOfPlacesToVisit{
+.listOfPlacesToVisit {
   margin-right: 1em;
   width: 50%;
   background-color: rgb(255, 80, 80);
@@ -83,11 +81,11 @@
   flex-direction: column;
 }
 
-.listOfPlacesToVisit ul li{
+.listOfPlacesToVisit ul li {
   margin-bottom: 1em;
 }
 
-.listOfVisitedPlaces{
+.listOfVisitedPlaces {
   margin-left: 1em;
   width: 50%;
   background-color: rgb(103, 251, 143);
@@ -96,19 +94,18 @@
   border-radius: 25px;
   display: flex;
   flex-direction: column;
-  
 }
 
 
-.listOfVisitedPlaces ul li{
+.listOfVisitedPlaces ul li {
   margin-bottom: 1em;
 }
 
-.generate-btn-container{
-    width: 100vw;
-    height: 77.5vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.generate-btn-container {
+  width: 100vw;
+  height: 77.5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

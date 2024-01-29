@@ -1,4 +1,4 @@
-.login-form{
+.login-form {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -7,7 +7,7 @@
     height: 77.5vh;
 }
 
-.login{
+.login {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,35 +18,35 @@
     border-radius: 25px;
 }
 
-.username-login{
+.username-login {
     margin-bottom: 1em;
-   
+
 }
 
-.name-input{
+.name-input {
     text-align: center;
 }
 
-.name-input{
+.name-input {
     font-size: large;
 }
 
-.login-button{
+.login-button {
     display: flex;
     justify-content: center;
     font-size: large;
     align-items: center;
     width: 6em;
     border: none;
-    border-radius: 10px; 
+    border-radius: 10px;
     background-color: rgb(106, 138, 255);
     padding: 5px 5px 5px 5px;
     cursor: pointer;
     font-size: large;
     color: #FFFFFF;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .login-button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  }
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

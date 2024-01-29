@@ -6,56 +6,69 @@
     left: 36px;
     top: 36px;
 }
+
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
     background: #373A47;
 }
+
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
     background: #838080;
 }
+
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
     height: 24px;
     width: 24px;
 }
+
 /* Color/shape of close button cross */
 .bm-cross {
     background: #BDC3C7;
 }
+
 /*
   Sidebar wrapper styles
-  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-  */
+  Note: Beware of modifying this element 
+  as it can break the animations - you should 
+  not need to touch it in most cases
+*/
 .bm-menu-wrap {
     position: fixed;
     height: 100%;
 }
+
 /* General sidebar styles */
 .bm-menu {
     background: rgb(254 248 229);
     text-align: center;
     font-size: large;
 }
+
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
     fill: #373A47;
 }
+
 /* Wrapper for item list */
 .bm-item-list {
     color: white;
     padding: 1.5em;
     font-size: large;
 }
+
 /* Individual item */
 .bm-item {
     display: inline-block;
     margin-bottom: 1em;
 }
+
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
 }
+
 .menu-item {
     display: inline-block;
     text-align: center;
@@ -69,13 +82,14 @@
     padding-left: 1em;
     padding-right: 1em;
 }
+
 .btn:hover {
     background-color: rgb(243 200 124);
     border: none;
     border-radius: 30px;
 }
 
-.addresses{
+.addresses {
     color: black;
     margin-top: 1em;
 }
@@ -91,15 +105,13 @@
     padding-right: 1em;
 }
 
-
-
 .logo {
     width: 13em;
     height: 7em;
     border-radius: 10px;
-  }
+}
 
-.driver-initials{
+.driver-initials {
     background-color: #373A47;
     border-radius: 30px;
     padding: 0.1em;
