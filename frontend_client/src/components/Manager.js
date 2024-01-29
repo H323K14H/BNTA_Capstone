@@ -9,11 +9,11 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
   const [addressToAdd, setAddressToAdd] = useState({})
 
   const generateListOfAddresses = listOfAddresses.map((address) => {
-    return <li>{address.name}</li>;
+    return <li key={address.id}>{address.name}</li>;
   });
 
   const generateListOfDrivers = listOfDrivers.map((driver) => {
-    return (driver.isManager ? null : <li>{driver.initials}</li>)
+    return (driver.isManager ? null : <li key={driver.id}>{driver.initials}</li>)
   });
 
 
