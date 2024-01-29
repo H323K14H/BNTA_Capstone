@@ -7,7 +7,7 @@ import com.capstone.backend_server.repositories.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-//
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,7 +42,19 @@ public class RouteService {
     @Autowired
     DriverRepository driverRepository;
 
-    public String createRequestBody(){
+    //    Takes in a key (apiKey) and injects its
+//    corresponding value from the properties folder,
+//    which is then stored inside a variable.
+    @Value("${apiKey}")
+    private final String apiKey;
+
+    //    Constructor initialises the String 'apiKey',
+//    allowing it to be used within RouteService.
+    public RouteService(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    public String createRequestBody() {
 
         Warehouse warehouse = warehouseRepository.findById(1L).get();
         ArrayList<Double> warehouseStartLocation = new ArrayList<>(Arrays.asList(warehouse.getLongitude(), warehouse.getLatitude()));
@@ -60,7 +72,7 @@ public class RouteService {
 
         Location location = new Location(warehouse.getId().toString(), warehouseStartLocation);
 
-        Params params = new Params(new ArrayList<>(List.of(agent)),shipments, new ArrayList<>(List.of(location)));
+        Params params = new Params(new ArrayList<>(List.of(agent)), shipments, new ArrayList<>(List.of(location)));
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -75,11 +87,15 @@ public class RouteService {
 
         String requestBody = createRequestBody();
 
+//       The variable 'apiUrl' includes our 'apiKey' variable, which contains the actual API Key
+        String apiUrl = "https://api.geoapify.com/v1/routeplanner?apiKey=" + apiKey;
+
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(requestBody, mediaType);
+//        The url for 'request' is 'apiUrl'
         Request request = new Request.Builder()
-                .url("https://api.geoapify.com/v1/routeplanner?apiKey=API_Key")
+                .url(apiUrl)
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -107,7 +123,7 @@ public class RouteService {
         for (Waypoint waypoint : waypoints.subList(1, waypoints.size())) {
             Long deliveryAddressId = waypoint.actions.get(0).shipment_id;
 
-            Checkpoint checkpoint = new Checkpoint(route,deliveryAddressRepository.findById(deliveryAddressId).get());
+            Checkpoint checkpoint = new Checkpoint(route, deliveryAddressRepository.findById(deliveryAddressId).get());
 
             checkpointRepository.save(checkpoint);
             route.addCheckpoint(checkpoint);
@@ -133,7 +149,7 @@ public class RouteService {
         Route route = routeRepository.findById(routeId).get();
         Driver driver = driverRepository.findById(driverId).get();
 
-        if (route.getWarehouse().getId().equals(driver.getWarehouse().getId())){
+        if (route.getWarehouse().getId().equals(driver.getWarehouse().getId())) {
             route.setDriver(driver);
             routeRepository.save(route);
 

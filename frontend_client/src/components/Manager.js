@@ -38,10 +38,12 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
     postAddress(addressToAdd)
   }
 
+  const apiKey = process.env.REACT_APP_API_KEY
+
   return (
     <section className="managerPage">
       <form className="addressSearch" onSubmit={(event) => handleSubmit(event)} >
-        <GeoapifyContext apiKey="API_Key">
+        <GeoapifyContext apiKey={apiKey}>
           <GeoapifyGeocoderAutocomplete
             placeholder="Enter address here"
             lang={"en"}

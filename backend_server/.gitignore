@@ -32,4 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-#API_KEY = ede22844945a44a28479f25cf8b53c52
+### API_KEY ###
+# Create this file on your local machine inside of resources folder
+# then input "apiKey=YOUR_API_KEY"
+application-dev.properties

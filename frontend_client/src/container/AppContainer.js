@@ -9,6 +9,7 @@ import Manager from "../components/Manager";
 
 export const DriverContext = createContext()
 
+
 const AppContainer = () => {
 
     const [optimizedRoute, setOptimizedRoute] = useState([]);
@@ -129,9 +130,6 @@ const AppContainer = () => {
     }, [optimizedRoute])
 
 
-
-
-
     const appRoutes = createBrowserRouter([
         {
             path: "/",
@@ -207,5 +205,6 @@ const AppContainer = () => {
         </>
     );
 }
+
 
 export default AppContainer;
