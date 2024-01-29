@@ -8,10 +8,10 @@ const Counter = ({ completedCheckpoints, route }) => {
                         <b>Delivery {completedCheckpoints.length}/{route.checkpoints.length}</b>
                     </section>
                     : null
-
             }
         </>
     );
 }
+
 
 export default Counter;

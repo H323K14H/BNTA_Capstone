@@ -1,9 +1,8 @@
 import { slide as Menu } from 'react-burger-menu'
 import { Link } from 'react-router-dom';
 
+
 const NavBar = ({ route, driverUser, setDriverUser }) => {
-
-
 
     const addresses = (route && route.checkpoints) ? route.checkpoints.map((checkpoint, index) => {
         return <li className='addresses' key={index}>{checkpoint.address.name}</li>
@@ -42,4 +41,6 @@ const NavBar = ({ route, driverUser, setDriverUser }) => {
         </>
     )
 }
+
+
 export default NavBar

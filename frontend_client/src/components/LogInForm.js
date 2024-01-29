@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
+
 const LoginForm = ({ setLoginInUser }) => {
 
     const navigate = useNavigate();
@@ -82,10 +83,7 @@ const LoginForm = ({ setLoginInUser }) => {
 
         </section>
     );
-
-
-
-
 }
+
 
 export default LoginForm;

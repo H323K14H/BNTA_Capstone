@@ -32,4 +32,5 @@ const Template = ({ completedCheckpoints, route, setDriverUser }) => {
     );
 }
 
+
 export default Template;

@@ -38,4 +38,5 @@ const MapComponent = ({ waypoints }) => {
     );
 };
 
+
 export default MapComponent;

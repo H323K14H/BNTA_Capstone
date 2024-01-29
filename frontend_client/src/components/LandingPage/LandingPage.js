@@ -1,5 +1,6 @@
 import MapComponent from "./MapComponent";
 
+
 const LandingPage = (
     {
         onButtonClick,
@@ -99,5 +100,6 @@ const LandingPage = (
         </section>
     );
 };
+
 
 export default LandingPage;

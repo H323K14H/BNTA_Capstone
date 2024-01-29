@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 
+
 const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers }) => {
 
   const [addressToAdd, setAddressToAdd] = useState({})
@@ -77,5 +78,6 @@ const Manager = ({ onButtonClick, listOfAddresses, postAddress, listOfDrivers })
     </section>
   );
 };
+
 
 export default Manager;
